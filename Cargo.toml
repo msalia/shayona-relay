@@ -1,0 +1,12 @@
+[package]
+name = "shayona-kiosk-relay"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "*"
+mysql = "*"
+paris = { version = "*", features = ["timestamps", "macros"] }
+serde_json = "*"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "*", features = ["cors"] }
