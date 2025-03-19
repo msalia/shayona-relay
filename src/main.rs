@@ -1,6 +1,7 @@
 use axum::{routing::get, routing::post, Router};
 use dotenv::dotenv;
 use paris::{info, success};
+use std::env;
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
 
@@ -27,10 +28,11 @@ async fn main() {
         .with_state(crate::server::get_state())
         .layer(crate::server::get_cors());
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3002));
+    let port = env::var("RELAY_PORT").unwrap().parse::<u16>().unwrap();
+    let addr = SocketAddr::from(([127, 0, 0, 1], port));
     let tcp = TcpListener::bind(&addr).await.unwrap();
 
-    success!("Server listening on localhost:3002");
+    success!("Server listening on http://localhost:{port}");
 
     axum::serve(tcp, router).await.unwrap();
 }
