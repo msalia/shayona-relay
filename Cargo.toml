@@ -11,3 +11,10 @@ paris = { version = "*", features = ["timestamps", "macros"] }
 serde_json = "*"
 tokio = { version = "1", features = ["full"] }
 tower-http = { version = "*", features = ["cors"] }
+
+[build]
+# target = "x86_64-pc-windows-gnu"
+target = "x86_64-apple-darwin"
+
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"
