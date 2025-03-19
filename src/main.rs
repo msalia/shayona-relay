@@ -1,4 +1,5 @@
 use axum::{routing::get, routing::post, Router};
+use dotenv::dotenv;
 use paris::{info, success};
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
@@ -8,6 +9,8 @@ mod server;
 
 #[tokio::main]
 async fn main() {
+    dotenv().ok();
+
     info!("Starting server...");
 
     let router = Router::new()

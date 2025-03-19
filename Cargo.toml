@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 axum = "*"
+dotenv = "0.15.0"
 mysql = "*"
 paris = { version = "*", features = ["timestamps", "macros"] }
 serde_json = "*"
