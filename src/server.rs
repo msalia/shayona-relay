@@ -9,7 +9,7 @@ pub struct AppState {
 }
 
 pub fn get_state() -> Arc<AppState> {
-    let pool = crate::routes::database::get_db_conn();
+    let pool = crate::database::connection::get_db_conn();
     success!("Connected to database...");
     Arc::new(AppState { pool })
 }

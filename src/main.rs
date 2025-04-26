@@ -5,6 +5,7 @@ use std::env;
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
 
+mod database;
 mod routes;
 mod server;
 
@@ -28,9 +29,16 @@ async fn main() {
         .with_state(crate::server::get_state())
         .layer(crate::server::get_cors());
 
-    let port = env::var("RELAY_PORT").unwrap().parse::<u16>().unwrap();
+    let port = match env::var("RELAY_PORT").unwrap().parse::<u16>() {
+        Ok(p) => p,
+        Err(e) => panic!("Unable to read environment variable RELAY_PORT: {e}"),
+    };
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
-    let tcp = TcpListener::bind(&addr).await.unwrap();
+    let tcp_bind = TcpListener::bind(&addr).await;
+    let tcp = match tcp_bind {
+        Ok(t) => t,
+        Err(e) => panic!("Unable to bind server to port: {e}"),
+    };
 
     success!("Server listening on http://localhost:{port}");
 
