@@ -5,7 +5,6 @@ use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-use crate::database::models::{Check, CheckDetail};
 use crate::database::schema::{check_detail, checks};
 use crate::server::AppState;
 
@@ -41,17 +40,28 @@ pub async fn post_checks_to_export(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<ChecksToExportRequest>,
 ) -> impl IntoResponse {
-    let mut conn = state.db_pool.get().unwrap();
+    let conn = state.pool.get_conn().unwrap();
 
-    let date_start = payload.date_start.clone();
-    let date_end = payload.date_end.clone();
-    let ignore_obj_num = payload.ignore_object_number;
+    let date_start: &str = payload.date_start.as_str();
+    let date_end: &str = payload.date_end.as_str();
+    let ignore_obj_num: i32 = payload.ignore_object_number;
 
     // Query checks with their details
-    let results = checks::table
+    let results: Result<
+        Vec<(
+            i32,
+            String,
+            Option<i32>,
+            Option<f64>,
+            Option<f64>,
+            Option<f64>,
+            Option<i32>,
+        )>,
+        diesel::result::Error,
+    > = checks::table
         .left_join(check_detail::table.on(checks::CheckID.eq(check_detail::CheckID)))
-        .filter(checks::CheckClose.ge(date_start.as_str()))
-        .filter(checks::CheckClose.lt(date_end.as_str()))
+        .filter(checks::CheckClose.ge(date_start))
+        .filter(checks::CheckClose.lt(date_end))
         .filter(checks::SubTotal.is_not_null())
         .filter(checks::SubTotal.ge(0.0))
         .filter(check_detail::DetailType.eq(4))
@@ -79,13 +89,15 @@ pub async fn post_checks_to_export(
 
     match results {
         Ok(records) => {
-            let closed_checks: Vec<ExportedCheck> = records
-                .iter()
+            let closed_checks = records
+                .into_iter()
                 .map(
                     |(check_number, guid, covers, payment, sub_total, tax, rev_ctr_id)| {
                         // Extract sequence number from Guid: remove non-digits, take first 9 chars
-                        let digits_only: String =
-                            guid.chars().filter(|c| c.is_ascii_digit()).collect();
+                        let digits_only = guid
+                            .chars()
+                            .filter(|c| c.is_ascii_digit())
+                            .collect::<String>();
                         let sequence_number: i64 = digits_only
                             .chars()
                             .take(9)
@@ -94,17 +106,17 @@ pub async fn post_checks_to_export(
                             .unwrap_or(0);
 
                         ExportedCheck {
-                            check_number: *check_number,
+                            check_number,
                             sequence_number,
                             check_total: payment.unwrap_or(0.0),
                             sub_total: sub_total.unwrap_or(0.0),
-                            tax_total: *tax,
+                            tax_total: tax,
                             guest_count: covers.unwrap_or(0),
-                            revenue_center_id: *rev_ctr_id,
+                            revenue_center_id: rev_ctr_id,
                         }
                     },
                 )
-                .collect();
+                .collect::<Vec<ExportedCheck>>();
 
             (
                 StatusCode::OK,

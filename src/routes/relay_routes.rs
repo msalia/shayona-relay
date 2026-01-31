@@ -1,6 +1,8 @@
+use std::env;
 use std::sync::Arc;
 
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
+use reqwest;
 use serde_json::{json, Value};
 
 use crate::server::AppState;
@@ -9,10 +11,21 @@ pub async fn post_relay(
     State(state): State<Arc<AppState>>,
     Json(data): Json<Value>,
 ) -> impl IntoResponse {
-    let ob_url = env::var("RELAY_DB_HOST").unwrap();
-    let client = &state.http_client;
+    let ob_url: String = match env::var("RELAY_DB_HOST") {
+        Ok(url) => url,
+        Err(e) => {
+            eprintln!(
+                "FAILED: /relay - Missing RELAY_DB_HOST environment variable: {:?}",
+                e
+            );
+            return (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(json!({"error": "Configuration error"})),
+            );
+        }
+    };
 
-    match reqwest::post(ob_url).json(&data).send().await {
+    match reqwest::post(&ob_url).json(&data).send().await {
         Ok(response) => match response.json::<Value>().await {
             Ok(json_response) => {
                 // Check if there's an error in the response

@@ -1,0 +1,44 @@
+services:
+  relay:
+    container_name: relay
+    image: msalia/shayona-relay:latest
+    env_file: ".env"
+    ports:
+      - ${RELAY_PORT}:${RELAY_PORT}
+    environment:
+      HOST: ${RELAY_HOST}
+      RELAY_PORT: ${RELAY_PORT}
+      DATABASE_URL: mysql://${RELAY_DB_USER}:${RELAY_DB_PASS}@db/${RELAY_DB}
+      RUST_LOG: ${RUST_LOG}
+    networks:
+      - relay-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.4.0-oraclelinux8
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${RELAY_DB}
+      MYSQL_USER: ${RELAY_DB_USER}
+      MYSQL_PASSWORD: ${RELAY_DB_PASS}
+      MYSQL_TCP_BIND_ADDRESS: ${MYSQL_BIND_ADDRESS}
+    ports:
+      - ${RELAY_DB_PORT}:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-u", root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 3s
+      timeout: 5s
+      retries: 3
+    networks:
+      - relay-network
+
+volumes:
+  mysql-data:
+
+networks:
+  relay-network:
