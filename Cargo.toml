@@ -11,6 +11,10 @@ paris = { version = "*", features = ["timestamps", "macros"] }
 serde_json = "*"
 tokio = { version = "1", features = ["full"] }
 tower-http = { version = "*", features = ["cors"] }
+diesel = { version = "2.2.0", features = ["mysql"] }
+# build libmysqlclient as part of the build process
+# uncomment this line if you run into setup issues
+# mysqlclient-sys = { version = "0.4", features = ["bundled"] }
 
 #[build]
 #target = "x86_64-pc-windows-gnu"
