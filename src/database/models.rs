@@ -43,7 +43,7 @@ pub struct Allergen {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(AllergenClassID))]
-pub struct AllergenClas {
+pub struct AllergenClass {
     pub AllergenClassID: i64,
     pub HierStrucID: i64,
     pub NameID: i64,
@@ -249,7 +249,7 @@ pub struct ChangeSetTimetable {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ChangesetEffStatusID))]
-pub struct ChangesetEffStatu {
+pub struct ChangesetEffStatus {
     pub ChangesetEffStatusID: i32,
     pub HierStrucID: i64,
     pub ChangesetID: i32,
@@ -363,7 +363,7 @@ pub struct CheckNumberParameter {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CheckID))]
-pub struct Check {
+pub struct Checks {
     pub CheckID: i64,
     pub RevCtrID: i32,
     pub CheckNumber: i32,
@@ -458,7 +458,7 @@ pub struct Check {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ClearTotalsID))]
-pub struct ClearTotal {
+pub struct ClearTotals {
     pub ClearTotalsID: i32,
     pub HierStrucID: i64,
     pub ClearAsOfBusinessDate: NaiveDateTime,
@@ -492,7 +492,7 @@ pub struct CmCashCountThreshold {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmCashCountThresholdClassID))]
-pub struct CmCashCountThrshldCl {
+pub struct CmCashCountThrshldCls {
     pub CmCashCountThresholdClassID: i64,
     pub HierStrucID: i64,
     pub ObjectNumber: i32,
@@ -542,7 +542,7 @@ pub struct CmChangeOrder {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmChangeOrderItemID))]
-pub struct CmChangeOrderItem {
+pub struct CmChangeOrderItems {
     pub CmChangeOrderItemID: i64,
     pub HierStrucID: i64,
     pub CmChangeOrderID: i64,
@@ -565,7 +565,7 @@ pub struct CmCountDetail {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountClassItemID))]
-pub struct CmCountDetailClasse {
+pub struct CmCountDetailClasses {
     pub CmCountClassItemID: i64,
     pub CmCountDetailID: i64,
     pub CmItemID: i64,
@@ -578,7 +578,7 @@ pub struct CmCountDetailClasse {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountDetailItemID))]
-pub struct CmCountDetailItem {
+pub struct CmCountDetailItems {
     pub CmCountDetailItemID: i64,
     pub CmCountDetailID: i64,
     pub CmItemUnitID: Option<i64>,
@@ -668,7 +668,7 @@ pub struct CmItemBehavior {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemItemsID))]
-pub struct CmItemPosItem {
+pub struct CmItemPosItems {
     pub CmItemItemsID: i64,
     pub HierStrucID: i64,
     pub CmItemID: i64,
@@ -680,7 +680,7 @@ pub struct CmItemPosItem {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemUnitID))]
-pub struct CmItemUnit {
+pub struct CmItemUnits {
     pub CmItemUnitID: i64,
     pub HierStrucID: i64,
     pub CmItemID: i64,
@@ -792,7 +792,7 @@ pub struct CmReceptacleTemplate {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(CmTemplateClassID))]
-pub struct CmTemplateClas {
+pub struct CmTemplateClass {
     pub CmTemplateClassID: i64,
     pub HierStrucID: i64,
     pub ObjectNumber: i32,
@@ -960,7 +960,7 @@ pub struct ComboGroupPrice {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupSubstitutionId))]
-pub struct ComboGroupSubstitution {
+pub struct ComboGroupSubstitutions {
     pub ComboGroupSubstitutionId: i64,
     pub ComboGroup: i32,
     pub AlternateComboGroup: i32,
@@ -1234,7 +1234,7 @@ pub struct CustomReport {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(LocalRevisionID))]
-pub struct DataDistLocalRev {
+pub struct DataDistLocalRevs {
     pub LocalRevisionID: i64,
     pub TransactionalDataType: i32,
     pub LocalRevisionNumber: Option<i64>,
@@ -1242,7 +1242,7 @@ pub struct DataDistLocalRev {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(RevisionNumber))]
-pub struct DataDistRev {
+pub struct DataDistRevs {
     pub RevisionNumber: i64,
     pub TransactionalDataType: Option<i32>,
     pub NotificationType: Option<i32>,
@@ -1284,7 +1284,7 @@ pub struct DepositInfoDetail {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(DescriptorID))]
-pub struct Descriptor {
+pub struct Descriptors {
     pub DescriptorID: i32,
     pub HierStrucID: i64,
     pub DescType: i32,
@@ -1314,7 +1314,7 @@ pub struct DiningCourse {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(DiningCourseAlertID))]
-pub struct DiningCourseAlert {
+pub struct DiningCourseAlerts {
     pub DiningCourseAlertID: i64,
     pub RVCHierStrucId: Option<i64>,
     pub CheckGuid: Option<String>,
@@ -1340,7 +1340,7 @@ pub struct DiningTable {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableClassID))]
-pub struct DiningTableClas {
+pub struct DiningTableClass {
     pub DiningTableClassID: i32,
     pub NameID: i64,
     pub ObjectNumber: Option<i32>,
@@ -1358,7 +1358,7 @@ pub struct DiningTableClas {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatesID))]
-pub struct DiningTableState {
+pub struct DiningTableStates {
     pub DiningTableStatesID: i64,
     pub DiningTableID: i32,
     pub State: String,
@@ -1367,7 +1367,7 @@ pub struct DiningTableState {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatusID))]
-pub struct DiningTableStatu {
+pub struct DiningTableStatus {
     pub DiningTableStatusID: i32,
     pub DiningTableID: i32,
     pub StatusDefSetNumber: Option<i32>,
@@ -1723,7 +1723,7 @@ pub struct Employee {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(EmpClassID))]
-pub struct EmployeeClas {
+pub struct EmployeeClass {
     pub EmpClassID: i32,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
@@ -2570,7 +2570,7 @@ pub struct GroupEventDefDtl {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventStatusID))]
-pub struct GroupEventStatu {
+pub struct GroupEventStatus {
     pub GroupEventStatusID: i64,
     pub GroupEventDefID: i64,
     pub Status: i32,
@@ -3052,7 +3052,7 @@ pub struct KdsLayoutStyle {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(KdsLinkedOrderDeviceId))]
-pub struct KdsLinkedOrderDevice {
+pub struct KdsLinkedOrderDevices {
     pub KdsLinkedOrderDeviceId: i64,
     pub HierStrucID: i64,
     pub KdsOrderDeviceParamsID: i64,
@@ -3061,7 +3061,7 @@ pub struct KdsLinkedOrderDevice {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(KdsOrderDeviceParamsID))]
-pub struct KdsOrderDeviceParameter {
+pub struct KdsOrderDeviceParameters {
     pub KdsOrderDeviceParamsID: i64,
     pub HierStrucID: i64,
     pub KdsOrderDeviceOptionBits: String,
@@ -3252,7 +3252,7 @@ pub struct LaborData {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
-pub struct LaborPunche {
+pub struct LaborPunches {
     pub ID: i64,
     pub Type: i16,
     pub TypeExt: String,
@@ -3371,7 +3371,7 @@ pub struct LoyaltyProvider {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(MacroID))]
-pub struct Macro {
+pub struct Macros {
     pub MacroID: i32,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
@@ -3427,7 +3427,7 @@ pub struct MajorGroup {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemClassID))]
-pub struct MenuItemClas {
+pub struct MenuItemClass {
     pub MenuItemClassID: i32,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
@@ -3839,7 +3839,7 @@ pub struct MrequestResponse {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
-pub struct Mrequest {
+pub struct Mrequests {
     pub ID: i64,
     pub RID: String,
     pub ReqTime: NaiveDateTime,
@@ -4380,7 +4380,7 @@ pub struct PostingParameter {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(PrintClassID))]
-pub struct PrintClas {
+pub struct PrintClass {
     pub PrintClassID: i64,
     pub HierStrucID: i64,
     pub NameID: i64,
@@ -4664,7 +4664,7 @@ pub struct SalesItemizer {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(SluID))]
-pub struct ScreenLookup {
+pub struct ScreenLookups {
     pub SluID: i32,
     pub HierStrucID: i64,
     pub SluType: i32,
@@ -4679,7 +4679,7 @@ pub struct ScreenLookup {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(IntegrityKeyID))]
-pub struct SecIntegrityPubKey {
+pub struct SecIntegrityPubKeys {
     pub IntegrityKeyID: i32,
     pub KeyData: Vec<u8>,
     pub HierStrucID: i64,
@@ -4698,7 +4698,7 @@ pub struct SecureDetail {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(SerNumID))]
-pub struct SerialNumber {
+pub struct SerialNumbers {
     pub SerNumID: i32,
     pub HierStrucID: i64,
     pub SerialIndex: i32,
@@ -4711,7 +4711,7 @@ pub struct SerialNumber {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceID))]
-pub struct Service {
+pub struct Services {
     pub ServiceID: i32,
     pub HierStrucID: i64,
     pub ServiceHostID: Option<i32>,
@@ -4730,7 +4730,7 @@ pub struct Service {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgID))]
-pub struct ServiceCharge {
+pub struct ServiceCharges {
     pub SvcChgID: i32,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
@@ -4890,7 +4890,7 @@ pub struct ServingPeriodTouchscreen {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ShiftType, TypeID))]
-pub struct ShiftStatu {
+pub struct ShiftStatus {
     pub ShiftType: u8,
     pub TypeID: i64,
     pub ShiftNumber: Option<i32>,
@@ -5006,7 +5006,7 @@ pub struct SubMenuLevel {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(Anchor))]
-pub struct SyncAnchor {
+pub struct SyncAnchors {
     pub FileName: Option<String>,
     pub HierStrucID: Option<i64>,
     pub Anchor: Vec<u8>,
@@ -5091,7 +5091,7 @@ pub struct TaxBreakpoint {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(TaxClassID))]
-pub struct TaxClas {
+pub struct TaxClass {
     pub TaxClassID: i32,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
@@ -5362,7 +5362,7 @@ pub struct TmsParameter {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(TransID, RevCtrID))]
-pub struct Total {
+pub struct Totals {
     pub TransID: i64,
     pub PostingTime: NaiveDateTime,
     pub PostingWeekday: u8,
@@ -5460,7 +5460,7 @@ pub struct UserExperienceAssignment {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, AliasHierStrucID))]
-pub struct VHierAlia {
+pub struct VHierAlias {
     pub HierStrucID: i64,
     pub HierUnitID: Option<i32>,
     pub ChangeTime: Option<NaiveDateTime>,
@@ -5469,7 +5469,7 @@ pub struct VHierAlia {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, AncestorID))]
-pub struct VHierAncestor {
+pub struct VHierAncestors {
     pub HierStrucID: i64,
     pub AncestorID: i64,
     pub ChangeTime: Option<NaiveDateTime>,
@@ -5478,7 +5478,7 @@ pub struct VHierAncestor {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, DefLocHierStrucID))]
-pub struct VHierDefinitionLocation {
+pub struct VHierDefinitionLocations {
     pub HierStrucID: i64,
     pub DefLocHierStrucID: i64,
     pub lvl: Option<i32>,
@@ -5486,7 +5486,7 @@ pub struct VHierDefinitionLocation {
 
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(TestatorHierStrucID, SystemHierStrucID))]
-pub struct VHierTestator {
+pub struct VHierTestators {
     pub HierUnitID: Option<i32>,
     pub PropertyID: Option<i32>,
     pub RevCtrID: Option<i32>,

@@ -3598,7 +3598,7 @@ diesel::table! {
         RevenueCenter -> Nullable<Integer>,
         CashTips -> Nullable<Decimal>,
         IndirectTips -> Nullable<Decimal>,
-        Time -> Nullable<Datetime>,
+        Time2 -> Nullable<Datetime>,
         ClockIn -> Nullable<Bit>,
         SelectedBreak -> Nullable<Longblob>,
         ShiftNumber -> Nullable<Integer>,
@@ -5796,7 +5796,7 @@ diesel::table! {
         TextDtlID -> Bigint,
         CheckDetailID -> Bigint,
         #[max_length = 88]
-        Text -> Nullable<Varchar>,
+        Text2 -> Nullable<Varchar>,
         LangID -> Integer,
     }
 }
