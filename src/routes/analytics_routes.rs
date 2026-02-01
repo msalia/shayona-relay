@@ -37,6 +37,7 @@ pub async fn post_stats(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<StatsRequest>,
 ) -> impl IntoResponse {
+    let start_time = std::time::Instant::now();
     let conn = state.pool.get_conn().unwrap();
 
     let date_start: &str = payload.date_start.as_str();
@@ -74,10 +75,17 @@ pub async fn post_stats(
                 total_guests,
             };
 
+            let duration = start_time.elapsed();
+            println!(
+                "/stats completed in {:.2}ms",
+                duration.as_secs_f64() * 1000.0
+            );
             (StatusCode::OK, Json(stats))
         }
         Err(e) => {
+            let duration = start_time.elapsed();
             eprintln!("Database error: {:?}", e);
+            eprintln!("/stats failed in {:.2}ms", duration.as_secs_f64() * 1000.0);
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(StatsResponse {
@@ -90,7 +98,7 @@ pub async fn post_stats(
     }
 }
 
-pub async fn post_sales(
+async fn post_sales(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<SalesRequest>,
 ) -> impl IntoResponse {
@@ -115,10 +123,17 @@ pub async fn post_sales(
                 }
             }
 
+            let duration = start_time.elapsed();
+            println!(
+                "/sales completed in {:.2}ms",
+                duration.as_secs_f64() * 1000.0
+            );
             (StatusCode::OK, Json(json!({ "salesCounts": sales_counts })))
         }
         Err(e) => {
+            let duration = start_time.elapsed();
             eprintln!("Database error: {:?}", e);
+            eprintln!("/sales failed in {:.2}ms", duration.as_secs_f64() * 1000.0);
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "salesCounts": {} })),

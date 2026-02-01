@@ -9,6 +9,7 @@ use crate::database::schema::{menu_item_definition, menu_item_master, print_clas
 use crate::server::AppState;
 
 pub async fn get_db(State(state): State<Arc<AppState>>) -> impl IntoResponse {
+    let start_time = std::time::Instant::now();
     let conn = state.pool.get_conn().unwrap();
 
     let results: Result<Vec<(Option<i32>, String)>, diesel::result::Error> =
@@ -52,13 +53,17 @@ pub async fn get_db(State(state): State<Arc<AppState>>) -> impl IntoResponse {
                 }
             }
 
+            let duration = start_time.elapsed();
+            println!("/db completed in {:.2}ms", duration.as_secs_f64() * 1000.0);
             (
                 StatusCode::OK,
                 Json(json!({ "menuItemInfo": menu_item_info })),
             )
         }
         Err(e) => {
+            let duration = start_time.elapsed();
             eprintln!("Database error: {:?}", e);
+            eprintln!("/db failed in {:.2}ms", duration.as_secs_f64() * 1000.0);
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "menuItemInfo": {} })),
