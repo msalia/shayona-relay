@@ -1,12 +1,10 @@
-use std::collections::HashMap;
-use std::sync::Arc;
-
+use crate::database::schema::{menu_item_definition, menu_item_master, print_class};
+use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 use diesel::prelude::*;
 use serde_json::json;
-
-use crate::database::schema::{menu_item_definition, menu_item_master, print_class};
-use crate::server::AppState;
+use std::collections::HashMap;
+use std::sync::Arc;
 
 pub async fn get_db(State(state): State<Arc<AppState>>) -> impl IntoResponse {
     let conn = state.pool.get_conn().unwrap();

@@ -1,5 +1,9 @@
+#![recursion_limit = "512"]
+
 use axum::{routing::get, routing::post, Router};
+use axum_prometheus::PrometheusMetricLayer;
 use dotenv::dotenv;
+use metrics_exporter_prometheus::PrometheusBuilder;
 use paris::{info, success};
 use std::env;
 use std::net::SocketAddr;

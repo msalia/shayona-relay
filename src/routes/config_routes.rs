@@ -1,14 +1,12 @@
-use std::sync::Arc;
-
-use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use diesel::prelude::*;
-use serde::Serialize;
-use serde_json::json;
-
 use crate::database::schema::{
     hierarchy_structure, hierarchy_unit, string_table, tax, tax_class, tax_class_tax,
 };
 use crate::server::AppState;
+use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
+use diesel::prelude::*;
+use serde::Serialize;
+use serde_json::json;
+use std::sync::Arc;
 
 #[derive(Serialize)]
 pub struct TaxClassInfo {

@@ -25,7 +25,8 @@ pub async fn post_relay(
         }
     };
 
-    match reqwest::post(&ob_url).json(&data).send().await {
+    let client = reqwest::Client::new();
+    match client.post(&ob_url).json(&data).send().await {
         Ok(response) => match response.json::<Value>().await {
             Ok(json_response) => {
                 // Check if there's an error in the response

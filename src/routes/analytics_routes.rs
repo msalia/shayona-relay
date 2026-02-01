@@ -1,14 +1,12 @@
-use std::collections::HashMap;
-use std::sync::Arc;
-
+use crate::database::schema::{check_detail, checks};
+use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 use diesel::dsl::sum;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
-use serde_json::{json, Value};
-
-use crate::database::schema::{check_detail, checks};
-use crate::server::AppState;
+use serde_json::json;
+use std::collections::HashMap;
+use std::sync::Arc;
 
 #[derive(Deserialize)]
 pub struct SalesRequest {
@@ -48,8 +46,7 @@ pub async fn post_stats(
             .left_join(check_detail::table.on(checks::CheckID.eq(check_detail::CheckID)))
             .filter(checks::CheckClose.ge(date_start))
             .filter(checks::CheckClose.lt(date_end))
-            .filter(checks::SubTotal.is_not_null())
-            .filter(checks::SubTotal.ge(0.0))
+            .filter(checks::SubTotal.is_not_null().ge(0.0))
             .filter(check_detail::DetailType.eq(4))
             .filter(check_detail::ObjectNumber.ne(99))
             .select((checks::CheckID, checks::Covers, checks::Payment))

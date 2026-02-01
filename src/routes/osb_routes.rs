@@ -1,12 +1,10 @@
-use std::sync::Arc;
-
+use crate::database::schema::{checks, kds_detail};
+use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 use diesel::prelude::*;
 use serde::Deserialize;
 use serde_json::json;
-
-use crate::database::schema::{checks, kds_detail};
-use crate::server::AppState;
+use std::sync::Arc;
 
 #[derive(Deserialize)]
 pub struct OSBRequest {

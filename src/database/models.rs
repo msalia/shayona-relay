@@ -2,9 +2,11 @@
 
 #![allow(unused)]
 #![allow(clippy::all)]
-
+#![allow(non_snake_case)]
 
 use chrono::NaiveDateTime;
+use diesel::prelude::*;
+
 #[derive(Queryable, Debug, Identifiable)]
 #[diesel(primary_key(ActiveKdsThemeID))]
 pub struct ActiveKdsTheme {
@@ -5712,4 +5714,3 @@ pub struct WsHeuAlgConfig {
     pub ConfigName: String,
     pub ConfigValue: i32,
 }
-
