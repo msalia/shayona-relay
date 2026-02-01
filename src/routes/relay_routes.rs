@@ -11,11 +11,11 @@ pub async fn post_relay(
     State(state): State<Arc<AppState>>,
     Json(data): Json<Value>,
 ) -> impl IntoResponse {
-    let ob_url: String = match env::var("RELAY_DB_HOST") {
+    let ob_url: String = match env::var("OB_URL") {
         Ok(url) => url,
         Err(e) => {
             eprintln!(
-                "FAILED: /relay - Missing RELAY_DB_HOST environment variable: {:?}",
+                "FAILED: /relay - Missing OB_URL environment variable: {:?}",
                 e
             );
             return (
