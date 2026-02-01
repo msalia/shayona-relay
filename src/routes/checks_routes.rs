@@ -41,8 +41,12 @@ pub async fn post_checks_to_export(
 ) -> impl IntoResponse {
     let conn = state.pool.get_conn().unwrap();
 
-    let date_start = DateTime::parse_from_rfc3339(payload.date_start.as_str()).unwrap();
-    let date_end = DateTime::parse_from_rfc3339(payload.date_end.as_str()).unwrap();
+    let date_start = DateTime::parse_from_rfc3339(payload.date_start.as_str())
+        .unwrap()
+        .naive_utc();
+    let date_end = DateTime::parse_from_rfc3339(payload.date_end.as_str())
+        .unwrap()
+        .naive_utc();
     let ignore_obj_num: i32 = payload.ignore_object_number;
 
     // Query checks with their details
