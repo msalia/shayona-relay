@@ -28,8 +28,8 @@ pub struct AddTransferRevenueCenter {
     pub HierStrucID: i64,
     pub XferIndex: i32,
     pub RevCtrID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -42,8 +42,8 @@ pub struct Allergen {
     pub AllergenIndex: i32,
     pub AllergenCode: Option<String>,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -57,8 +57,8 @@ pub struct AllergenClass {
     pub NameID: i64,
     pub ObjectNumber: Option<i32>,
     pub AllergenData: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -74,8 +74,8 @@ pub struct AlphanumericKeyboard {
     pub ContentDataID: i64,
     pub OptionBits: String,
     pub LangID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub InternalTemplate: String,
 }
 
@@ -103,8 +103,8 @@ pub struct AssemblyConfig {
     pub ContentDataID: Option<i64>,
     pub ModuleType: i32,
     pub AssemblyName: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MinimumCompatibility: Option<String>,
     pub MaximumCompatibility: Option<String>,
 }
@@ -120,8 +120,8 @@ pub struct AutoMenuLevel {
     pub OptionBits: String,
     pub StartTime: Option<i32>,
     pub EndTime: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MainLevelIndex: Option<i32>,
     pub SubLevelIndex: Option<i32>,
 }
@@ -137,8 +137,8 @@ pub struct AutofireParameter {
     pub MaxChecks: Option<i32>,
     pub TendMedID: Option<i32>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MaxDays: Option<i16>,
     pub EmployeeID: Option<i64>,
     pub BackupDelay: Option<i32>,
@@ -155,8 +155,8 @@ pub struct Barcode {
     pub Code: i64,
     pub Price: Option<f64>,
     pub PrepCost: Option<f64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MiMasterObjNum: Option<i32>,
     pub MiDefSeqNum: Option<i32>,
     pub MiPriceSeqNum: Option<i32>,
@@ -176,7 +176,7 @@ pub struct BarcodeFormat {
     pub Length: i32,
     pub StartPosition: i32,
     pub ReturnedLength: i32,
-    pub Custom: bool,
+    pub Custom: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -214,8 +214,8 @@ pub struct CanadianGst {
     pub Threshold1: Option<f64>,
     pub Threshold2: Option<f64>,
     pub PstNameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxIndex: Option<i16>,
 }
 
@@ -231,8 +231,8 @@ pub struct CanadianPst {
     pub Threshold1: Option<f64>,
     pub OptionBits2: String,
     pub Threshold2: Option<f64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxIndex: Option<i16>,
 }
 
@@ -246,8 +246,8 @@ pub struct Cashier {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub TrkGrpID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub ShiftNumber: Option<i32>,
 }
@@ -261,8 +261,8 @@ pub struct ChangeSet {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
-    pub IsDeleted: bool,
-    pub AllowLocalControl: Option<bool>,
+    pub IsDeleted: u8,
+    pub AllowLocalControl: Option<u8>,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -278,9 +278,9 @@ pub struct ChangeSetTimetable {
     pub MaxLeadTime: Option<NaiveDateTime>,
     pub ChangeSetID: i32,
     pub HierStrucID: i64,
-    pub RequireLocalControl: Option<bool>,
+    pub RequireLocalControl: Option<u8>,
     pub MustActivateBy: Option<NaiveDateTime>,
-    pub OverrideStatus: bool,
+    pub OverrideStatus: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -292,7 +292,7 @@ pub struct ChangesetEffStatus {
     pub HierStrucID: i64,
     pub ChangesetID: i32,
     pub ChangesetObjNum: Option<i32>,
-    pub OverrideStatus: Option<bool>,
+    pub OverrideStatus: Option<u8>,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -316,8 +316,8 @@ pub struct ChannelMgmtPostData {
 pub struct ChargeTenderParameter {
     pub ChgTendParamID: i32,
     pub HierStrucID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub CashTenderObjNum: Option<i32>,
     pub BankTenderObjNum: Option<i32>,
     pub CashDeclareTenderObjNum: Option<i32>,
@@ -407,8 +407,8 @@ pub struct CheckNumberParameter {
     pub MinCheck: i32,
     pub MaxCheck: i32,
     pub NextCheck: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -517,7 +517,7 @@ pub struct ClearTotals {
     pub HierStrucID: i64,
     pub ClearAsOfBusinessDate: NaiveDateTime,
     pub ClearAsOfDateTime: NaiveDateTime,
-    pub IsCleared: bool,
+    pub IsCleared: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -1065,8 +1065,8 @@ pub struct ComboGroupDetailPrice {
     pub MenuLvlIndex: Option<i32>,
     pub Price: Option<f64>,
     pub ChangeSetObjNum: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub PrepCost: Option<f64>,
 }
 
@@ -1122,8 +1122,8 @@ pub struct Component {
     pub PrepTime: Option<i32>,
     pub OptionBits: String,
     pub PrintClassObjNum: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DisplayName: Option<i64>,
     pub CapacityUsage: i32,
     pub PreProdCourseOffset: Option<i16>,
@@ -1148,10 +1148,10 @@ pub struct ComponentCondiment {
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CondimentSet {
     pub CondimentSetID: i64,
-    pub IsDeleted: bool,
+    pub IsDeleted: u8,
     pub TempConfiguration: Option<String>,
     pub ObjectNumber: Option<i32>,
-    pub IsVisible: bool,
+    pub IsVisible: u8,
     pub HierStrucID: i64,
     pub NameID: Option<i64>,
 }
@@ -1184,8 +1184,8 @@ pub struct ConfirmParameter {
     pub MaxGuest: Option<i32>,
     pub MaxCheckPrint: Option<i32>,
     pub PopUpTimeout: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DaysAdjustClsdChk: Option<i32>,
     pub DaysReopenClsdChk: Option<i32>,
     pub EmpLockDuration: Option<i32>,
@@ -1214,7 +1214,7 @@ pub struct ConsentDefinition {
 pub struct ConsentDetail {
     pub ConsentID: i32,
     pub EmployeeID: i64,
-    pub ConsentFlag: bool,
+    pub ConsentFlag: u8,
     pub LastUpdatedDateTime: NaiveDateTime,
     pub AnonymizedDateTime: Option<NaiveDateTime>,
 }
@@ -1226,8 +1226,8 @@ pub struct ConsentDetail {
 pub struct Content {
     pub ContentID: i64,
     pub Name: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ContentDataID: Option<i64>,
     pub DescriptionID: Option<i64>,
     pub HierStrucID: Option<i64>,
@@ -1304,8 +1304,8 @@ pub struct CreditDriverInstance {
     pub NameID: i64,
     pub CredDrvID: i32,
     pub ConfigInfo: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ServiceID: Option<i32>,
 }
 
@@ -1318,8 +1318,8 @@ pub struct CreditParameter {
     pub HierStrucID: Option<i64>,
     pub OptionBits: String,
     pub SavedBatches: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MerchantConfigID: Option<i32>,
     pub WorkstationID: Option<i32>,
 }
@@ -1335,8 +1335,8 @@ pub struct Currency {
     pub SymbolID: Option<i64>,
     pub ScaleFactor: i16,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ObjectNumber: i32,
     pub InsignificantDigits: Option<i16>,
     pub SmallestAvailableBill: Option<i16>,
@@ -1353,8 +1353,8 @@ pub struct CurrencyConversion {
     pub CurrencyID: Option<i32>,
     pub DestCurrencyID: Option<i32>,
     pub Rate: f64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ObjectNumber: i32,
 }
 
@@ -1380,8 +1380,8 @@ pub struct CurrencyParameter {
     pub OptionBits: String,
     pub CurrencyID: i32,
     pub AlternateCurrencyID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -1393,8 +1393,8 @@ pub struct CustomReport {
     pub ObjectNumber: Option<i32>,
     pub Definition: Option<String>,
     pub Style: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: Option<i64>,
     pub NameID: Option<i64>,
     pub ContentDataID: Option<i64>,
@@ -1468,8 +1468,8 @@ pub struct Descriptors {
     pub DescType: i32,
     pub LineNumber: Option<i32>,
     pub StringNumberID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub OptionBits: String,
 }
 
@@ -1486,8 +1486,8 @@ pub struct DiningCourse {
     pub MaxPrepTime: Option<i32>,
     pub CourseColor: Option<i32>,
     pub CourseIcon: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub CourseImageName: Option<String>,
     pub InitialCourseMinPrepTime: Option<i32>,
 }
@@ -1517,8 +1517,8 @@ pub struct DiningTable {
     pub HierStrucID: i64,
     pub ObjectNumber: i32,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DiningTableClassNum: Option<i32>,
 }
 
@@ -1536,8 +1536,8 @@ pub struct DiningTableClass {
     pub DefaultImageName: Option<String>,
     pub DefaultColor: Option<String>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DefaultFgndColor: Option<String>,
     pub DiningTableStatusDefSetNum: Option<i32>,
 }
@@ -1573,13 +1573,13 @@ pub struct DiningTableStatus {
     pub EmployeeID: Option<i64>,
     pub State: Option<String>,
     pub Progress: Option<String>,
-    pub IsDirty: Option<bool>,
-    pub IsUserSuggested: Option<bool>,
+    pub IsDirty: Option<u8>,
+    pub IsUserSuggested: Option<u8>,
     pub DiningCourse: Option<i16>,
     pub EstimatedAvailableTime: Option<i16>,
     pub NumSeats: Option<i16>,
     pub EstimatedTurnTime: Option<i16>,
-    pub NextAvailable: Option<bool>,
+    pub NextAvailable: Option<u8>,
     pub KdsCourseAlertLevel: Option<i16>,
     pub KdsCoursePeakAlertLevel: Option<i16>,
     pub LastServiceTime: Option<NaiveDateTime>,
@@ -1615,8 +1615,8 @@ pub struct DiningTableStatusDefSet {
     pub NameID: i64,
     pub ObjectNumber: Option<i32>,
     pub HierStrucID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DefaultIndex: Option<i32>,
     pub DisabledIndex: Option<i32>,
 }
@@ -1633,16 +1633,16 @@ pub struct Discount {
     pub OptionBits: String,
     pub PrintOptionBits: Option<String>,
     pub Nlu: Option<i64>,
-    pub TransDfltMain: bool,
+    pub TransDfltMain: u8,
     pub MainMenuLvlIndex: Option<i32>,
-    pub TransDfltSub: bool,
+    pub TransDfltSub: u8,
     pub SubMenuLvlIndex: Option<i32>,
     pub Percentage: Option<f64>,
     pub Amount: Option<f64>,
     pub PrivilegeGrp: Option<i32>,
     pub IconNumber: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DiscountPostingTime: Option<NaiveDateTime>,
     pub TempConfiguration: Option<String>,
     pub EffectivityID: Option<i64>,
@@ -1657,9 +1657,9 @@ pub struct Discount {
     pub AwardMaxCount: Option<i32>,
     pub ItemExclusivityMask: String,
     pub TransactionExclusivityMask: String,
-    pub Imported: bool,
-    pub Locked: bool,
-    pub Enabled: bool,
+    pub Imported: u8,
+    pub Locked: u8,
+    pub Enabled: u8,
     pub CreationDateTime: Option<NaiveDateTime>,
     pub DiscountComment: Option<String>,
     pub TriggerObjectNumber: Option<i32>,
@@ -1696,7 +1696,7 @@ pub struct DiscountAllocDetail {
     pub DscntDetailLink: i32,
     pub ItemDetailLink: i32,
     pub SubItem: Option<i16>,
-    pub IncludesMITax: bool,
+    pub IncludesMITax: u8,
     pub Amount: Option<f64>,
     pub InclusiveTax: Option<f64>,
 }
@@ -1748,8 +1748,8 @@ pub struct DiscountItemizer {
     pub HierStrucID: i64,
     pub DscntItmzrIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -1760,8 +1760,8 @@ pub struct DiscountItemizerDiscount {
     pub DscntItmzrDscntID: i32,
     pub HierStrucID: i64,
     pub DscntID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DscntItmzrIndex: Option<i16>,
 }
 
@@ -1774,8 +1774,8 @@ pub struct DiscountMainMenuLevel {
     pub HierStrucID: i64,
     pub DscntID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -1787,8 +1787,8 @@ pub struct DiscountSubMenuLevel {
     pub HierStrucID: i64,
     pub DscntID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -1861,8 +1861,8 @@ pub struct DtoParameter {
     pub OptionBits: String,
     pub DeliveryOrdTypeIndex: Option<i32>,
     pub TakeoutOrdTypeIndex: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub CurbsideOrdTypeIndex: Option<i32>,
 }
 
@@ -1914,10 +1914,10 @@ pub struct Employee {
     pub Username: Option<String>,
     pub PasswordChanged: Option<NaiveDateTime>,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub EmployeePostingTime: Option<NaiveDateTime>,
-    pub Locked: Option<bool>,
+    pub Locked: Option<u8>,
     pub NumFailedLogins: Option<i32>,
     pub EMCPreferences: Option<String>,
     pub LocaleInfoID: Option<i32>,
@@ -1941,7 +1941,7 @@ pub struct Employee {
     pub EmailAddress: Option<Vec<u8>>,
     pub EncryptionKeyID: Option<i64>,
     pub EngageLangId: Option<i32>,
-    pub AvailableForDelivery: bool,
+    pub AvailableForDelivery: u8,
     pub OPUserID: Option<String>,
     pub LastUpdateDateTime: Option<NaiveDateTime>,
     pub empLevelUpdateDateTime: Option<NaiveDateTime>,
@@ -1965,8 +1965,8 @@ pub struct EmployeeClass {
     pub DayMinutesOvertime: Option<i32>,
     pub PeriodMinutesOvertime: Option<i32>,
     pub PickupTransferStyle: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub CMAccountingMethodID: Option<i32>,
     pub ServerBankingTemplateObjNum: Option<i32>,
@@ -1993,8 +1993,8 @@ pub struct EmployeeClassTouchscreen {
     pub EmpClassID: i32,
     pub DeviceType: i32,
     pub DfltTouchscreen: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2008,14 +2008,14 @@ pub struct EmployeeInstance {
     pub EmpClassID: Option<i32>,
     pub RevCtrID: Option<i32>,
     pub OptionBits: String,
-    pub Training: bool,
+    pub Training: u8,
     pub LdsID: Option<i32>,
     pub PayrollID: Option<String>,
     pub LateGrace: Option<i32>,
     pub Status: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
-    pub BankDeclared: Option<bool>,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
+    pub BankDeclared: Option<u8>,
     pub MyLaborPrivilegeBits: String,
     pub WsID: Option<i32>,
     pub ShiftNumber: Option<i32>,
@@ -2097,8 +2097,8 @@ pub struct ExtensionApplication {
     pub ExtensionApplicationType: i32,
     pub InterfaceID: Option<i32>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DataLevel: i32,
     pub MaxChars: i32,
     pub MaxItems: i32,
@@ -2112,8 +2112,8 @@ pub struct ExtensionApplicationContent {
     pub ExtensionApplicationContentID: i64,
     pub HierStrucID: Option<i64>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ContentDataID: Option<i64>,
     pub ExtensionApplicationID: i64,
     pub DescriptionID: Option<i64>,
@@ -2136,10 +2136,10 @@ pub struct ExtensionDataProperty {
     pub SortPriority: Option<i32>,
     pub DisplayWidth: Option<i32>,
     pub DisplayNameID: Option<i64>,
-    pub IsEditable: bool,
-    pub IsViewable: bool,
+    pub IsEditable: u8,
+    pub IsViewable: u8,
     pub CommentID: Option<i64>,
-    pub IsDownloadable: bool,
+    pub IsDownloadable: u8,
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub APPLICATIONTYPE: Option<String>,
@@ -2169,8 +2169,8 @@ pub struct FamilyGroup {
     pub NameID: i64,
     pub MajGrpID: Option<i32>,
     pub ReportGroup: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub FamilyGroupPostingTime: Option<NaiveDateTime>,
 }
 
@@ -2438,8 +2438,8 @@ pub struct FormatParameter {
     pub ReceiptSort: Option<i32>,
     pub CheckSort: Option<i32>,
     pub HelpSort: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub InvoiceThreshold: Option<i32>,
     pub CustInfoThreshold: Option<i32>,
     pub LabelID: Option<i64>,
@@ -2531,7 +2531,7 @@ pub struct GmsOccupancyLimit {
 pub struct GmsParameter {
     pub GMSParamID: i64,
     pub HierStrucID: i64,
-    pub IsEnabled: bool,
+    pub IsEnabled: u8,
     pub TableSelectImageName: Option<String>,
     pub TableDirtyImageName: Option<String>,
     pub TableSeatedImageName: Option<String>,
@@ -2569,8 +2569,8 @@ pub struct GmsReason {
     pub HierStrucID: i64,
     pub GMSReasonIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -2740,7 +2740,7 @@ pub struct GmsTblPrefAttrDef {
     pub NameID: i64,
     pub CodeID: i64,
     pub ObjectNumber: Option<i32>,
-    pub IsExclusive: bool,
+    pub IsExclusive: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2752,7 +2752,7 @@ pub struct GmsTblPrefCatDef {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
-    pub IsExclusive: bool,
+    pub IsExclusive: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2777,7 +2777,7 @@ pub struct GmsTblRequestDetail {
     pub EmployeeID: Option<i64>,
     pub RevCtrID: Option<i32>,
     pub ReservationCovCnt: Option<i16>,
-    pub IsPendingApproval: Option<bool>,
+    pub IsPendingApproval: Option<u8>,
     pub ApprovedBy: Option<i64>,
     pub ApprovedDate: Option<NaiveDateTime>,
     pub ReservationDate: Option<NaiveDateTime>,
@@ -2787,7 +2787,7 @@ pub struct GmsTblRequestDetail {
     pub CoverCnt: Option<i16>,
     pub GuestName: String,
     pub PhoneNumber: Option<String>,
-    pub IsVip: Option<bool>,
+    pub IsVip: Option<u8>,
     pub WaitQuote: Option<i16>,
     pub PagerNumber: Option<i16>,
     pub PageTime: Option<i16>,
@@ -2802,7 +2802,7 @@ pub struct GmsTblRequestDetail {
     pub RequestMethod: Option<String>,
     pub RequestMethodRef: Option<String>,
     pub LockTime: Option<NaiveDateTime>,
-    pub UserTblSuggest: Option<bool>,
+    pub UserTblSuggest: Option<u8>,
     pub SuggestPosition: Option<i16>,
     pub CheckGuid: Option<String>,
     pub RecordGuid: Option<String>,
@@ -2847,8 +2847,8 @@ pub struct GroupEventArea {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2864,12 +2864,12 @@ pub struct GroupEventDef {
     pub GroupEventTypeID: Option<i64>,
     pub GroupEventSubTypeID: Option<i64>,
     pub StartDateTime: Option<NaiveDateTime>,
-    pub StartAutoTrigger: bool,
+    pub StartAutoTrigger: u8,
     pub EndDateTime: Option<NaiveDateTime>,
-    pub EndAutoTrigger: bool,
+    pub EndAutoTrigger: u8,
     pub NextGroupEventDefID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub Attendance: Option<i64>,
     pub PrevGroupEventDefID: Option<i64>,
     pub CancelDateTime: Option<NaiveDateTime>,
@@ -2914,8 +2914,8 @@ pub struct GroupEventSubType {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub GroupEventTypeID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2929,8 +2929,8 @@ pub struct GroupEventType {
     pub NameID: i64,
     pub MenuLvlIndex: Option<i32>,
     pub SubMenuLvlIndex: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -2952,8 +2952,8 @@ pub struct HelpScreen {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub NameID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ScreenType: Option<i16>,
     pub Address: Option<String>,
     pub HtmlID: Option<i64>,
@@ -2989,8 +2989,8 @@ pub struct HierarchyParameter {
     pub AseqUserName: Option<String>,
     pub AseqPassword: Option<Vec<u8>>,
     pub MaxIdleTime: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub EncryptionKeySig: Option<Vec<u8>>,
     pub SIMServiceID: Option<i32>,
     pub OCServiceID: Option<i32>,
@@ -3094,8 +3094,8 @@ pub struct Interface {
     pub SpxNetwork: Option<String>,
     pub SpxNode: Option<String>,
     pub SpxSocket: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub NameInternal: Option<String>,
     pub ServiceID: Option<i32>,
     pub EncodingType: Option<i16>,
@@ -3110,8 +3110,8 @@ pub struct InterfaceLink {
     pub HierStrucID: i64,
     pub LinkIndex: i32,
     pub InterfaceID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3126,8 +3126,8 @@ pub struct JobCode {
     pub ReportGroup: Option<i32>,
     pub OptionBits: String,
     pub AvailableHierStrucID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub JobCodePostingTime: Option<NaiveDateTime>,
     pub RoleID: Option<i64>,
     pub EmpClassID: Option<i32>,
@@ -3145,8 +3145,8 @@ pub struct KdsBumpbarButton {
     pub ObjectNumber: Option<i32>,
     pub ScancodeValue: i32,
     pub KdsFunction: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub Parameters: Option<String>,
 }
 
@@ -3160,8 +3160,8 @@ pub struct KdsBumpbarStyle {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub AutoBumpTime: Option<i64>,
     pub AutoBumpCheckCount: Option<i64>,
 }
@@ -3194,8 +3194,8 @@ pub struct KdsClient {
     pub SerpentineModeType: i16,
     pub OrderTypeFontSize: Option<i32>,
     pub MenuItemFontSize: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HostAddress: Option<String>,
     pub ObjectNumber: Option<i32>,
     pub NameID: Option<i64>,
@@ -3275,8 +3275,8 @@ pub struct KdsController {
     pub LayoutOrderBackgroundColor: Option<i32>,
     pub LayoutVoidItemColor: Option<i32>,
     pub LayoutCourse1ItemColor: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ObjectNumber: Option<i32>,
     pub NameID: Option<i64>,
     pub DbUpdateFrequency: Option<i32>,
@@ -3289,7 +3289,7 @@ pub struct KdsController {
     pub AutoBumpTime: Option<i64>,
     pub AutoBumpCheckCount: Option<i64>,
     pub BackupServiceID: Option<i32>,
-    pub BackupIsActive: Option<bool>,
+    pub BackupIsActive: Option<u8>,
     pub ExternalPostFile1: Option<String>,
     pub ExternalPostFile2: Option<String>,
     pub ExternalPostFile3: Option<String>,
@@ -3307,8 +3307,8 @@ pub struct KdsDetail {
     pub CheckID: i64,
     pub RevCtrID: i32,
     pub OrderDeviceIndex: i16,
-    pub IsAppetizer: bool,
-    pub IsHighPriority: bool,
+    pub IsAppetizer: u8,
+    pub IsHighPriority: u8,
     pub MenuItemCount: i32,
     pub CourseNumber: i32,
     pub SentTime: NaiveDateTime,
@@ -3356,8 +3356,8 @@ pub struct KdsHighlightScheme {
     pub NameID: i64,
     pub BackgroundColor: Option<i32>,
     pub ForegroundColor: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3378,10 +3378,10 @@ pub struct KdsLayoutElement {
     pub ColumnTitle: Option<String>,
     pub FontName: Option<i32>,
     pub FontSize: Option<i32>,
-    pub FontBold: Option<bool>,
+    pub FontBold: Option<u8>,
     pub ForeGroundColor: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3401,17 +3401,17 @@ pub struct KdsLayoutStyle {
     pub Alert2Color: Option<i32>,
     pub TitleFontName: Option<i32>,
     pub TitleFontSize: Option<i32>,
-    pub TitleFontBold: Option<bool>,
+    pub TitleFontBold: Option<u8>,
     pub ElementFontName: Option<i32>,
     pub ElementFontSize: Option<i32>,
-    pub ElementFontBold: Option<bool>,
+    pub ElementFontBold: Option<u8>,
     pub GridColor: Option<i32>,
     pub VoidColor: Option<i32>,
     pub AppItemColor: Option<i32>,
     pub OptionBits: String,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3441,8 +3441,8 @@ pub struct KdsOrderDeviceParameters {
     pub OtherCourse2ndAlertTimeout: i32,
     pub PrimaryRunnerChitPrinterID: Option<i64>,
     pub BackupRunnerChitPrinterID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub PrimaryPrinterID: Option<i32>,
     pub BackupPrinterID: Option<i32>,
     pub AddSortRule: Option<i16>,
@@ -3483,8 +3483,8 @@ pub struct KdsRvchier {
     pub HierStrucID: i64,
     pub KdsControllerID: i64,
     pub RvcHierStrucID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3497,8 +3497,8 @@ pub struct KdsTheme {
     pub ObjectNumber: i32,
     pub NameID: i64,
     pub RvcGroupMask: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3593,8 +3593,8 @@ pub struct KdsToolbarButton {
     pub ButtonForegroundColor: Option<i32>,
     pub ButtonFunction: i32,
     pub LegendID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub Parameters: Option<String>,
     pub SortOrder: Option<i32>,
 }
@@ -3612,8 +3612,8 @@ pub struct KdsToolbarStyle {
     pub ButtonHeight: i32,
     pub ButtonWidth: i32,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3658,7 +3658,7 @@ pub struct LaborPunches {
     pub CashTips: Option<f64>,
     pub IndirectTips: Option<f64>,
     pub Time: Option<NaiveDateTime>,
-    pub ClockIn: Option<bool>,
+    pub ClockIn: Option<u8>,
     pub SelectedBreak: Option<Vec<u8>>,
     pub ShiftNumber: Option<i32>,
     pub OtherStoresClockedIn: Option<Vec<u8>>,
@@ -3692,8 +3692,8 @@ pub struct LanguageInformation {
     pub ThermalFontID2: i32,
     pub LocaleID: i32,
     pub CompareFlags: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub AltTrnFile: Option<String>,
     pub WsReportsLogonName: Option<String>,
     pub WsReportsPassword: Option<String>,
@@ -3713,7 +3713,7 @@ pub struct LanguageInformationText {
     pub TextType: Option<String>,
     pub TextFile: Option<Vec<u8>>,
     pub Description: Option<String>,
-    pub IsTranslation: bool,
+    pub IsTranslation: u8,
     pub Version: i32,
     pub LastUpdatedDateTime: Option<NaiveDateTime>,
 }
@@ -3727,7 +3727,7 @@ pub struct LanguageProperty {
     pub LangID: i32,
     pub HierStrucID: i64,
     pub LangIndex: i32,
-    pub Is2ndPrintLang: bool,
+    pub Is2ndPrintLang: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3753,8 +3753,8 @@ pub struct LoyaltyConfig {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3785,8 +3785,8 @@ pub struct Macros {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -3800,8 +3800,8 @@ pub struct MacroStep {
     pub StepNumber: i32,
     pub KeyType: Option<i32>,
     pub KeyNumber: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MainLevelIndex: Option<i32>,
     pub SubLevelIndex: Option<i32>,
 }
@@ -3817,8 +3817,8 @@ pub struct MainMenuLevel {
     pub PrefixID: i64,
     pub NameID: i64,
     pub SuffixID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub EntryType: Option<i16>,
     pub OptionBits: String,
@@ -3834,8 +3834,8 @@ pub struct MajorGroup {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub ReportGroup: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MajorGroupPostingTime: Option<NaiveDateTime>,
 }
 
@@ -3849,16 +3849,16 @@ pub struct MenuItemClass {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub OptionBits: String,
-    pub TransDfltMain: bool,
-    pub TransDfltSub: bool,
+    pub TransDfltMain: u8,
+    pub TransDfltSub: u8,
     pub PrintOptionBits: Option<String>,
     pub PrintGroup: i16,
     pub PrivilegeGroup: Option<i16>,
     pub DscntItmzrIndex: Option<i32>,
     pub SvcChgItmzrIndex: Option<i32>,
     pub Halo: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub TempConfiguration: Option<String>,
     pub CondimentOrderingType: Option<i16>,
@@ -3938,8 +3938,8 @@ pub struct MenuItemDefinition {
     pub IconNumber: Option<i32>,
     pub OptionBits: String,
     pub SpecialCount: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub PrepTime: Option<i32>,
     pub MenuItemDefinitionPostingTime: Option<NaiveDateTime>,
     pub Name3ID: Option<i64>,
@@ -4010,7 +4010,7 @@ pub struct MenuItemDetail {
     pub Surcharge: Option<f64>,
     pub Weight: Option<f64>,
     pub PrepTime: Option<i32>,
-    pub IsDefault: bool,
+    pub IsDefault: u8,
     pub RelativeCount: Option<f64>,
     pub DefaultCount: Option<i32>,
     pub TaxRates: Option<String>,
@@ -4082,7 +4082,7 @@ pub struct MenuItemGroupDetail {
     pub HierStrucID: i64,
     pub MenuItemGroupID: i32,
     pub GroupType: Option<i32>,
-    pub Exclude: bool,
+    pub Exclude: u8,
     pub StartObjectNumber: Option<i32>,
     pub EndObjectNumber: Option<i32>,
     pub PromotionPrice: Option<f64>,
@@ -4101,8 +4101,8 @@ pub struct MenuItemMaster {
     pub ReportGroup: Option<i32>,
     pub Status: String,
     pub RecipeLinkID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MenuItemMasterPostingTime: Option<NaiveDateTime>,
     pub TempConfiguration: Option<String>,
     pub FamGrpObjNum: Option<i32>,
@@ -4129,8 +4129,8 @@ pub struct MenuItemMasterEff {
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMasterGroup {
     pub MenuItemMasterGroupID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TempConfiguration: Option<String>,
     pub NameID: Option<i64>,
     pub ObjectNumber: Option<i32>,
@@ -4156,8 +4156,8 @@ pub struct MenuItemMasterTag {
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMenuLevelEntry {
     pub MenuItemMenuLevelEntryID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: i64,
     pub MenuItemDefID: i64,
     pub MenuLvlEntryIndex: i32,
@@ -4189,8 +4189,8 @@ pub struct MenuItemPrice {
     pub Price: Option<f64>,
     pub PrepCost: Option<f64>,
     pub RecipeNameID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub MenuItemPricePostingTime: Option<NaiveDateTime>,
     pub PriceGroupID: Option<i32>,
     pub TempConfiguration: Option<String>,
@@ -4224,8 +4224,8 @@ pub struct MenuLevel {
     pub ObjectNumber: i32,
     pub MenuLevelType: Option<i16>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: i64,
     pub NameID: Option<i64>,
     pub TempConfiguration: Option<String>,
@@ -4243,8 +4243,8 @@ pub struct MenuLevelEntry {
     pub SuffixID: Option<i64>,
     pub EntryType: Option<i16>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: i64,
     pub MenuLevelID: i64,
     pub NameID: Option<i64>,
@@ -4308,10 +4308,10 @@ pub struct Mrequests {
     pub Data1: Option<i64>,
     pub ServiceID: Option<i32>,
     pub FirstRequestTime: Option<NaiveDateTime>,
-    pub OfflinePosting: Option<bool>,
+    pub OfflinePosting: Option<u8>,
     pub ServiceHostInfo: Option<String>,
     pub TelemetryInfo: Option<String>,
-    pub PostedToChannelManagement: Option<bool>,
+    pub PostedToChannelManagement: Option<u8>,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4388,8 +4388,8 @@ pub struct NumberLookup {
     pub HierStrucID: i64,
     pub NluIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -4402,8 +4402,8 @@ pub struct NutrientSet {
     pub HierStrucID: i64,
     pub NameID: i64,
     pub ObjectNumber: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4417,8 +4417,8 @@ pub struct NutrientSetNutrient {
     pub NutritionObjNumber: Option<i64>,
     pub UnitOfMeasure: Option<i32>,
     pub Quantity: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4430,8 +4430,8 @@ pub struct Nutrition {
     pub HierStrucID: i64,
     pub NutritionIndex: i32,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -4465,7 +4465,7 @@ pub struct OpenClientAccessDetail {
     pub AccessType: i32,
     pub ReferenceID: Option<String>,
     pub HierStrucID: i64,
-    pub IsDisabled: bool,
+    pub IsDisabled: u8,
     pub CreatedOn: Option<NaiveDateTime>,
     pub UpdatedOn: Option<NaiveDateTime>,
 }
@@ -4480,15 +4480,15 @@ pub struct OpenClientUserInfo {
     pub ClientName: String,
     pub ClientID: String,
     pub ClientScope: i32,
-    pub IsUserDisabled: bool,
-    pub IsClientDisabled: bool,
+    pub IsUserDisabled: u8,
+    pub IsClientDisabled: u8,
     pub TenantID: String,
     pub CreatedOn: Option<NaiveDateTime>,
     pub UpdatedOn: Option<NaiveDateTime>,
     pub OrgShortName: String,
     pub HierStrucID: Option<i64>,
     pub AuthZRole: Option<i32>,
-    pub IsTerminated: bool,
+    pub IsTerminated: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4504,9 +4504,9 @@ pub struct Operator {
     pub TrkGrpID: Option<i32>,
     pub TableCount: Option<i32>,
     pub CashDrawer: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
-    pub OverrideEmpClassOptions: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
+    pub OverrideEmpClassOptions: u8,
     pub EmployeeColor: Option<i32>,
     pub CoverCount: Option<i32>,
     pub CheckCount: Option<i32>,
@@ -4527,8 +4527,8 @@ pub struct OperatorTouchscreen {
     pub HierStrucID: i64,
     pub OperatorID: i64,
     pub DeviceType: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TouchscreenObjNum: i32,
 }
 
@@ -4541,10 +4541,10 @@ pub struct OrderChannel {
     pub HierStrucID: i64,
     pub ObjectNumber: i32,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
-    pub IsActive: bool,
+    pub IsActive: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4560,9 +4560,9 @@ pub struct OrderChannelConfig {
     pub KdsHighlightSchemeObjNum: i32,
     pub ServiceLevelTime: Option<i16>,
     pub ServiceChargeObjNum: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
-    pub IsActive: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
+    pub IsActive: u8,
     pub OptionBits: String,
 }
 
@@ -4586,8 +4586,8 @@ pub struct OrderDevice {
     pub VduOrderTimeout: Option<i32>,
     pub VduOptionBits: String,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub KdsOrderDeviceParamsID: Option<i64>,
     pub PrimaryType: Option<i16>,
     pub PrimaryID: Option<i64>,
@@ -4616,8 +4616,8 @@ pub struct OrderType {
     pub HierStrucID: i64,
     pub OrdTypeIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub OrderTypePostingTime: Option<NaiveDateTime>,
 }
 
@@ -4629,11 +4629,11 @@ pub struct OrderTypeParameter {
     pub OrdTypParamID: i32,
     pub HierStrucID: i64,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxMask: String,
     pub OrdTypeIndex: i32,
-    pub OtIsActive: bool,
+    pub OtIsActive: u8,
     pub OrderDeviceMask: String,
     pub KdsHighlightSchemeID: i32,
     pub OrderMethodObjNum: i32,
@@ -4662,15 +4662,15 @@ pub struct Organization {
     pub IsTemplate: Option<String>,
     pub HMCUserName: Option<String>,
     pub HMCPassword: Option<Vec<u8>>,
-    pub SuperOrganization: Option<bool>,
+    pub SuperOrganization: Option<u8>,
     pub REPORTWSPASSENC: Option<Vec<u8>>,
     pub EncryptionKeyID: Option<i64>,
-    pub IsDeleted: Option<bool>,
+    pub IsDeleted: Option<u8>,
     pub TenantID: Option<String>,
-    pub IsSuperLite: bool,
-    pub EnableCnCAPI: bool,
-    pub IsGFInstance: bool,
-    pub EnablePMIntegration: bool,
+    pub IsSuperLite: u8,
+    pub EnableCnCAPI: u8,
+    pub IsGFInstance: u8,
+    pub EnablePMIntegration: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4680,8 +4680,8 @@ pub struct Organization {
 pub struct Page {
     pub PageID: i32,
     pub ObjectNumber: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: Option<i64>,
     pub NameID: Option<i64>,
     pub PageTemplateID: Option<i32>,
@@ -4733,8 +4733,8 @@ pub struct PageContentArea {
     pub HierStrucID: i64,
     pub PageID: Option<i32>,
     pub DescriptionID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ChangeSetObjNum: Option<i32>,
 }
 
@@ -4745,12 +4745,12 @@ pub struct PageContentArea {
 pub struct PageTemplate {
     pub PageTemplateID: i32,
     pub ObjectNumber: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: Option<i64>,
     pub ContentDataID: Option<i64>,
     pub NameID: Option<i64>,
-    pub IsDefault: bool,
+    pub IsDefault: u8,
     pub OptionBits: String,
 }
 
@@ -4793,8 +4793,8 @@ pub struct PayRate {
     pub JobCodeID: Option<i32>,
     pub RegularPay: Option<f64>,
     pub OvertimePay: Option<f64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub EffectiveFrom: Option<NaiveDateTime>,
     pub EffectiveTo: Option<NaiveDateTime>,
 }
@@ -4811,7 +4811,7 @@ pub struct PaymentTender {
     pub Arguments: Option<String>,
     pub SortPriority: Option<i32>,
     pub SluIndex: Option<i32>,
-    pub IsPrimary: bool,
+    pub IsPrimary: u8,
     pub ObjectNumber: Option<i32>,
 }
 
@@ -4825,8 +4825,8 @@ pub struct Period {
     pub NameID: Option<i64>,
     pub PeriodType: i32,
     pub ScheduleData: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -4905,8 +4905,8 @@ pub struct PostingParameter {
     pub HierStrucID: i64,
     pub OptionBits: String,
     pub AutoSvcChgGuests: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub CarryOverDays: Option<i32>,
 }
 
@@ -4922,8 +4922,8 @@ pub struct PrintClass {
     pub OptionBits: String,
     pub OrderDeviceOutput: String,
     pub RoutingGroupObjNum: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub OrderDeviceDisabled: Option<String>,
 }
 
@@ -4980,8 +4980,8 @@ pub struct ProductionItem {
     pub NameID: i64,
     pub KdsHighlightSchemeObjNum: Option<i32>,
     pub ShelfLife: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -4990,7 +4990,7 @@ pub struct ProductionItem {
 #[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Property {
     pub PropertyID: i32,
-    pub TestProperty: bool,
+    pub TestProperty: u8,
     pub PropertyGuid: Option<String>,
     pub TZIndex: Option<i32>,
     pub PropertyComment: Option<String>,
@@ -5011,7 +5011,7 @@ pub struct Property {
     pub StateOrRegionCode: Option<String>,
     pub MerchantCategoryCode: Option<String>,
     pub PendingDelete: Option<i32>,
-    pub MccLocked: Option<bool>,
+    pub MccLocked: Option<u8>,
     pub PhoneCountryCode: Option<String>,
 }
 
@@ -5028,8 +5028,8 @@ pub struct QrPayConfig {
     pub IdGuid: Option<String>,
     pub AdyenStoreId: Option<String>,
     pub MerchantAccountCode: Option<String>,
-    pub QrPayEnabledEmc: Option<bool>,
-    pub QrPayEnabledPaymentApp: Option<bool>,
+    pub QrPayEnabledEmc: Option<u8>,
+    pub QrPayEnabledPaymentApp: Option<u8>,
     pub QrPayEmcDateLastModified: Option<NaiveDateTime>,
     pub QrPayLastUpdateFromPaymentApp: Option<NaiveDateTime>,
     pub OrganizationId: Option<i64>,
@@ -5056,8 +5056,8 @@ pub struct RecipeName {
     pub RecipeLinkID: i32,
     pub RecipeIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5082,8 +5082,8 @@ pub struct ReportParameter {
     pub RptParamID: i32,
     pub HierStrucID: i64,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5094,14 +5094,14 @@ pub struct RequiredCondiment {
     pub ReqdCndmntID: i32,
     pub HierStrucID: i64,
     pub MenuItemClassID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub SluIndex: Option<i32>,
     pub Threshold1: Option<i16>,
     pub Threshold1Level: Option<i16>,
     pub Threshold2: Option<i16>,
     pub Threshold2Level: Option<i16>,
-    pub Passthrough: Option<bool>,
+    pub Passthrough: Option<u8>,
     pub MinimumValue: i16,
     pub MaximumValue: i16,
 }
@@ -5113,10 +5113,10 @@ pub struct RequiredCondiment {
 pub struct RevenueCenter {
     pub RevCtrID: i32,
     pub ObjectNumber: Option<i32>,
-    pub IsActive: bool,
-    pub IsLdsActive: bool,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsActive: u8,
+    pub IsLdsActive: u8,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub RevenueCenterPostingTime: Option<NaiveDateTime>,
     pub RvcGroupMask: String,
     pub IsTransLocked: Option<NaiveDateTime>,
@@ -5134,9 +5134,9 @@ pub struct RevenueCenter {
     pub Floor: Option<String>,
     pub CountryCode: Option<String>,
     pub StateOrRegionCode: Option<String>,
-    pub UsePropertyAddress: bool,
+    pub UsePropertyAddress: u8,
     pub MerchantCategoryCode: Option<String>,
-    pub MccLocked: Option<bool>,
+    pub MccLocked: Option<u8>,
     pub PhoneCountryCode: Option<String>,
 }
 
@@ -5209,7 +5209,7 @@ pub struct RoleVisibility {
     pub RoleVisibilityID: i64,
     pub RoleID: i64,
     pub HierStrucID: i64,
-    pub VisibleForChildren: bool,
+    pub VisibleForChildren: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5232,8 +5232,8 @@ pub struct SalesItemizer {
     pub HierStrucID: i64,
     pub SlsItmzrIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5247,8 +5247,8 @@ pub struct ScreenLookups {
     pub DeviceType: i32,
     pub SluIndex: i32,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub PosRef: Option<i64>,
 }
@@ -5287,8 +5287,8 @@ pub struct SerialNumbers {
     pub MinVal: i64,
     pub MaxVal: i64,
     pub CurVal: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5308,7 +5308,7 @@ pub struct Services {
     pub SecAuthOldKeyID: Option<i64>,
     pub ClearTotalsTime: Option<NaiveDateTime>,
     pub DbUpdateFrequency: Option<i32>,
-    pub IsPendingDbReload: bool,
+    pub IsPendingDbReload: u8,
     pub SecurePort: i32,
 }
 
@@ -5324,9 +5324,9 @@ pub struct ServiceCharges {
     pub OptionBits: Option<String>,
     pub PrintOptionBits: Option<String>,
     pub Nlu: Option<i32>,
-    pub TransDfltMain: bool,
+    pub TransDfltMain: u8,
     pub MainMenuLvlIndex: Option<i32>,
-    pub TransDfltSub: bool,
+    pub TransDfltSub: u8,
     pub SubMenuLvlIndex: Option<i32>,
     pub Percentage: Option<f64>,
     pub Amount: Option<f64>,
@@ -5334,8 +5334,8 @@ pub struct ServiceCharges {
     pub PercentTipsPaid: Option<f64>,
     pub PrivilegeGrp: Option<i32>,
     pub IconNumber: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub ServiceChargePostingTime: Option<NaiveDateTime>,
     pub Halo: Option<f64>,
     pub TaxClassObjNum: Option<i32>,
@@ -5398,8 +5398,8 @@ pub struct ServiceChargeItemizer {
     pub HierStrucID: i64,
     pub SvcChgItmzrIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5411,8 +5411,8 @@ pub struct ServiceChargeMainMenuLevel {
     pub HierStrucID: i64,
     pub SvcChgID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5424,8 +5424,8 @@ pub struct ServiceChargeSubMenuLevel {
     pub HierStrucID: i64,
     pub SvcChgID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5436,8 +5436,8 @@ pub struct ServiceChgItmzrServiceChg {
     pub SvcChgItmzrSvcChgID: i32,
     pub HierStrucID: i64,
     pub SvcChgID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub SvcChgItmzrIndex: Option<i16>,
 }
 
@@ -5472,8 +5472,8 @@ pub struct ServingPeriod {
     pub TrkGrpID: Option<i32>,
     pub TableCount: Option<i32>,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxMask: String,
     pub MainLevelIndex: Option<i32>,
     pub SubLevelIndex: Option<i32>,
@@ -5488,8 +5488,8 @@ pub struct ServingPeriodTouchscreen {
     pub HierStrucID: i64,
     pub ServingPeriodID: i32,
     pub DeviceType: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TouchscreenObjNum: Option<i32>,
     pub OrderingTsObjNum: Option<i32>,
 }
@@ -5559,8 +5559,8 @@ pub struct StoredValueCard {
     pub ActivateOtherItem: Option<i64>,
     pub ReloadOtherItem: Option<i64>,
     pub OtherReceipts: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5573,8 +5573,8 @@ pub struct StoredValueCardDescriptor {
     pub DescType: i32,
     pub LineNumber: i32,
     pub StringNumberID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5587,8 +5587,8 @@ pub struct StoredValueConfig {
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
     pub OptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5599,8 +5599,8 @@ pub struct StringTable {
     pub StringID: i64,
     pub StringNumberID: i64,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: Option<i64>,
     pub PosRef: Option<i64>,
     pub StringText: Option<String>,
@@ -5617,8 +5617,8 @@ pub struct SubMenuLevel {
     pub PrefixID: i64,
     pub NameID: i64,
     pub SuffixID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
     pub EntryType: Option<i16>,
     pub OptionBits: String,
@@ -5643,8 +5643,8 @@ pub struct SystemTemplate {
     pub Priority: i32,
     pub SystemTemplateType: Option<String>,
     pub Description: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub HierStrucID: Option<i64>,
     pub ContentDataID: Option<i64>,
 }
@@ -5670,7 +5670,7 @@ pub struct TagItem {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i64>,
     pub TagName: String,
-    pub IsDeleted: bool,
+    pub IsDeleted: u8,
     pub TagGroupId: Option<i64>,
 }
 
@@ -5683,8 +5683,8 @@ pub struct TaiwanGui {
     pub HierStrucID: i64,
     pub Prefix: Option<String>,
     pub Threshold: i16,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5699,8 +5699,8 @@ pub struct Tax {
     pub TaxType: i16,
     pub Percentage: Option<f64>,
     pub Amount: Option<f64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxPostingTime: Option<NaiveDateTime>,
     pub ChangeSetObjNum: Option<i32>,
     pub ReportGroup: Option<i32>,
@@ -5718,8 +5718,8 @@ pub struct TaxBreakpoint {
     pub BrkPtIndex: i32,
     pub Breakpoint: i32,
     pub RepeatTaxBrkPtID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -5732,8 +5732,8 @@ pub struct TaxClass {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
@@ -5745,8 +5745,8 @@ pub struct TaxClassTax {
     pub TaxClassTaxID: i32,
     pub HierStrucID: i64,
     pub TaxClassID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxIndex: Option<i16>,
 }
 
@@ -5759,8 +5759,8 @@ pub struct TaxParameter {
     pub HierStrucID: i64,
     pub OptionBits: String,
     pub ForeignOptionBits: String,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub VatPrintOptionBits: String,
 }
 
@@ -5814,9 +5814,9 @@ pub struct TenderMedia {
     pub OptionBits: String,
     pub PrintOptionBits: Option<String>,
     pub Nlu: Option<i32>,
-    pub TransDfltMain: bool,
+    pub TransDfltMain: u8,
     pub MainMenuLvlIndex: Option<i32>,
-    pub TransDfltSub: bool,
+    pub TransDfltSub: u8,
     pub SubMenuLvlIndex: Option<i32>,
     pub ChargedTipSvcChgNumber: Option<i32>,
     pub Halo: Option<i32>,
@@ -5829,8 +5829,8 @@ pub struct TenderMedia {
     pub InitialAuth: Option<f64>,
     pub DefaultTipPcnt: Option<i16>,
     pub IconNumber: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub QuickServiceLimit: Option<f64>,
     pub TenderMediaPostingTime: Option<NaiveDateTime>,
     pub OfflineEstimatedTip: Option<f64>,
@@ -5886,8 +5886,8 @@ pub struct TenderMediaMainMenuLevel {
     pub HierStrucID: i64,
     pub TendMedID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5901,7 +5901,7 @@ pub struct TenderMediaPreamble {
     pub StartPreamble: Option<String>,
     pub EndPreamble: Option<String>,
     pub PreambleLength: Option<i32>,
-    pub AutoOnly: Option<bool>,
+    pub AutoOnly: Option<u8>,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5913,8 +5913,8 @@ pub struct TenderMediaSubMenuLevel {
     pub HierStrucID: i64,
     pub TendMedID: i32,
     pub MenuLvlIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5925,8 +5925,8 @@ pub struct TenderMediaTaxExempt {
     pub TendMedTaxExmptID: i32,
     pub HierStrucID: i64,
     pub TendMedID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TaxIndex: Option<i16>,
 }
 
@@ -5950,10 +5950,10 @@ pub struct TimePeriod {
     pub HierStrucID: i64,
     pub ObjectNumber: Option<i32>,
     pub PeriodID: i32,
-    pub NoOverhead: bool,
+    pub NoOverhead: u8,
     pub TrkGrpID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -5993,7 +5993,7 @@ pub struct Timecard {
 pub struct TimeclockParameter {
     pub TmClkParmID: i32,
     pub HierStrucID: i64,
-    pub TimeClockEnabled: bool,
+    pub TimeClockEnabled: u8,
     pub OptionBits: String,
     pub EarlyIn: Option<i16>,
     pub LateIn: Option<i16>,
@@ -6011,8 +6011,8 @@ pub struct TimeclockParameter {
     pub StartOfWeek: Option<u8>,
     pub LinesPerCard: Option<i16>,
     pub LineFeeds: Option<i16>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -6026,8 +6026,8 @@ pub struct TmsParameter {
     pub OptionBits: String,
     pub OperatorID: Option<i64>,
     pub WorkstationID: Option<i32>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -6207,8 +6207,8 @@ pub struct VoidReason {
     pub HierStrucID: i64,
     pub VoidReasonIndex: i16,
     pub NameID: i64,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub VoidReasonPostingTime: Option<NaiveDateTime>,
 }
 
@@ -6232,7 +6232,7 @@ pub struct Workstation {
     pub PhysicalID: Option<String>,
     pub ErrorWorkstationNumber: Option<i32>,
     pub HhtOptionBits: String,
-    pub ExtendedCharSet: bool,
+    pub ExtendedCharSet: u8,
     pub KeyboardNumber: Option<i32>,
     pub KeyboardFile: Option<String>,
     pub CashDrawers: Option<i32>,
@@ -6245,8 +6245,8 @@ pub struct Workstation {
     pub PosapiEmployeeID: Option<i64>,
     pub LocationID: Option<i64>,
     pub LangID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub WorkstationPostingTime: Option<NaiveDateTime>,
     pub DbUpdateFrequency: Option<i32>,
     pub OptionBits: String,
@@ -6280,8 +6280,8 @@ pub struct Workstation {
     pub WorkstationClassNum: Option<i32>,
     pub LogModules: Option<String>,
     pub LogUrl: Option<String>,
-    pub ArchiveLogs: bool,
-    pub PostMsgStats: bool,
+    pub ArchiveLogs: u8,
+    pub PostMsgStats: u8,
     pub PostMsgStatsFreq: Option<i32>,
     pub MaxMsgStatsBakFileSize: Option<i32>,
     pub LogMinDiskFreeSpace: Option<i32>,
@@ -6341,8 +6341,8 @@ pub struct WorkstationOrderDevice {
     pub HierStrucID: i64,
     pub WorkstationID: i32,
     pub OrdDvcIndex: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
 }
 
 #[derive(Queryable, Selectable, Debug, Identifiable)]
@@ -6355,8 +6355,8 @@ pub struct WorkstationParameter {
     pub MaxCheckDetail: i32,
     pub LinesPerPage: Option<i32>,
     pub KeyboardFile: Option<String>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub DbUpdateFrequency: Option<i32>,
     pub AutoOnlineTransLimit: Option<i32>,
     pub ReplayMode: Option<i16>,
@@ -6378,8 +6378,8 @@ pub struct WorkstationPrinter {
     pub WorkstationID: i32,
     pub PrinterType: i32,
     pub DeviceID: Option<i64>,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub PrinterID: Option<i32>,
     pub PrinterGroupID: Option<i64>,
 }
@@ -6394,8 +6394,8 @@ pub struct WorkstationRevCtrTouchscrn {
     pub WorkstationID: i32,
     pub WkstaRvcTscrnIndex: i16,
     pub RevCtrID: i32,
-    pub IsVisible: bool,
-    pub IsDeleted: bool,
+    pub IsVisible: u8,
+    pub IsDeleted: u8,
     pub TouchscreenObjNum: Option<i32>,
 }
 
