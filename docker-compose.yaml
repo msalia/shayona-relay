@@ -6,17 +6,17 @@ services:
       dockerfile: rust.dockerfile
       args:
         NAME: relay
-        PORT: ${RELAY_PORT}
+        PORT: ${PORT}
       platforms:
         - linux/arm64
         - linux/amd64
     ports:
-      - ${RELAY_PORT}:${RELAY_PORT}
+      - ${PORT}:${PORT}
     environment:
-      HOST: ${RELAY_HOST}
-      PORT: ${RELAY_PORT}
-      METRICS_PORT: ${RELAY_METRICS_PORT}
-      DATABASE_URL: mysql://${RELAY_DB_USER}:${RELAY_DB_PASS}@db/${RELAY_DB}
+      HOST: ${HOST}
+      PORT: ${PORT}
+      METRICS_PORT: ${METRICS_PORT}
+      DATABASE_URL: mysql://${DATABASE_USER}:${DATABASE_PASS}@db/${DATABASE}
       RUST_LOG: ${RUST_LOG}
     networks:
       - relay-network
@@ -29,12 +29,12 @@ services:
     container_name: db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${RELAY_DB}
-      MYSQL_USER: ${RELAY_DB_USER}
-      MYSQL_PASSWORD: ${RELAY_DB_PASS}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASS}
       MYSQL_TCP_BIND_ADDRESS: ${MYSQL_BIND_ADDRESS}
     ports:
-      - ${RELAY_PORT}:3306
+      - ${DATABASE_PORT}:3306
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:

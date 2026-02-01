@@ -15,9 +15,9 @@ async fn main() {
 
     info!("Starting server...");
 
-    let metrics_port = match env::var("RELAY_METRICS_PORT").unwrap().parse::<u16>() {
+    let metrics_port = match env::var("METRICS_PORT").unwrap().parse::<u16>() {
         Ok(p) => p,
-        Err(e) => panic!("Unable to read environment variable RELAY_METRICS_PORT: {e}"),
+        Err(e) => panic!("Unable to read environment variable METRICS_PORT: {e}"),
     };
     let recorder_handle = PrometheusBuilder::new()
         .with_http_listener(([127, 0, 0, 1], metrics_port))
@@ -41,9 +41,9 @@ async fn main() {
         .layer(crate::server::get_cors())
         .layer(prometheus_layer);
 
-    let port = match env::var("RELAY_PORT").unwrap().parse::<u16>() {
+    let port = match env::var("PORT").unwrap().parse::<u16>() {
         Ok(p) => p,
-        Err(e) => panic!("Unable to read environment variable RELAY_PORT: {e}"),
+        Err(e) => panic!("Unable to read environment variable PORT: {e}"),
     };
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
     let tcp_bind = TcpListener::bind(&addr).await;

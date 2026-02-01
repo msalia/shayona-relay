@@ -5,11 +5,11 @@ use mysql::*;
 use paris::{error, info};
 
 pub fn get_db_conn() -> mysql::Pool {
-    let host = env::var("RELAY_DB_HOST").unwrap();
-    let port = env::var("RELAY_DB_PORT").unwrap();
-    let user = env::var("RELAY_DB_USER").unwrap();
-    let pass = env::var("RELAY_DB_PASS").unwrap();
-    let database = env::var("RELAY_DB").unwrap();
+    let host = env::var("DATABASE_HOST").unwrap();
+    let port = env::var("DATABASE_PORT").unwrap();
+    let user = env::var("DATABASE_USER").unwrap();
+    let pass = env::var("DATABASE_PASS").unwrap();
+    let database = env::var("DATABASE").unwrap();
 
     // MySQL connection pool options
     let pool_opts = PoolOpts::new()
