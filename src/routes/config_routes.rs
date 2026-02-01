@@ -25,7 +25,6 @@ pub struct TaxClassInfo {
 }
 
 pub async fn get_configs(State(state): State<Arc<AppState>>) -> impl IntoResponse {
-    let start_time = std::time::Instant::now();
     let conn = state.pool.get_conn().unwrap();
 
     let results: Result<
@@ -87,20 +86,10 @@ pub async fn get_configs(State(state): State<Arc<AppState>>) -> impl IntoRespons
                 )
                 .collect::<Vec<TaxClassInfo>>();
 
-            let duration = start_time.elapsed();
-            println!(
-                "/configs completed in {:.2}ms",
-                duration.as_secs_f64() * 1000.0
-            );
             (StatusCode::OK, Json(json!({ "taxClasses": tax_classes })))
         }
         Err(e) => {
-            let duration = start_time.elapsed();
             eprintln!("Database error: {:?}", e);
-            eprintln!(
-                "/configs failed in {:.2}ms",
-                duration.as_secs_f64() * 1000.0
-            );
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "taxClasses": [] })),

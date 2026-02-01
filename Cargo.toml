@@ -14,3 +14,5 @@ tower-http = { version = "*", features = ["cors"] }
 diesel = { version = "2.2.0", features = ["mysql", "128-column-tables"] }
 mysqlclient-sys = { version = "0.4", features = ["bundled"] }
 reqwest = { version = "0.12", features = ["json"] }
+axum-prometheus = "0.10.0"
+metrics-exporter-prometheus = "0.18.1"

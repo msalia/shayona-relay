@@ -19,17 +19,21 @@ COPY . /$NAME
 
 FROM base AS development
 
-ARG RELAY_PORT
+ARG PORT
+ARG METRICS_PORT
 
-EXPOSE $RELAY_PORT
+EXPOSE $PORT
+EXPOSE $METRICS_PORT
 
 CMD [ "cargo", "run", "--offline" ]
 
 FROM base AS dev-envs
 
-ARG RELAY_PORT
+ARG PORT
+ARG METRICS_PORT
 
-EXPOSE $RELAY_PORT
+EXPOSE $PORT
+EXPOSE $METRICS_PORT
 
 RUN apt-get update && apt-get install -y --no-install-recommends git
 
@@ -57,9 +61,11 @@ RUN apt-get update && \
 FROM rustlang/rust:nightly
 
 ARG NAME
-ARG RELAY_PORT
+ARG PORT
+ARG METRICS_PORT
 
-EXPOSE $RELAY_PORT
+EXPOSE $PORT
+EXPOSE $METRICS_PORT
 
 COPY --from=builder /$NAME/target/release/$NAME /docker_executer
 

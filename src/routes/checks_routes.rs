@@ -40,11 +40,6 @@ pub async fn post_checks_to_export(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<ChecksToExportRequest>,
 ) -> impl IntoResponse {
-    let start_time = std::time::Instant::now();
-    println!(
-        "/checksToExport for date range: {} to {}",
-        payload.date_start, payload.date_end
-    );
     let conn = state.pool.get_conn().unwrap();
 
     let date_start: &str = payload.date_start.as_str();
@@ -123,23 +118,13 @@ pub async fn post_checks_to_export(
                 )
                 .collect::<Vec<ExportedCheck>>();
 
-            let duration = start_time.elapsed();
-            println!(
-                "/checksToExport completed in {:.2}ms",
-                duration.as_secs_f64() * 1000.0
-            );
             (
                 StatusCode::OK,
                 Json(json!({ "closedChecks": closed_checks })),
             )
         }
         Err(e) => {
-            let duration = start_time.elapsed();
             eprintln!("Database error: {:?}", e);
-            eprintln!(
-                "/checksToExport failed in {:.2}ms",
-                duration.as_secs_f64() * 1000.0
-            );
             (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "closedChecks": [] })),

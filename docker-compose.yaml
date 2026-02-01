@@ -15,6 +15,7 @@ services:
     environment:
       HOST: ${RELAY_HOST}
       PORT: ${RELAY_PORT}
+      METRICS_PORT: ${RELAY_METRICS_PORT}
       DATABASE_URL: mysql://${RELAY_DB_USER}:${RELAY_DB_PASS}@db/${RELAY_DB}
       RUST_LOG: ${RUST_LOG}
     networks:

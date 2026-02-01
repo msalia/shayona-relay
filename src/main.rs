@@ -15,6 +15,17 @@ async fn main() {
 
     info!("Starting server...");
 
+    let metrics_port = match env::var("RELAY_METRICS_PORT").unwrap().parse::<u16>() {
+        Ok(p) => p,
+        Err(e) => panic!("Unable to read environment variable RELAY_METRICS_PORT: {e}"),
+    };
+    let recorder_handle = PrometheusBuilder::new()
+        .with_http_listener(([127, 0, 0, 1], metrics_port))
+        .install_recorder()
+        .unwrap();
+
+    let (prometheus_layer, metric_handle) = PrometheusMetricLayer::pair();
+
     let router = Router::new()
         .route("/relay", post(crate::routes::relay_routes::post_relay))
         .route("/db", get(crate::routes::db_routes::get_db))
@@ -27,7 +38,8 @@ async fn main() {
         )
         .route("/stats", post(crate::routes::analytics_routes::post_stats))
         .with_state(crate::server::get_state())
-        .layer(crate::server::get_cors());
+        .layer(crate::server::get_cors())
+        .layer(prometheus_layer);
 
     let port = match env::var("RELAY_PORT").unwrap().parse::<u16>() {
         Ok(p) => p,
