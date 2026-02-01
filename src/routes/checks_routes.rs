@@ -1,6 +1,7 @@
 use crate::database::schema::{check_detail, checks};
 use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
+use chrono::DateTime;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
@@ -40,8 +41,8 @@ pub async fn post_checks_to_export(
 ) -> impl IntoResponse {
     let conn = state.pool.get_conn().unwrap();
 
-    let date_start: &str = payload.date_start.as_str();
-    let date_end: &str = payload.date_end.as_str();
+    let date_start = DateTime::parse_from_rfc3339(payload.date_start.as_str()).unwrap();
+    let date_end = DateTime::parse_from_rfc3339(payload.date_end.as_str()).unwrap();
     let ignore_obj_num: i32 = payload.ignore_object_number;
 
     // Query checks with their details
@@ -58,10 +59,11 @@ pub async fn post_checks_to_export(
         diesel::result::Error,
     > = checks::table
         .left_join(check_detail::table.on(checks::CheckID.eq(check_detail::CheckID)))
-        .filter(checks::CheckClose.ge(date_start))
-        .filter(checks::CheckClose.lt(date_end))
+        .filter(checks::CheckClose.is_not_null())
+        .filter(checks::CheckClose.assume_not_null().ge(date_start))
+        .filter(checks::CheckClose.assume_not_null().lt(date_end))
         .filter(checks::SubTotal.is_not_null())
-        .filter(checks::SubTotal.ge(0.0))
+        .filter(checks::SubTotal.assume_not_null().ge(0.0))
         .filter(check_detail::DetailType.eq(4))
         .filter(check_detail::ObjectNumber.ne(ignore_obj_num))
         .select((

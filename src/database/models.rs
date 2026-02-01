@@ -7,7 +7,9 @@
 use chrono::NaiveDateTime;
 use diesel::prelude::*;
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
+#[diesel(table_name = crate::database::schema::active_kds_theme)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 #[diesel(primary_key(ActiveKdsThemeID))]
 pub struct ActiveKdsTheme {
     pub ActiveKdsThemeID: i64,
@@ -17,7 +19,9 @@ pub struct ActiveKdsTheme {
     pub LastChangeTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
+#[diesel(table_name = crate::database::schema::add_transfer_revenue_center)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 #[diesel(primary_key(AddTransRevCtrID))]
 pub struct AddTransferRevenueCenter {
     pub AddTransRevCtrID: i32,
@@ -28,8 +32,10 @@ pub struct AddTransferRevenueCenter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AllergenID))]
+#[diesel(table_name = crate::database::schema::allergen)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Allergen {
     pub AllergenID: i64,
     pub HierStrucID: i64,
@@ -41,8 +47,10 @@ pub struct Allergen {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AllergenClassID))]
+#[diesel(table_name = crate::database::schema::allergen_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct AllergenClass {
     pub AllergenClassID: i64,
     pub HierStrucID: i64,
@@ -53,8 +61,10 @@ pub struct AllergenClass {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AlphanumericKeyboardID))]
+#[diesel(table_name = crate::database::schema::alphanumeric_keyboard)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct AlphanumericKeyboard {
     pub AlphanumericKeyboardID: i32,
     pub HierStrucID: i64,
@@ -69,8 +79,10 @@ pub struct AlphanumericKeyboard {
     pub InternalTemplate: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ApplicationTextID))]
+#[diesel(table_name = crate::database::schema::application_text)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ApplicationText {
     pub ApplicationTextID: i32,
     pub HierStrucID: i64,
@@ -79,8 +91,10 @@ pub struct ApplicationText {
     pub TextKey: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AssemblyConfigID))]
+#[diesel(table_name = crate::database::schema::assembly_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct AssemblyConfig {
     pub AssemblyConfigID: i64,
     pub HierStrucID: Option<i64>,
@@ -95,8 +109,10 @@ pub struct AssemblyConfig {
     pub MaximumCompatibility: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AutoMenuLvlID))]
+#[diesel(table_name = crate::database::schema::auto_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct AutoMenuLevel {
     pub AutoMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -110,8 +126,10 @@ pub struct AutoMenuLevel {
     pub SubLevelIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AutofireParamID))]
+#[diesel(table_name = crate::database::schema::autofire_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct AutofireParameter {
     pub AutofireParamID: i32,
     pub HierStrucID: i64,
@@ -126,8 +144,10 @@ pub struct AutofireParameter {
     pub BackupDelay: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(BarcodeID))]
+#[diesel(table_name = crate::database::schema::barcode)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Barcode {
     pub BarcodeID: i64,
     pub HierStrucID: i64,
@@ -143,8 +163,10 @@ pub struct Barcode {
     pub LeadNumZeros: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(BarcodeFormatID))]
+#[diesel(table_name = crate::database::schema::barcode_format)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct BarcodeFormat {
     pub BarcodeFormatID: i32,
     pub HierStrucID: i64,
@@ -157,8 +179,10 @@ pub struct BarcodeFormat {
     pub Custom: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(BarcodeFormatSetID))]
+#[diesel(table_name = crate::database::schema::barcode_format_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct BarcodeFormatSet {
     pub BarcodeFormatSetID: i32,
     pub HierStrucID: i64,
@@ -166,8 +190,10 @@ pub struct BarcodeFormatSet {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(BrowserAllowedUrlId))]
+#[diesel(table_name = crate::database::schema::browser_allowed_url)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct BrowserAllowedUrl {
     pub BrowserAllowedUrlId: i64,
     pub HierStrucID: i64,
@@ -177,8 +203,10 @@ pub struct BrowserAllowedUrl {
     pub OrganizationId: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GstID))]
+#[diesel(table_name = crate::database::schema::canadian_gst)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CanadianGst {
     pub GstID: i32,
     pub HierStrucID: i64,
@@ -191,8 +219,10 @@ pub struct CanadianGst {
     pub TaxIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PstID))]
+#[diesel(table_name = crate::database::schema::canadian_pst)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CanadianPst {
     pub PstID: i32,
     pub HierStrucID: i64,
@@ -206,8 +236,10 @@ pub struct CanadianPst {
     pub TaxIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CashierID))]
+#[diesel(table_name = crate::database::schema::cashier)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Cashier {
     pub CashierID: i32,
     pub HierStrucID: i64,
@@ -220,8 +252,10 @@ pub struct Cashier {
     pub ShiftNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChangeSetID))]
+#[diesel(table_name = crate::database::schema::change_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ChangeSet {
     pub ChangeSetID: i32,
     pub HierStrucID: i64,
@@ -231,8 +265,10 @@ pub struct ChangeSet {
     pub AllowLocalControl: Option<bool>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChangeSetTimetableID))]
+#[diesel(table_name = crate::database::schema::change_set_timetable)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ChangeSetTimetable {
     pub ChangeSetTimetableID: i64,
     pub StartTime: Option<NaiveDateTime>,
@@ -247,8 +283,10 @@ pub struct ChangeSetTimetable {
     pub OverrideStatus: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChangesetEffStatusID))]
+#[diesel(table_name = crate::database::schema::changeset_eff_status)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ChangesetEffStatus {
     pub ChangesetEffStatusID: i32,
     pub HierStrucID: i64,
@@ -257,8 +295,10 @@ pub struct ChangesetEffStatus {
     pub OverrideStatus: Option<bool>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChannelMgmtPostDataId))]
+#[diesel(table_name = crate::database::schema::channel_mgmt_post_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ChannelMgmtPostData {
     pub ChannelMgmtPostDataId: i64,
     pub CheckGuid: String,
@@ -269,8 +309,10 @@ pub struct ChannelMgmtPostData {
     pub CheckNumber: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChgTendParamID))]
+#[diesel(table_name = crate::database::schema::charge_tender_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ChargeTenderParameter {
     pub ChgTendParamID: i32,
     pub HierStrucID: i64,
@@ -301,8 +343,10 @@ pub struct ChargeTenderParameter {
     pub PackageObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CheckDetailID))]
+#[diesel(table_name = crate::database::schema::check_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CheckDetail {
     pub CheckID: i64,
     pub DetailIndex: i32,
@@ -333,24 +377,30 @@ pub struct CheckDetail {
     pub AuthEmployeeID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CheckDetailOrdDvcID))]
+#[diesel(table_name = crate::database::schema::check_detail_order_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CheckDetailOrderDevice {
     pub CheckDetailOrdDvcID: i64,
     pub CheckDetailID: i64,
     pub OrdDvcIndex: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CheckDetailTaxID))]
+#[diesel(table_name = crate::database::schema::check_detail_tax)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CheckDetailTax {
     pub CheckDetailTaxID: i64,
     pub CheckDetailID: i64,
     pub TaxID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ChkNumParamID))]
+#[diesel(table_name = crate::database::schema::check_number_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CheckNumberParameter {
     pub ChkNumParamID: i32,
     pub HierStrucID: i64,
@@ -361,8 +411,10 @@ pub struct CheckNumberParameter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CheckID))]
+#[diesel(table_name = crate::database::schema::checks)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Checks {
     pub CheckID: i64,
     pub RevCtrID: i32,
@@ -456,8 +508,10 @@ pub struct Checks {
     pub OrdChannelID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ClearTotalsID))]
+#[diesel(table_name = crate::database::schema::clear_totals)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ClearTotals {
     pub ClearTotalsID: i32,
     pub HierStrucID: i64,
@@ -466,8 +520,10 @@ pub struct ClearTotals {
     pub IsCleared: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmAccountID))]
+#[diesel(table_name = crate::database::schema::cm_account)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmAccount {
     pub CmAccountID: i64,
     pub HierStrucID: i64,
@@ -477,8 +533,10 @@ pub struct CmAccount {
     pub ReferenceCode: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCashCountThresholdID))]
+#[diesel(table_name = crate::database::schema::cm_cash_count_threshold)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCashCountThreshold {
     pub CmCashCountThresholdID: i64,
     pub HierStrucID: i64,
@@ -490,8 +548,10 @@ pub struct CmCashCountThreshold {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCashCountThresholdClassID))]
+#[diesel(table_name = crate::database::schema::cm_cash_count_thrshld_cls)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCashCountThrshldCls {
     pub CmCashCountThresholdClassID: i64,
     pub HierStrucID: i64,
@@ -502,8 +562,10 @@ pub struct CmCashCountThrshldCls {
     pub MaxThreshold: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCashPullThresholdID))]
+#[diesel(table_name = crate::database::schema::cm_cash_pull_threshold)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCashPullThreshold {
     pub CmCashPullThresholdID: i64,
     pub HierStrucID: i64,
@@ -512,8 +574,10 @@ pub struct CmCashPullThreshold {
     pub ChitQuantity: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCashPullThresholdLevelID))]
+#[diesel(table_name = crate::database::schema::cm_cash_pull_threshold_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCashPullThresholdLevel {
     pub CmCashPullThresholdLevelID: i64,
     pub HierStrucID: i64,
@@ -524,8 +588,10 @@ pub struct CmCashPullThresholdLevel {
     pub Amount: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmChangeOrderID))]
+#[diesel(table_name = crate::database::schema::cm_change_order)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmChangeOrder {
     pub CmChangeOrderID: i64,
     pub HierStrucID: i64,
@@ -540,8 +606,10 @@ pub struct CmChangeOrder {
     pub CmChangeReceptacleDetailID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmChangeOrderItemID))]
+#[diesel(table_name = crate::database::schema::cm_change_order_items)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmChangeOrderItems {
     pub CmChangeOrderItemID: i64,
     pub HierStrucID: i64,
@@ -551,8 +619,10 @@ pub struct CmChangeOrderItems {
     pub Amount: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountDetailID))]
+#[diesel(table_name = crate::database::schema::cm_count_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountDetail {
     pub CmCountDetailID: i64,
     pub HierStrucID: i64,
@@ -563,8 +633,10 @@ pub struct CmCountDetail {
     pub CountState: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountClassItemID))]
+#[diesel(table_name = crate::database::schema::cm_count_detail_classes)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountDetailClasses {
     pub CmCountClassItemID: i64,
     pub CmCountDetailID: i64,
@@ -576,8 +648,10 @@ pub struct CmCountDetailClasses {
     pub AdjustReasonID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountDetailItemID))]
+#[diesel(table_name = crate::database::schema::cm_count_detail_items)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountDetailItems {
     pub CmCountDetailItemID: i64,
     pub CmCountDetailID: i64,
@@ -588,8 +662,10 @@ pub struct CmCountDetailItems {
     pub Reference: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountSheetID))]
+#[diesel(table_name = crate::database::schema::cm_countsheet)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountsheet {
     pub CmCountSheetID: i64,
     pub HierStrucID: i64,
@@ -598,8 +674,10 @@ pub struct CmCountsheet {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountsheetGroupID))]
+#[diesel(table_name = crate::database::schema::cm_countsheet_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountsheetGroup {
     pub CmCountsheetGroupID: i64,
     pub CmCountsheetID: Option<i64>,
@@ -612,8 +690,10 @@ pub struct CmCountsheetGroup {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountsheetGroupDetailID))]
+#[diesel(table_name = crate::database::schema::cm_countsheet_group_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountsheetGroupDetail {
     pub CmCountsheetGroupDetailID: i64,
     pub CmCountsheetGroupID: i64,
@@ -625,8 +705,10 @@ pub struct CmCountsheetGroupDetail {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmCountsheetPageID))]
+#[diesel(table_name = crate::database::schema::cm_countsheet_page)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmCountsheetPage {
     pub CmCountsheetPageID: i64,
     pub HierStrucID: i64,
@@ -636,8 +718,10 @@ pub struct CmCountsheetPage {
     pub SortOrder: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmEmployeeTillAssignmentID))]
+#[diesel(table_name = crate::database::schema::cm_employee_till_assignment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmEmployeeTillAssignment {
     pub CmEmployeeTillAssignmentID: i32,
     pub EmployeeID: i64,
@@ -645,8 +729,10 @@ pub struct CmEmployeeTillAssignment {
     pub StartTime: NaiveDateTime,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemID))]
+#[diesel(table_name = crate::database::schema::cm_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmItem {
     pub CmItemID: i64,
     pub HierStrucID: i64,
@@ -656,8 +742,10 @@ pub struct CmItem {
     pub CurrencyObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemBehaviorID))]
+#[diesel(table_name = crate::database::schema::cm_item_behavior)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmItemBehavior {
     pub CmItemBehaviorID: i64,
     pub HierStrucID: i64,
@@ -666,8 +754,10 @@ pub struct CmItemBehavior {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemItemsID))]
+#[diesel(table_name = crate::database::schema::cm_item_pos_items)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmItemPosItems {
     pub CmItemItemsID: i64,
     pub HierStrucID: i64,
@@ -678,8 +768,10 @@ pub struct CmItemPosItems {
     pub CmItemBehaviorID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmItemUnitID))]
+#[diesel(table_name = crate::database::schema::cm_item_units)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmItemUnits {
     pub CmItemUnitID: i64,
     pub HierStrucID: i64,
@@ -691,8 +783,10 @@ pub struct CmItemUnits {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmParLevelID))]
+#[diesel(table_name = crate::database::schema::cm_par_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmParLevel {
     pub CmParLevelID: i64,
     pub HierStrucID: i64,
@@ -701,8 +795,10 @@ pub struct CmParLevel {
     pub CmItemObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmParLeveItemID))]
+#[diesel(table_name = crate::database::schema::cm_par_level_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmParLevelItem {
     pub CmParLeveItemID: i64,
     pub HierStrucID: i64,
@@ -713,8 +809,10 @@ pub struct CmParLevelItem {
     pub DayOfWeek: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CMParameterID))]
+#[diesel(table_name = crate::database::schema::cm_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmParameter {
     pub CMParameterID: i64,
     pub HierStrucID: i64,
@@ -728,8 +826,10 @@ pub struct CmParameter {
     pub ServerBankingTemplateObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmReceptacleID))]
+#[diesel(table_name = crate::database::schema::cm_receptacle)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmReceptacle {
     pub CmReceptacleID: i64,
     pub HierStrucID: i64,
@@ -742,8 +842,10 @@ pub struct CmReceptacle {
     pub StartAmount: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmReceptacleDetailID))]
+#[diesel(table_name = crate::database::schema::cm_receptacle_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmReceptacleDetail {
     pub CmReceptacleDetailID: i64,
     pub HierStrucID: i64,
@@ -767,8 +869,10 @@ pub struct CmReceptacleDetail {
     pub BusinessDate: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmReceptacleTemplateID))]
+#[diesel(table_name = crate::database::schema::cm_receptacle_template)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmReceptacleTemplate {
     pub CmReceptacleTemplateID: i64,
     pub HierStrucID: i64,
@@ -790,8 +894,10 @@ pub struct CmReceptacleTemplate {
     pub CashDepositRoutingObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmTemplateClassID))]
+#[diesel(table_name = crate::database::schema::cm_template_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmTemplateClass {
     pub CmTemplateClassID: i64,
     pub HierStrucID: i64,
@@ -808,8 +914,10 @@ pub struct CmTemplateClass {
     pub CashDepositRoutingObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmTemplateClassExclusionID))]
+#[diesel(table_name = crate::database::schema::cm_template_class_exclude)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmTemplateClassExclude {
     pub CmTemplateClassExclusionID: i64,
     pub HierStrucID: i64,
@@ -818,8 +926,10 @@ pub struct CmTemplateClassExclude {
     pub CmItemObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmTemplatePARLevelID))]
+#[diesel(table_name = crate::database::schema::cm_template_par_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmTemplateParLevel {
     pub CmTemplatePARLevelID: i64,
     pub HierStrucID: i64,
@@ -828,8 +938,10 @@ pub struct CmTemplateParLevel {
     pub CmParLevelObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CMTillSessionID))]
+#[diesel(table_name = crate::database::schema::cm_till_session)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmTillSession {
     pub CMTillSessionID: i32,
     pub EmployeeID: i64,
@@ -840,8 +952,10 @@ pub struct CmTillSession {
     pub Status: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmTransactionDetailID))]
+#[diesel(table_name = crate::database::schema::cm_transaction_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmTransactionDetail {
     pub CmTransactionDetailID: i64,
     pub HierStrucID: i64,
@@ -873,8 +987,10 @@ pub struct CmTransactionDetail {
     pub OtherCmReceptacleDetailID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CmVendorID))]
+#[diesel(table_name = crate::database::schema::cm_vendor)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CmVendor {
     pub CmVendorID: i64,
     pub HierStrucID: i64,
@@ -885,8 +1001,10 @@ pub struct CmVendor {
     pub ReferenceCode: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboID))]
+#[diesel(table_name = crate::database::schema::combo)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Combo {
     pub ComboID: i32,
     pub HierStrucID: i64,
@@ -899,8 +1017,10 @@ pub struct Combo {
     pub AutoComboAlgorithm: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupID))]
+#[diesel(table_name = crate::database::schema::combo_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboGroup {
     pub ComboGroupID: i32,
     pub HierStrucID: i64,
@@ -911,8 +1031,10 @@ pub struct ComboGroup {
     pub HhtSluIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupDetailID))]
+#[diesel(table_name = crate::database::schema::combo_group_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboGroupDetail {
     pub ComboGroupDetailID: i32,
     pub HierStrucID: i64,
@@ -931,8 +1053,10 @@ pub struct ComboGroupDetail {
     pub ChangeSetObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupDetailPriceID))]
+#[diesel(table_name = crate::database::schema::combo_group_detail_price)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboGroupDetailPrice {
     pub ComboGroupDetailPriceID: i32,
     pub HierStrucID: i64,
@@ -946,8 +1070,10 @@ pub struct ComboGroupDetailPrice {
     pub PrepCost: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupPriceID))]
+#[diesel(table_name = crate::database::schema::combo_group_price)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboGroupPrice {
     pub ComboGroupPriceID: i32,
     pub HierStrucID: i64,
@@ -958,8 +1084,10 @@ pub struct ComboGroupPrice {
     pub PrepCost: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboGroupSubstitutionId))]
+#[diesel(table_name = crate::database::schema::combo_group_substitutions)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboGroupSubstitutions {
     pub ComboGroupSubstitutionId: i64,
     pub ComboGroup: i32,
@@ -967,8 +1095,10 @@ pub struct ComboGroupSubstitutions {
     pub HierStrucID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComboSideID))]
+#[diesel(table_name = crate::database::schema::combo_side)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComboSide {
     pub ComboSideID: i32,
     pub HierStrucID: i64,
@@ -980,8 +1110,10 @@ pub struct ComboSide {
     pub MenuLvls: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComponentID))]
+#[diesel(table_name = crate::database::schema::component)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Component {
     pub ComponentID: i64,
     pub HierStrucID: i64,
@@ -997,8 +1129,10 @@ pub struct Component {
     pub PreProdCourseOffset: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ComponentCondimentID))]
+#[diesel(table_name = crate::database::schema::component_condiment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ComponentCondiment {
     pub ComponentCondimentID: i64,
     pub HierStrucID: i64,
@@ -1008,8 +1142,10 @@ pub struct ComponentCondiment {
     pub MenuItemDefID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CondimentSetID))]
+#[diesel(table_name = crate::database::schema::condiment_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CondimentSet {
     pub CondimentSetID: i64,
     pub IsDeleted: bool,
@@ -1020,8 +1156,10 @@ pub struct CondimentSet {
     pub NameID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CondimentSetCondID))]
+#[diesel(table_name = crate::database::schema::condiment_set_condiment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CondimentSetCondiment {
     pub CondimentSetCondID: i64,
     pub OptionBits: Option<String>,
@@ -1035,8 +1173,10 @@ pub struct CondimentSetCondiment {
     pub MenuItemMasterObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ConfirmParamID))]
+#[diesel(table_name = crate::database::schema::confirm_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ConfirmParameter {
     pub ConfirmParamID: i32,
     pub HierStrucID: i64,
@@ -1055,8 +1195,10 @@ pub struct ConfirmParameter {
     pub DaysReprintClsdChk: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ConsentID))]
+#[diesel(table_name = crate::database::schema::consent_definition)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ConsentDefinition {
     pub ConsentID: i32,
     pub Description: String,
@@ -1065,8 +1207,10 @@ pub struct ConsentDefinition {
     pub LangID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmployeeID))]
+#[diesel(table_name = crate::database::schema::consent_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ConsentDetail {
     pub ConsentID: i32,
     pub EmployeeID: i64,
@@ -1075,8 +1219,10 @@ pub struct ConsentDetail {
     pub AnonymizedDateTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ContentID))]
+#[diesel(table_name = crate::database::schema::content)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Content {
     pub ContentID: i64,
     pub Name: Option<String>,
@@ -1087,8 +1233,10 @@ pub struct Content {
     pub HierStrucID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ContentDataID))]
+#[diesel(table_name = crate::database::schema::content_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ContentData {
     pub ContentDataID: i64,
     pub DataBlob: Option<Vec<u8>>,
@@ -1105,8 +1253,10 @@ pub struct ContentData {
     pub Signature: Option<Vec<u8>>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ContentGroupID))]
+#[diesel(table_name = crate::database::schema::content_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ContentGroup {
     pub ContentGroupID: i32,
     pub HierStrucID: i64,
@@ -1118,8 +1268,10 @@ pub struct ContentGroup {
     pub Options: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ContentGroupDataID))]
+#[diesel(table_name = crate::database::schema::content_group_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ContentGroupData {
     pub ContentGroupDataID: i32,
     pub HierStrucID: i64,
@@ -1127,8 +1279,10 @@ pub struct ContentGroupData {
     pub ContentDataID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ContentTypeID))]
+#[diesel(table_name = crate::database::schema::content_type)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ContentType {
     pub ContentTypeID: i32,
     pub Description: Option<String>,
@@ -1139,8 +1293,10 @@ pub struct ContentType {
     pub NameID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CredDrvInstID))]
+#[diesel(table_name = crate::database::schema::credit_driver_instance)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CreditDriverInstance {
     pub CredDrvInstID: i32,
     pub HierStrucID: i64,
@@ -1153,8 +1309,10 @@ pub struct CreditDriverInstance {
     pub ServiceID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CredParamID))]
+#[diesel(table_name = crate::database::schema::credit_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CreditParameter {
     pub CredParamID: i32,
     pub HierStrucID: Option<i64>,
@@ -1166,8 +1324,10 @@ pub struct CreditParameter {
     pub WorkstationID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CurrencyID))]
+#[diesel(table_name = crate::database::schema::currency)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Currency {
     pub CurrencyID: i32,
     pub HierStrucID: i64,
@@ -1183,8 +1343,10 @@ pub struct Currency {
     pub AbbreviationID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CurrConvID))]
+#[diesel(table_name = crate::database::schema::currency_conversion)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CurrencyConversion {
     pub CurrConvID: i32,
     pub HierStrucID: i64,
@@ -1196,8 +1358,10 @@ pub struct CurrencyConversion {
     pub ObjectNumber: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CurrInstID))]
+#[diesel(table_name = crate::database::schema::currency_instance)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CurrencyInstance {
     pub CurrInstID: i32,
     pub CurrInstIndex: i32,
@@ -1206,8 +1370,10 @@ pub struct CurrencyInstance {
     pub CurrencyID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CurrParamID))]
+#[diesel(table_name = crate::database::schema::currency_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CurrencyParameter {
     pub CurrParamID: i32,
     pub HierStrucID: i64,
@@ -1218,8 +1384,10 @@ pub struct CurrencyParameter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CustomReportID))]
+#[diesel(table_name = crate::database::schema::custom_report)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct CustomReport {
     pub CustomReportID: i32,
     pub ObjectNumber: Option<i32>,
@@ -1232,16 +1400,20 @@ pub struct CustomReport {
     pub ContentDataID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LocalRevisionID))]
+#[diesel(table_name = crate::database::schema::data_dist_local_revs)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DataDistLocalRevs {
     pub LocalRevisionID: i64,
     pub TransactionalDataType: i32,
     pub LocalRevisionNumber: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RevisionNumber))]
+#[diesel(table_name = crate::database::schema::data_dist_revs)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DataDistRevs {
     pub RevisionNumber: i64,
     pub TransactionalDataType: Option<i32>,
@@ -1250,8 +1422,10 @@ pub struct DataDistRevs {
     pub OriginatingServiceID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DbTableID))]
+#[diesel(table_name = crate::database::schema::db_schema)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DbSchema {
     pub DbTableID: i32,
     pub TblName: String,
@@ -1259,8 +1433,10 @@ pub struct DbSchema {
     pub Version: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DepositDtlID))]
+#[diesel(table_name = crate::database::schema::deposit_info_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DepositInfoDetail {
     pub DepositDtlID: i64,
     pub CheckDetailID: i64,
@@ -1282,8 +1458,10 @@ pub struct DepositInfoDetail {
     pub ReturnNotes: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DescriptorID))]
+#[diesel(table_name = crate::database::schema::descriptors)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Descriptors {
     pub DescriptorID: i32,
     pub HierStrucID: i64,
@@ -1295,8 +1473,10 @@ pub struct Descriptors {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningCourseID))]
+#[diesel(table_name = crate::database::schema::dining_course)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningCourse {
     pub DiningCourseID: i32,
     pub HierStrucID: i64,
@@ -1312,8 +1492,10 @@ pub struct DiningCourse {
     pub InitialCourseMinPrepTime: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningCourseAlertID))]
+#[diesel(table_name = crate::database::schema::dining_course_alerts)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningCourseAlerts {
     pub DiningCourseAlertID: i64,
     pub RVCHierStrucId: Option<i64>,
@@ -1326,8 +1508,10 @@ pub struct DiningCourseAlerts {
     pub RequestGuid: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableID))]
+#[diesel(table_name = crate::database::schema::dining_table)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTable {
     pub DiningTableID: i32,
     pub HierStrucID: i64,
@@ -1338,8 +1522,10 @@ pub struct DiningTable {
     pub DiningTableClassNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableClassID))]
+#[diesel(table_name = crate::database::schema::dining_table_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTableClass {
     pub DiningTableClassID: i32,
     pub NameID: i64,
@@ -1356,8 +1542,10 @@ pub struct DiningTableClass {
     pub DiningTableStatusDefSetNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatesID))]
+#[diesel(table_name = crate::database::schema::dining_table_states)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTableStates {
     pub DiningTableStatesID: i64,
     pub DiningTableID: i32,
@@ -1365,8 +1553,10 @@ pub struct DiningTableStates {
     pub Priority: u8,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatusID))]
+#[diesel(table_name = crate::database::schema::dining_table_status)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTableStatus {
     pub DiningTableStatusID: i32,
     pub DiningTableID: i32,
@@ -1399,8 +1589,10 @@ pub struct DiningTableStatus {
     pub CurrentCoverCnt: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatusDefID))]
+#[diesel(table_name = crate::database::schema::dining_table_status_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTableStatusDef {
     pub DiningTableStatusDefID: i32,
     pub DiningTableStatusDefSetID: i32,
@@ -1414,8 +1606,10 @@ pub struct DiningTableStatusDef {
     pub OverrideFgndColor: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DiningTableStatusDefSetID))]
+#[diesel(table_name = crate::database::schema::dining_table_status_def_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiningTableStatusDefSet {
     pub DiningTableStatusDefSetID: i32,
     pub NameID: i64,
@@ -1427,8 +1621,10 @@ pub struct DiningTableStatusDefSet {
     pub DisabledIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntID))]
+#[diesel(table_name = crate::database::schema::discount)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Discount {
     pub DscntID: i32,
     pub HierStrucID: i64,
@@ -1490,8 +1686,10 @@ pub struct Discount {
     pub OrderTypeIndexes: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntAllocDtlID))]
+#[diesel(table_name = crate::database::schema::discount_alloc_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountAllocDetail {
     pub DscntAllocDtlID: i64,
     pub CheckDetailID: i64,
@@ -1503,8 +1701,10 @@ pub struct DiscountAllocDetail {
     pub InclusiveTax: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntAwardGrpID))]
+#[diesel(table_name = crate::database::schema::discount_award_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountAwardGroup {
     pub DscntAwardGrpID: i32,
     pub DscntID: i32,
@@ -1518,8 +1718,10 @@ pub struct DiscountAwardGroup {
     pub OrderNum: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntDtlID))]
+#[diesel(table_name = crate::database::schema::discount_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountDetail {
     pub DscntDtlID: i64,
     pub CheckDetailID: i64,
@@ -1537,8 +1739,10 @@ pub struct DiscountDetail {
     pub CouponTotal: Option<f64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntItmzrID))]
+#[diesel(table_name = crate::database::schema::discount_itemizer)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountItemizer {
     pub DscntItmzrID: i32,
     pub HierStrucID: i64,
@@ -1548,8 +1752,10 @@ pub struct DiscountItemizer {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntItmzrDscntID))]
+#[diesel(table_name = crate::database::schema::discount_itemizer_discount)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountItemizerDiscount {
     pub DscntItmzrDscntID: i32,
     pub HierStrucID: i64,
@@ -1559,8 +1765,10 @@ pub struct DiscountItemizerDiscount {
     pub DscntItmzrIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntMainMenuLvlID))]
+#[diesel(table_name = crate::database::schema::discount_main_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountMainMenuLevel {
     pub DscntMainMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -1570,8 +1778,10 @@ pub struct DiscountMainMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntSubMenuLvlID))]
+#[diesel(table_name = crate::database::schema::discount_sub_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountSubMenuLevel {
     pub DscntSubMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -1581,8 +1791,10 @@ pub struct DiscountSubMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntTrgGrpID))]
+#[diesel(table_name = crate::database::schema::discount_trigger_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DiscountTriggerGroup {
     pub DscntTrgGrpID: i32,
     pub DscntID: i32,
@@ -1594,8 +1806,10 @@ pub struct DiscountTriggerGroup {
     pub OrderNum: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DistributionGroupID))]
+#[diesel(table_name = crate::database::schema::distribution_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DistributionGroup {
     pub DistributionGroupID: i32,
     pub HierStrucID: i64,
@@ -1604,16 +1818,20 @@ pub struct DistributionGroup {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DscntItmzrDscntDtlID))]
+#[diesel(table_name = crate::database::schema::dscnt_itmzr_dscnt_dtl)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DscntItmzrDscntDtl {
     pub DscntItmzrDscntDtlID: i64,
     pub DscntDtlID: i64,
     pub DscntItmzrID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrderMethodSettingID))]
+#[diesel(table_name = crate::database::schema::dto_order_method_setting)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DtoOrderMethodSetting {
     pub OrderMethodSettingID: i64,
     pub HierStrucID: i64,
@@ -1633,8 +1851,10 @@ pub struct DtoOrderMethodSetting {
     pub ConfirmOrderTenderObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(DTOParamID))]
+#[diesel(table_name = crate::database::schema::dto_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DtoParameter {
     pub DTOParamID: i32,
     pub HierStrucID: i64,
@@ -1646,8 +1866,10 @@ pub struct DtoParameter {
     pub CurbsideOrdTypeIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(QuotingRuleID))]
+#[diesel(table_name = crate::database::schema::dto_quoting_rule)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct DtoQuotingRule {
     pub QuotingRuleID: i64,
     pub HierStrucID: i64,
@@ -1659,8 +1881,10 @@ pub struct DtoQuotingRule {
     pub QuoteTime: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EffectivityID))]
+#[diesel(table_name = crate::database::schema::effectivity)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Effectivity {
     pub EffectivityID: i64,
     pub HierStrucID: i64,
@@ -1672,8 +1896,10 @@ pub struct Effectivity {
     pub EffectivityComment: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmployeeID))]
+#[diesel(table_name = crate::database::schema::employee)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Employee {
     pub EmployeeID: i64,
     pub HierStrucID: i64,
@@ -1721,8 +1947,10 @@ pub struct Employee {
     pub empLevelUpdateDateTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmpClassID))]
+#[diesel(table_name = crate::database::schema::employee_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EmployeeClass {
     pub EmpClassID: i32,
     pub HierStrucID: i64,
@@ -1744,8 +1972,10 @@ pub struct EmployeeClass {
     pub ServerBankingTemplateObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmployeeClassOperatorID))]
+#[diesel(table_name = crate::database::schema::employee_class_operator)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EmployeeClassOperator {
     pub EmployeeClassOperatorID: i32,
     pub EmpClassID: i32,
@@ -1753,8 +1983,10 @@ pub struct EmployeeClassOperator {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmpClassTouchscrnID))]
+#[diesel(table_name = crate::database::schema::employee_class_touchscreen)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EmployeeClassTouchscreen {
     pub EmpClassTouchscrnID: i32,
     pub HierStrucID: i64,
@@ -1765,8 +1997,10 @@ pub struct EmployeeClassTouchscreen {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EmployeeInstanceID))]
+#[diesel(table_name = crate::database::schema::employee_instance)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EmployeeInstance {
     pub EmployeeInstanceID: i64,
     pub HierStrucID: i64,
@@ -1789,8 +2023,10 @@ pub struct EmployeeInstance {
     pub PerformClockInPriv: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(EnabledByOrderChannelId))]
+#[diesel(table_name = crate::database::schema::enabled_by_order_channel)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EnabledByOrderChannel {
     pub EnabledByOrderChannelId: i32,
     pub DbTableId: i32,
@@ -1799,8 +2035,10 @@ pub struct EnabledByOrderChannel {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ScheduleID))]
+#[diesel(table_name = crate::database::schema::event_schedule)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EventSchedule {
     pub ScheduleID: i32,
     pub Guid: Option<String>,
@@ -1829,8 +2067,10 @@ pub struct EventSchedule {
     pub NameID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ScheduleInstanceID))]
+#[diesel(table_name = crate::database::schema::event_schedule_instance)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct EventScheduleInstance {
     pub ScheduleInstanceID: i32,
     pub Guid: Option<String>,
@@ -1845,8 +2085,10 @@ pub struct EventScheduleInstance {
     pub EndDateTime: NaiveDateTime,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ExtensionApplicationID))]
+#[diesel(table_name = crate::database::schema::extension_application)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ExtensionApplication {
     pub ExtensionApplicationID: i64,
     pub HierStrucID: Option<i64>,
@@ -1862,8 +2104,10 @@ pub struct ExtensionApplication {
     pub MaxItems: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ExtensionApplicationContentID))]
+#[diesel(table_name = crate::database::schema::extension_application_content)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ExtensionApplicationContent {
     pub ExtensionApplicationContentID: i64,
     pub HierStrucID: Option<i64>,
@@ -1879,8 +2123,10 @@ pub struct ExtensionApplicationContent {
     pub HostType: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ExtensionDataPropertyID))]
+#[diesel(table_name = crate::database::schema::extension_data_property)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ExtensionDataProperty {
     pub ExtensionDataPropertyID: i64,
     pub Name: String,
@@ -1899,8 +2145,10 @@ pub struct ExtensionDataProperty {
     pub APPLICATIONTYPE: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ExtensionDataValueID))]
+#[diesel(table_name = crate::database::schema::extension_data_value)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ExtensionDataValue {
     pub ExtensionDataValueID: i64,
     pub DataElementID: i64,
@@ -1910,8 +2158,10 @@ pub struct ExtensionDataValue {
     pub LANGID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FamGrpID))]
+#[diesel(table_name = crate::database::schema::family_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FamilyGroup {
     pub FamGrpID: i32,
     pub HierStrucID: i64,
@@ -1924,8 +2174,10 @@ pub struct FamilyGroup {
     pub FamilyGroupPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FCRCustomerDataID))]
+#[diesel(table_name = crate::database::schema::fcr_customer_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FcrCustomerData {
     pub CustomerID: Option<String>,
     pub CustomerType: Option<String>,
@@ -1957,8 +2209,10 @@ pub struct FcrCustomerData {
     pub FCRJSONEXP: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FCRInvoiceControlID))]
+#[diesel(table_name = crate::database::schema::fcr_invoice_control)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FcrInvoiceControl {
     pub PCWSID: Option<i32>,
     pub InvoiceType: Option<u8>,
@@ -1998,8 +2252,10 @@ pub struct FcrInvoiceControl {
     pub FCRJSONEXP: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FCRInvoiceDataID))]
+#[diesel(table_name = crate::database::schema::fcr_invoice_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FcrInvoiceData {
     pub PCWSID: Option<i32>,
     pub FCRInvNumber: Option<String>,
@@ -2084,8 +2340,10 @@ pub struct FcrInvoiceData {
     pub FCRJSONEXP: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FCRTotalDataID))]
+#[diesel(table_name = crate::database::schema::fcr_ttl_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FcrTtlData {
     pub FCRBsnzDate: Option<NaiveDateTime>,
     pub FCRID1: Option<String>,
@@ -2123,8 +2381,10 @@ pub struct FcrTtlData {
     pub FCRJSONEXP: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FinCalendarID))]
+#[diesel(table_name = crate::database::schema::financial_calendar)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FinancialCalendar {
     pub FinCalendarID: i32,
     pub HierStrucID: i64,
@@ -2135,8 +2395,10 @@ pub struct FinancialCalendar {
     pub aseq_sched_id: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FinCalendarHistID))]
+#[diesel(table_name = crate::database::schema::financial_calendar_hist)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FinancialCalendarHist {
     pub FinCalendarHistID: i32,
     pub HierStrucID: i64,
@@ -2145,8 +2407,10 @@ pub struct FinancialCalendarHist {
     pub EntryValue: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FinCalendarHistID))]
+#[diesel(table_name = crate::database::schema::financial_calendar_hist_off)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FinancialCalendarHistOff {
     pub FinCalendarHistID: i32,
     pub HierStrucID: i64,
@@ -2155,8 +2419,10 @@ pub struct FinancialCalendarHistOff {
     pub EntryValue: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(FmtParamID))]
+#[diesel(table_name = crate::database::schema::format_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct FormatParameter {
     pub FmtParamID: i32,
     pub HierStrucID: i64,
@@ -2182,8 +2448,10 @@ pub struct FormatParameter {
     pub CFDContentImage2: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GiftCardProviderID))]
+#[diesel(table_name = crate::database::schema::giftcard_provider)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GiftcardProvider {
     pub GiftCardProviderID: i64,
     pub HierStrucID: i64,
@@ -2202,8 +2470,10 @@ pub struct GiftcardProvider {
     pub CashOutObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ParamCode))]
+#[diesel(table_name = crate::database::schema::global_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GlobalParameter {
     pub ParamCode: String,
     pub ParamType: String,
@@ -2214,8 +2484,10 @@ pub struct GlobalParameter {
     pub UnicodeStrVal: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AcceptanceLimitID))]
+#[diesel(table_name = crate::database::schema::gms_acceptance_limit)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsAcceptanceLimit {
     pub AcceptanceLimitID: i64,
     pub ReservationPeriodID: i64,
@@ -2226,8 +2498,10 @@ pub struct GmsAcceptanceLimit {
     pub MaxAcceptance: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(CheckAlertID))]
+#[diesel(table_name = crate::database::schema::gms_check_alert)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsCheckAlert {
     pub CheckAlertID: i64,
     pub HierStrucID: i64,
@@ -2237,8 +2511,10 @@ pub struct GmsCheckAlert {
     pub AlertColor: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OccupancyLimitID))]
+#[diesel(table_name = crate::database::schema::gms_occupancy_limit)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsOccupancyLimit {
     pub OccupancyLimitID: i64,
     pub ReservationPeriodID: i64,
@@ -2248,8 +2524,10 @@ pub struct GmsOccupancyLimit {
     pub MaxOccupancy: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GMSParamID))]
+#[diesel(table_name = crate::database::schema::gms_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsParameter {
     pub GMSParamID: i64,
     pub HierStrucID: i64,
@@ -2282,8 +2560,10 @@ pub struct GmsParameter {
     pub ServerUnavailableMinutes: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GMSReasonDescID))]
+#[diesel(table_name = crate::database::schema::gms_reason)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsReason {
     pub GMSReasonDescID: i32,
     pub HierStrucID: i64,
@@ -2294,8 +2574,10 @@ pub struct GmsReason {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ReservationPeriodID))]
+#[diesel(table_name = crate::database::schema::gms_reservation_period)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsReservationPeriod {
     pub ReservationPeriodID: i64,
     pub HierStrucID: i64,
@@ -2304,8 +2586,10 @@ pub struct GmsReservationPeriod {
     pub NameID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SeatingLimitID))]
+#[diesel(table_name = crate::database::schema::gms_seating_limit)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSeatingLimit {
     pub SeatingLimitID: i64,
     pub ReservationPeriodID: i64,
@@ -2316,8 +2600,10 @@ pub struct GmsSeatingLimit {
     pub Quantity: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SectionID))]
+#[diesel(table_name = crate::database::schema::gms_section)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSection {
     pub SectionID: i64,
     pub HierStrucID: i64,
@@ -2326,8 +2612,10 @@ pub struct GmsSection {
     pub SectionColor: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LayoutID))]
+#[diesel(table_name = crate::database::schema::gms_section_layout)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSectionLayout {
     pub LayoutID: i64,
     pub HierStrucID: i64,
@@ -2338,8 +2626,10 @@ pub struct GmsSectionLayout {
     pub Name: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::gms_section_layout_tbl)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSectionLayoutTbl {
     pub ID: i64,
     pub HierStrucID: i64,
@@ -2351,8 +2641,10 @@ pub struct GmsSectionLayoutTbl {
     pub LayoutRecordGuid: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TemplateID))]
+#[diesel(table_name = crate::database::schema::gms_section_template)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSectionTemplate {
     pub TemplateID: i64,
     pub HierStrucID: i64,
@@ -2361,8 +2653,10 @@ pub struct GmsSectionTemplate {
     pub LastAccessedDate: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::gms_section_template_tbl)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSectionTemplateTbl {
     pub ID: i64,
     pub HierStrucID: i64,
@@ -2371,8 +2665,10 @@ pub struct GmsSectionTemplateTbl {
     pub SectionID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceAlertID))]
+#[diesel(table_name = crate::database::schema::gms_service_alert)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsServiceAlert {
     pub ServiceAlertID: i64,
     pub HierStrucID: i64,
@@ -2382,8 +2678,10 @@ pub struct GmsServiceAlert {
     pub AlertColor: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GMSSuggestionFactorID))]
+#[diesel(table_name = crate::database::schema::gms_suggestion_factor)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsSuggestionFactor {
     pub GMSSuggestionFactorID: i64,
     pub HierStrucID: i64,
@@ -2392,8 +2690,10 @@ pub struct GmsSuggestionFactor {
     pub Weight: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TargetTurnTimeID))]
+#[diesel(table_name = crate::database::schema::gms_target_turn_time)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTargetTurnTime {
     pub TargetTurnTimeID: i64,
     pub ReservationPeriodID: i64,
@@ -2404,8 +2704,10 @@ pub struct GmsTargetTurnTime {
     pub Minutes: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MergeableAssignID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_mergeable_assign)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblMergeableAssign {
     pub MergeableAssignID: i64,
     pub HierStrucID: i64,
@@ -2414,8 +2716,10 @@ pub struct GmsTblMergeableAssign {
     pub MergeableTableObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PreferenceAssignID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_pref_assign)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblPrefAssign {
     pub PreferenceAssignID: i64,
     pub HierStrucID: i64,
@@ -2425,8 +2729,10 @@ pub struct GmsTblPrefAssign {
     pub PreferenceAttrObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PreferenceAttrDefID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_pref_attr_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblPrefAttrDef {
     pub PreferenceAttrDefID: i64,
     pub HierStrucID: i64,
@@ -2437,8 +2743,10 @@ pub struct GmsTblPrefAttrDef {
     pub IsExclusive: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PreferenceCatDefID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_pref_cat_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblPrefCatDef {
     pub PreferenceCatDefID: i64,
     pub HierStrucID: i64,
@@ -2447,8 +2755,10 @@ pub struct GmsTblPrefCatDef {
     pub IsExclusive: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PreferenceRequestID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_pref_request)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblPrefRequest {
     pub PreferenceRequestID: i64,
     pub TblRequestDtlID: i64,
@@ -2457,8 +2767,10 @@ pub struct GmsTblPrefRequest {
     pub PreferenceAttrObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TblRequestDtlID))]
+#[diesel(table_name = crate::database::schema::gms_tbl_request_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsTblRequestDetail {
     pub TblRequestDtlID: i64,
     pub CreationDate: Option<NaiveDateTime>,
@@ -2514,8 +2826,10 @@ pub struct GmsTblRequestDetail {
     pub RevisionNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WaitQuoteInvervalId))]
+#[diesel(table_name = crate::database::schema::gms_wait_quote_time)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GmsWaitQuoteTime {
     pub WaitQuoteInvervalId: i64,
     pub HierStrucID: i64,
@@ -2524,8 +2838,10 @@ pub struct GmsWaitQuoteTime {
     pub NameId: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventAreaID))]
+#[diesel(table_name = crate::database::schema::group_event_area)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventArea {
     pub GroupEventAreaID: i64,
     pub HierStrucID: i64,
@@ -2535,8 +2851,10 @@ pub struct GroupEventArea {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventDefID))]
+#[diesel(table_name = crate::database::schema::group_event_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventDef {
     pub GroupEventDefID: i64,
     pub HierStrucID: i64,
@@ -2558,8 +2876,10 @@ pub struct GroupEventDef {
     pub ExternalEventID: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventDefDtlID))]
+#[diesel(table_name = crate::database::schema::group_event_def_dtl)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventDefDtl {
     pub GroupEventDefDtlID: i64,
     pub HierStrucID: i64,
@@ -2568,8 +2888,10 @@ pub struct GroupEventDefDtl {
     pub GroupEventAreaID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventStatusID))]
+#[diesel(table_name = crate::database::schema::group_event_status)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventStatus {
     pub GroupEventStatusID: i64,
     pub GroupEventDefID: i64,
@@ -2582,8 +2904,10 @@ pub struct GroupEventStatus {
     pub HierStrucID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventSubTypeID))]
+#[diesel(table_name = crate::database::schema::group_event_sub_type)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventSubType {
     pub GroupEventSubTypeID: i64,
     pub HierStrucID: i64,
@@ -2594,8 +2918,10 @@ pub struct GroupEventSubType {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GroupEventTypeID))]
+#[diesel(table_name = crate::database::schema::group_event_type)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GroupEventType {
     pub GroupEventTypeID: i64,
     pub HierStrucID: i64,
@@ -2607,16 +2933,20 @@ pub struct GroupEventType {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(GuestInfoDtlID))]
+#[diesel(table_name = crate::database::schema::guest_information_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct GuestInformationDetail {
     pub GuestInfoDtlID: i64,
     pub CheckDetailID: i64,
     pub GuestInfoID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HlpScrnID))]
+#[diesel(table_name = crate::database::schema::help_screen)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct HelpScreen {
     pub HlpScrnID: i32,
     pub HierStrucID: i64,
@@ -2629,16 +2959,20 @@ pub struct HelpScreen {
     pub HtmlID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierID))]
+#[diesel(table_name = crate::database::schema::hierarchy)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Hierarchy {
     pub HierID: i32,
     pub NameID: i64,
     pub HierType: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierParamID))]
+#[diesel(table_name = crate::database::schema::hierarchy_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct HierarchyParameter {
     pub HierParamID: i32,
     pub HierStrucID: i64,
@@ -2700,8 +3034,10 @@ pub struct HierarchyParameter {
     pub OrdChannelObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID))]
+#[diesel(table_name = crate::database::schema::hierarchy_structure)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct HierarchyStructure {
     pub HierStrucID: i64,
     pub HierID: i32,
@@ -2713,8 +3049,10 @@ pub struct HierarchyStructure {
     pub OrganizationID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierUnitID))]
+#[diesel(table_name = crate::database::schema::hierarchy_unit)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct HierarchyUnit {
     pub HierUnitID: i32,
     pub ObjectNumber: Option<i32>,
@@ -2724,8 +3062,10 @@ pub struct HierarchyUnit {
     pub ChangeTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(InterfaceID))]
+#[diesel(table_name = crate::database::schema::interface)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Interface {
     pub InterfaceID: i32,
     pub HierStrucID: i64,
@@ -2761,8 +3101,10 @@ pub struct Interface {
     pub EncodingType: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(InterfaceLinkID))]
+#[diesel(table_name = crate::database::schema::interface_link)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct InterfaceLink {
     pub InterfaceLinkID: i32,
     pub HierStrucID: i64,
@@ -2772,8 +3114,10 @@ pub struct InterfaceLink {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(JobCodeID))]
+#[diesel(table_name = crate::database::schema::job_code)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct JobCode {
     pub JobCodeID: i32,
     pub HierStrucID: i64,
@@ -2790,8 +3134,10 @@ pub struct JobCode {
     pub ClkInPrivLevel: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsBumpbarButtonID))]
+#[diesel(table_name = crate::database::schema::kds_bumpbar_button)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsBumpbarButton {
     pub KdsBumpbarButtonID: i64,
     pub HierStrucID: i64,
@@ -2804,8 +3150,10 @@ pub struct KdsBumpbarButton {
     pub Parameters: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsBumpbarStyleID))]
+#[diesel(table_name = crate::database::schema::kds_bumpbar_style)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsBumpbarStyle {
     pub KdsBumpbarStyleID: i64,
     pub HierStrucID: i64,
@@ -2818,8 +3166,10 @@ pub struct KdsBumpbarStyle {
     pub AutoBumpCheckCount: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsClientID))]
+#[diesel(table_name = crate::database::schema::kds_client)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsClient {
     pub KdsClientID: i64,
     pub HierStrucID: i64,
@@ -2885,8 +3235,10 @@ pub struct KdsClient {
     pub PanelCapacity: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsClientProdItemID))]
+#[diesel(table_name = crate::database::schema::kds_client_production_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsClientProductionItem {
     pub KdsClientProdItemID: i64,
     pub HierStrucID: i64,
@@ -2895,8 +3247,10 @@ pub struct KdsClientProductionItem {
     pub PersistenceType: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsControllerID))]
+#[diesel(table_name = crate::database::schema::kds_controller)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsController {
     pub KdsControllerID: i64,
     pub HierStrucID: i64,
@@ -2943,8 +3297,10 @@ pub struct KdsController {
     pub ResetAllTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsDetailID))]
+#[diesel(table_name = crate::database::schema::kds_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsDetail {
     pub KdsDetailID: i64,
     pub OrderID: String,
@@ -2973,8 +3329,10 @@ pub struct KdsDetail {
     pub AlertLevel2: u8,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsDetailSuborderID))]
+#[diesel(table_name = crate::database::schema::kds_detail_suborder)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsDetailSuborder {
     pub KdsDetailSuborderID: i64,
     pub KdsDetailID: i64,
@@ -2987,8 +3345,10 @@ pub struct KdsDetailSuborder {
     pub ActualPrepTime: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsHighlightSchemeID))]
+#[diesel(table_name = crate::database::schema::kds_highlight_scheme)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsHighlightScheme {
     pub KdsHighlightSchemeID: i64,
     pub HierStrucID: i64,
@@ -3000,8 +3360,10 @@ pub struct KdsHighlightScheme {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsLayoutElementID))]
+#[diesel(table_name = crate::database::schema::kds_layout_element)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsLayoutElement {
     pub KdsLayoutElementID: i64,
     pub HierStrucID: i64,
@@ -3022,8 +3384,10 @@ pub struct KdsLayoutElement {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsLayoutStyleID))]
+#[diesel(table_name = crate::database::schema::kds_layout_style)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsLayoutStyle {
     pub KdsLayoutStyleID: i64,
     pub HierStrucID: i64,
@@ -3050,8 +3414,10 @@ pub struct KdsLayoutStyle {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsLinkedOrderDeviceId))]
+#[diesel(table_name = crate::database::schema::kds_linked_order_devices)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsLinkedOrderDevices {
     pub KdsLinkedOrderDeviceId: i64,
     pub HierStrucID: i64,
@@ -3059,8 +3425,10 @@ pub struct KdsLinkedOrderDevices {
     pub OrderDeviceID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsOrderDeviceParamsID))]
+#[diesel(table_name = crate::database::schema::kds_order_device_parameters)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsOrderDeviceParameters {
     pub KdsOrderDeviceParamsID: i64,
     pub HierStrucID: i64,
@@ -3093,8 +3461,10 @@ pub struct KdsOrderDeviceParameters {
     pub AssociatedOrderDevices: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsOrderDistributionStateID))]
+#[diesel(table_name = crate::database::schema::kds_order_distribution_state)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsOrderDistributionState {
     pub KdsOrderDistributionStateID: i64,
     pub OrderID: String,
@@ -3104,8 +3474,10 @@ pub struct KdsOrderDistributionState {
     pub SetOnTime: NaiveDateTime,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsRvcID))]
+#[diesel(table_name = crate::database::schema::kds_rvchier)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsRvchier {
     pub KdsRvcID: i64,
     pub HierStrucID: i64,
@@ -3115,8 +3487,10 @@ pub struct KdsRvchier {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemeID))]
+#[diesel(table_name = crate::database::schema::kds_theme)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsTheme {
     pub KdsThemeID: i64,
     pub HierStrucID: i64,
@@ -3127,8 +3501,10 @@ pub struct KdsTheme {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemeKdsClientID))]
+#[diesel(table_name = crate::database::schema::kds_theme_kds_client)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsThemeKdsClient {
     pub KdsThemeKdsClientID: i64,
     pub HierStrucID: i64,
@@ -3145,8 +3521,10 @@ pub struct KdsThemeKdsClient {
     pub PanelCapacity: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemeOrderDeviceID))]
+#[diesel(table_name = crate::database::schema::kds_theme_order_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsThemeOrderDevice {
     pub KdsThemeOrderDeviceID: i64,
     pub HierStrucID: i64,
@@ -3165,8 +3543,10 @@ pub struct KdsThemeOrderDevice {
     pub CondimentSortType: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemeOrderTypeID))]
+#[diesel(table_name = crate::database::schema::kds_theme_order_type)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsThemeOrderType {
     pub KdsThemeOrderTypeID: i64,
     pub HierStrucID: i64,
@@ -3175,8 +3555,10 @@ pub struct KdsThemeOrderType {
     pub OrderDeviceMask: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemePeriodID))]
+#[diesel(table_name = crate::database::schema::kds_theme_period)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsThemePeriod {
     pub KdsThemePeriodID: i64,
     pub HierStrucID: i64,
@@ -3186,8 +3568,10 @@ pub struct KdsThemePeriod {
     pub KdsThemeID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsThemeWsOrderDeviceID))]
+#[diesel(table_name = crate::database::schema::kds_theme_ws_order_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsThemeWsOrderDevice {
     pub KdsThemeWsOrderDeviceID: i64,
     pub HierStrucID: i64,
@@ -3196,8 +3580,10 @@ pub struct KdsThemeWsOrderDevice {
     pub OrderDeviceMask: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsToolbarButtonID))]
+#[diesel(table_name = crate::database::schema::kds_toolbar_button)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsToolbarButton {
     pub KdsToolbarButtonID: i64,
     pub HierStrucID: i64,
@@ -3213,8 +3599,10 @@ pub struct KdsToolbarButton {
     pub SortOrder: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KdsToolbarStyleID))]
+#[diesel(table_name = crate::database::schema::kds_toolbar_style)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KdsToolbarStyle {
     pub KdsToolbarStyleID: i64,
     pub HierStrucID: i64,
@@ -3228,16 +3616,20 @@ pub struct KdsToolbarStyle {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(KeyDBInfoID))]
+#[diesel(table_name = crate::database::schema::key_db_info)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct KeyDbInfo {
     pub KeyDBInfoID: i32,
     pub KeyDBIdx: i32,
     pub KeyDBVer: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::labor_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LaborData {
     pub ID: i64,
     pub Type: i16,
@@ -3250,8 +3642,10 @@ pub struct LaborData {
     pub Data: Option<Vec<u8>>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::labor_punches)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LaborPunches {
     pub ID: i64,
     pub Type: i16,
@@ -3270,8 +3664,10 @@ pub struct LaborPunches {
     pub OtherStoresClockedIn: Option<Vec<u8>>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LangID))]
+#[diesel(table_name = crate::database::schema::language_information)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LanguageInformation {
     pub LangID: i32,
     pub HierStrucID: i64,
@@ -3306,8 +3702,10 @@ pub struct LanguageInformation {
     pub POSAlphaNumericKeyboardNum: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LanguageInformationTextID))]
+#[diesel(table_name = crate::database::schema::language_information_text)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LanguageInformationText {
     pub LanguageInformationTextID: i32,
     pub HierStrucID: Option<i64>,
@@ -3320,8 +3718,10 @@ pub struct LanguageInformationText {
     pub LastUpdatedDateTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LangPropertyID))]
+#[diesel(table_name = crate::database::schema::language_property)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LanguageProperty {
     pub LangPropertyID: i32,
     pub LangID: i32,
@@ -3330,8 +3730,10 @@ pub struct LanguageProperty {
     pub Is2ndPrintLang: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LocaleInfoID))]
+#[diesel(table_name = crate::database::schema::locale_information)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LocaleInformation {
     pub LocaleInfoID: i32,
     pub HierStrucID: i64,
@@ -3341,8 +3743,10 @@ pub struct LocaleInformation {
     pub ThousandsSeparator: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LoyaltyConfigID))]
+#[diesel(table_name = crate::database::schema::loyalty_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LoyaltyConfig {
     pub LoyaltyConfigID: i64,
     pub HierStrucID: Option<i64>,
@@ -3353,8 +3757,10 @@ pub struct LoyaltyConfig {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LoyaltyProviderID))]
+#[diesel(table_name = crate::database::schema::loyalty_provider)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct LoyaltyProvider {
     pub LoyaltyProviderID: i64,
     pub HierStrucID: i64,
@@ -3369,8 +3775,10 @@ pub struct LoyaltyProvider {
     pub ModuleTypeObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MacroID))]
+#[diesel(table_name = crate::database::schema::macros)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Macros {
     pub MacroID: i32,
     pub HierStrucID: i64,
@@ -3381,8 +3789,10 @@ pub struct Macros {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MacroStepID))]
+#[diesel(table_name = crate::database::schema::macro_step)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MacroStep {
     pub MacroStepID: i32,
     pub HierStrucID: i64,
@@ -3396,8 +3806,10 @@ pub struct MacroStep {
     pub SubLevelIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MainMenuLvlID))]
+#[diesel(table_name = crate::database::schema::main_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MainMenuLevel {
     pub MainMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -3412,8 +3824,10 @@ pub struct MainMenuLevel {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MajGrpID))]
+#[diesel(table_name = crate::database::schema::major_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MajorGroup {
     pub MajGrpID: i32,
     pub HierStrucID: i64,
@@ -3425,8 +3839,10 @@ pub struct MajorGroup {
     pub MajorGroupPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemClassID))]
+#[diesel(table_name = crate::database::schema::menu_item_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemClass {
     pub MenuItemClassID: i32,
     pub HierStrucID: i64,
@@ -3475,8 +3891,10 @@ pub struct MenuItemClass {
     pub CondimentHandling: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemComponentID))]
+#[diesel(table_name = crate::database::schema::menu_item_component)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemComponent {
     pub MenuItemComponentID: i64,
     pub HierStrucID: i64,
@@ -3486,8 +3904,10 @@ pub struct MenuItemComponent {
     pub MenuItemDefSeqNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemDefaultCondID))]
+#[diesel(table_name = crate::database::schema::menu_item_default_condiment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemDefaultCondiment {
     pub MenuItemDefaultCondID: i64,
     pub DefLevelOverride: Option<i16>,
@@ -3500,8 +3920,10 @@ pub struct MenuItemDefaultCondiment {
     pub CondimentSetObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemDefID))]
+#[diesel(table_name = crate::database::schema::menu_item_definition)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemDefinition {
     pub MenuItemDefID: i64,
     pub HierStrucID: i64,
@@ -3548,8 +3970,10 @@ pub struct MenuItemDefinition {
     pub ConsumerAdvDescID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemDefTagID))]
+#[diesel(table_name = crate::database::schema::menu_item_definition_tag)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemDefinitionTag {
     pub MenuItemDefTagID: i64,
     pub HierStrucID: i64,
@@ -3559,8 +3983,10 @@ pub struct MenuItemDefinitionTag {
     pub MenuItemDefSeqNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemDtlID))]
+#[diesel(table_name = crate::database::schema::menu_item_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemDetail {
     pub CheckDetailID: i64,
     pub MenuItemDefID: i64,
@@ -3621,8 +4047,10 @@ pub struct MenuItemDetail {
     pub OrderDeviceSentTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemDtlMenuLevelID))]
+#[diesel(table_name = crate::database::schema::menu_item_dtl_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemDtlMenuLevel {
     pub MenuItemDtlMenuLevelID: i64,
     pub MenuLvlNumber: i16,
@@ -3630,8 +4058,10 @@ pub struct MenuItemDtlMenuLevel {
     pub MenuItemDtlID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemGroupID))]
+#[diesel(table_name = crate::database::schema::menu_item_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemGroup {
     pub MenuItemGroupID: i32,
     pub HierStrucID: i64,
@@ -3643,8 +4073,10 @@ pub struct MenuItemGroup {
     pub GroupType: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemGroupDetailID))]
+#[diesel(table_name = crate::database::schema::menu_item_group_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemGroupDetail {
     pub MenuItemGroupDetailID: i32,
     pub HierStrucID: i64,
@@ -3657,8 +4089,10 @@ pub struct MenuItemGroupDetail {
     pub SeqNo: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemMasterID))]
+#[diesel(table_name = crate::database::schema::menu_item_master)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMaster {
     pub MenuItemMasterID: i32,
     pub HierStrucID: i64,
@@ -3677,8 +4111,10 @@ pub struct MenuItemMaster {
     pub Name2ID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemMasterEffID))]
+#[diesel(table_name = crate::database::schema::menu_item_master_eff)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMasterEff {
     pub MenuItemMasterEffID: i32,
     pub HierStrucID: i64,
@@ -3687,8 +4123,10 @@ pub struct MenuItemMasterEff {
     pub ChangeSetObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemMasterGroupID))]
+#[diesel(table_name = crate::database::schema::menu_item_master_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMasterGroup {
     pub MenuItemMasterGroupID: i64,
     pub IsVisible: bool,
@@ -3700,8 +4138,10 @@ pub struct MenuItemMasterGroup {
     pub SluIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemMasterTagId))]
+#[diesel(table_name = crate::database::schema::menu_item_master_tag)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMasterTag {
     pub MenuItemMasterTagId: i64,
     pub HierStrucID: i64,
@@ -3710,8 +4150,10 @@ pub struct MenuItemMasterTag {
     pub MenuItemTagObjNum: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemMenuLevelEntryID))]
+#[diesel(table_name = crate::database::schema::menu_item_menu_level_entry)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemMenuLevelEntry {
     pub MenuItemMenuLevelEntryID: i64,
     pub IsVisible: bool,
@@ -3722,8 +4164,10 @@ pub struct MenuItemMenuLevelEntry {
     pub MenuLevelObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemNutrientSetId))]
+#[diesel(table_name = crate::database::schema::menu_item_nutrient_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemNutrientSet {
     pub MenuItemNutrientSetId: i64,
     pub NutrientSetObjNum: Option<i32>,
@@ -3731,8 +4175,10 @@ pub struct MenuItemNutrientSet {
     pub MenuItemDefId: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemPriceID))]
+#[diesel(table_name = crate::database::schema::menu_item_price)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemPrice {
     pub MenuItemPriceID: i64,
     pub HierStrucID: i64,
@@ -3755,8 +4201,10 @@ pub struct MenuItemPrice {
     pub ParentTaxClassOvrdObjNmbr: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuItemProdItemID))]
+#[diesel(table_name = crate::database::schema::menu_item_production_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuItemProductionItem {
     pub MenuItemProdItemID: i64,
     pub HierStrucID: i64,
@@ -3767,8 +4215,10 @@ pub struct MenuItemProductionItem {
     pub MenuItemDefSeqNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuLevelID))]
+#[diesel(table_name = crate::database::schema::menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuLevel {
     pub MenuLevelID: i64,
     pub ObjectNumber: i32,
@@ -3782,8 +4232,10 @@ pub struct MenuLevel {
     pub DefaultMasterGroupObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MenuLevelEntryID))]
+#[diesel(table_name = crate::database::schema::menu_level_entry)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MenuLevelEntry {
     pub MenuLevelEntryID: i32,
     pub MenuLvlIndex: i32,
@@ -3799,8 +4251,10 @@ pub struct MenuLevelEntry {
     pub TempConfiguration: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PrepTimeOverrideID))]
+#[diesel(table_name = crate::database::schema::menuitmcondimntprptme)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Menuitmcondimntprptme {
     pub PrepTimeOverrideID: i64,
     pub HierStrucID: i64,
@@ -3813,8 +4267,10 @@ pub struct Menuitmcondimntprptme {
     pub PrepTime: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RID))]
+#[diesel(table_name = crate::database::schema::mrequest_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MrequestData {
     pub RID: String,
     pub ReqDataTime: Option<NaiveDateTime>,
@@ -3828,8 +4284,10 @@ pub struct MrequestData {
     pub RecordType: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RID))]
+#[diesel(table_name = crate::database::schema::mrequest_response)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MrequestResponse {
     pub RID: String,
     pub RespTime: Option<NaiveDateTime>,
@@ -3837,8 +4295,10 @@ pub struct MrequestResponse {
     pub ID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::mrequests)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Mrequests {
     pub ID: i64,
     pub RID: String,
@@ -3854,8 +4314,10 @@ pub struct Mrequests {
     pub PostedToChannelManagement: Option<bool>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ID))]
+#[diesel(table_name = crate::database::schema::mrequests_bak)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MrequestsBak {
     pub ID: i64,
     pub RecordType: i32,
@@ -3869,14 +4331,18 @@ pub struct MrequestsBak {
     pub FirstRequestTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LastSentID))]
+#[diesel(table_name = crate::database::schema::mrequests_bak_send)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MrequestsBakSend {
     pub LastSentID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MediaID))]
+#[diesel(table_name = crate::database::schema::multimedia)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Multimedia {
     pub MediaID: i32,
     pub HierStrucID: i64,
@@ -3885,8 +4351,10 @@ pub struct Multimedia {
     pub MediaType: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(MediaDataID))]
+#[diesel(table_name = crate::database::schema::multimedia_data)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct MultimediaData {
     pub MediaDataID: i32,
     pub MediaID: i32,
@@ -3895,8 +4363,10 @@ pub struct MultimediaData {
     pub MediaData: Option<Vec<u8>>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NetvupointConfigId))]
+#[diesel(table_name = crate::database::schema::netvupoint_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct NetvupointConfig {
     pub NetvupointConfigId: i32,
     pub HierStrucId: i64,
@@ -3909,8 +4379,10 @@ pub struct NetvupointConfig {
     pub LocRef: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NluID))]
+#[diesel(table_name = crate::database::schema::number_lookup)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct NumberLookup {
     pub NluID: i32,
     pub HierStrucID: i64,
@@ -3921,8 +4393,10 @@ pub struct NumberLookup {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NutrientSetId))]
+#[diesel(table_name = crate::database::schema::nutrient_set)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct NutrientSet {
     pub NutrientSetId: i64,
     pub HierStrucID: i64,
@@ -3932,8 +4406,10 @@ pub struct NutrientSet {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NutrientSetNutrientId))]
+#[diesel(table_name = crate::database::schema::nutrient_set_nutrient)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct NutrientSetNutrient {
     pub NutrientSetNutrientId: i64,
     pub NutrientSetId: i64,
@@ -3945,8 +4421,10 @@ pub struct NutrientSetNutrient {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NutritionID))]
+#[diesel(table_name = crate::database::schema::nutrition)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Nutrition {
     pub NutritionID: i64,
     pub HierStrucID: i64,
@@ -3957,8 +4435,10 @@ pub struct Nutrition {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ConfClientID))]
+#[diesel(table_name = crate::database::schema::oidc_conf_client_info)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OidcConfClientInfo {
     pub ConfClientID: i32,
     pub ClientName: String,
@@ -3975,8 +4455,10 @@ pub struct OidcConfClientInfo {
     pub ClientSecretExpiresAt: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(AccessID))]
+#[diesel(table_name = crate::database::schema::open_client_access_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OpenClientAccessDetail {
     pub AccessID: i32,
     pub OpenClientUID: i32,
@@ -3988,8 +4470,10 @@ pub struct OpenClientAccessDetail {
     pub UpdatedOn: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OpenClientUID))]
+#[diesel(table_name = crate::database::schema::open_client_user_info)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OpenClientUserInfo {
     pub OpenClientUID: i32,
     pub UserUID: String,
@@ -4007,8 +4491,10 @@ pub struct OpenClientUserInfo {
     pub IsTerminated: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OperatorID))]
+#[diesel(table_name = crate::database::schema::operator)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Operator {
     pub OperatorID: i64,
     pub HierStrucID: i64,
@@ -4032,8 +4518,10 @@ pub struct Operator {
     pub GroupEventDefDtlID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OperTouchscrnID))]
+#[diesel(table_name = crate::database::schema::operator_touchscreen)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OperatorTouchscreen {
     pub OperTouchscrnID: i64,
     pub HierStrucID: i64,
@@ -4044,8 +4532,10 @@ pub struct OperatorTouchscreen {
     pub TouchscreenObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrdChannelID))]
+#[diesel(table_name = crate::database::schema::order_channel)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OrderChannel {
     pub OrdChannelID: i64,
     pub HierStrucID: i64,
@@ -4057,8 +4547,10 @@ pub struct OrderChannel {
     pub IsActive: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrdChannelConfigID))]
+#[diesel(table_name = crate::database::schema::order_channel_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OrderChannelConfig {
     pub OrdChannelConfigID: i64,
     pub HierStrucID: i64,
@@ -4074,8 +4566,10 @@ pub struct OrderChannelConfig {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrderDeviceID))]
+#[diesel(table_name = crate::database::schema::order_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OrderDevice {
     pub OrderDeviceID: i32,
     pub HierStrucID: i64,
@@ -4113,8 +4607,10 @@ pub struct OrderDevice {
     pub MenuItemPrintingType: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrdTypeID))]
+#[diesel(table_name = crate::database::schema::order_type)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OrderType {
     pub OrdTypeID: i32,
     pub HierStrucID: i64,
@@ -4125,8 +4621,10 @@ pub struct OrderType {
     pub OrderTypePostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrdTypParamID))]
+#[diesel(table_name = crate::database::schema::order_type_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct OrderTypeParameter {
     pub OrdTypParamID: i32,
     pub HierStrucID: i64,
@@ -4150,8 +4648,10 @@ pub struct OrderTypeParameter {
     pub OrdChannelObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(OrganizationID))]
+#[diesel(table_name = crate::database::schema::organization)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Organization {
     pub OrganizationID: i64,
     pub OrganizationName: String,
@@ -4173,8 +4673,10 @@ pub struct Organization {
     pub EnablePMIntegration: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PageID))]
+#[diesel(table_name = crate::database::schema::page)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Page {
     pub PageID: i32,
     pub ObjectNumber: i32,
@@ -4190,8 +4692,10 @@ pub struct Page {
     pub PageTemplateNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PageAssignmentID))]
+#[diesel(table_name = crate::database::schema::page_assignment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PageAssignment {
     pub PageAssignmentID: i32,
     pub HierStrucID: Option<i64>,
@@ -4204,8 +4708,10 @@ pub struct PageAssignment {
     pub DefaultTrainingTransPageObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PageAssignmentCondID))]
+#[diesel(table_name = crate::database::schema::page_assignment_condition)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PageAssignmentCondition {
     pub PageAssignmentCondID: i32,
     pub HierStrucID: i64,
@@ -4216,8 +4722,10 @@ pub struct PageAssignmentCondition {
     pub PageNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PageContentAreaID))]
+#[diesel(table_name = crate::database::schema::page_content_area)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PageContentArea {
     pub PageContentAreaID: i32,
     pub DynamicAreaKey: Option<String>,
@@ -4230,8 +4738,10 @@ pub struct PageContentArea {
     pub ChangeSetObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PageTemplateID))]
+#[diesel(table_name = crate::database::schema::page_template)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PageTemplate {
     pub PageTemplateID: i32,
     pub ObjectNumber: i32,
@@ -4244,8 +4754,10 @@ pub struct PageTemplate {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PayAtTableConfPaymentID))]
+#[diesel(table_name = crate::database::schema::pay_at_table_conf_payment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PayAtTableConfPayment {
     pub PayAtTableConfPaymentID: i64,
     pub HierStrucID: i64,
@@ -4255,8 +4767,10 @@ pub struct PayAtTableConfPayment {
     pub PaymentCommand: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PayAtTableConfigID))]
+#[diesel(table_name = crate::database::schema::pay_at_table_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PayAtTableConfig {
     pub PayAtTableConfigID: i64,
     pub HierStrucID: i64,
@@ -4267,8 +4781,10 @@ pub struct PayAtTableConfig {
     pub TipPercent3: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PayRateID))]
+#[diesel(table_name = crate::database::schema::pay_rate)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PayRate {
     pub PayRateID: i64,
     pub HierStrucID: i64,
@@ -4283,8 +4799,10 @@ pub struct PayRate {
     pub EffectiveTo: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PaymentTenderID))]
+#[diesel(table_name = crate::database::schema::payment_tender)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PaymentTender {
     pub PaymentTenderID: i32,
     pub HierStrucID: i64,
@@ -4297,8 +4815,10 @@ pub struct PaymentTender {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PeriodID))]
+#[diesel(table_name = crate::database::schema::period)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Period {
     pub PeriodID: i32,
     pub HierStrucID: i64,
@@ -4310,8 +4830,10 @@ pub struct Period {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PeriodInstID))]
+#[diesel(table_name = crate::database::schema::period_instance)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PeriodInstance {
     pub PeriodInstID: i64,
     pub HierStrucID: i64,
@@ -4324,8 +4846,10 @@ pub struct PeriodInstance {
     pub PrevPeriodInstID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PmsTtlDtlID))]
+#[diesel(table_name = crate::database::schema::pms_total_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PmsTotalDetail {
     pub PmsTtlDtlID: i64,
     pub CheckDetailID: i64,
@@ -4333,8 +4857,10 @@ pub struct PmsTotalDetail {
     pub Total: f64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(posJournalLogId))]
+#[diesel(table_name = crate::database::schema::pos_journal_log)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PosJournalLog {
     pub posJournalLogId: i64,
     pub journalId: i32,
@@ -4350,15 +4876,19 @@ pub struct PosJournalLog {
     pub guid: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(POSKeyboardID))]
+#[diesel(table_name = crate::database::schema::poskeyboard)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Poskeyboard {
     pub POSKeyboardID: i32,
     pub HierStrucID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(POSKeyboardAssignmentID))]
+#[diesel(table_name = crate::database::schema::poskeyboard_assignment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PoskeyboardAssignment {
     pub POSKeyboardAssignmentID: i32,
     pub POSAlphaNumKbdID: i32,
@@ -4366,8 +4896,10 @@ pub struct PoskeyboardAssignment {
     pub SortOrder: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PostParamID))]
+#[diesel(table_name = crate::database::schema::posting_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PostingParameter {
     pub PostParamID: i32,
     pub HierStrucID: i64,
@@ -4378,8 +4910,10 @@ pub struct PostingParameter {
     pub CarryOverDays: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PrintClassID))]
+#[diesel(table_name = crate::database::schema::print_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PrintClass {
     pub PrintClassID: i64,
     pub HierStrucID: i64,
@@ -4393,8 +4927,10 @@ pub struct PrintClass {
     pub OrderDeviceDisabled: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PrinterID))]
+#[diesel(table_name = crate::database::schema::printer)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Printer {
     pub PrinterID: i32,
     pub HierStrucID: i64,
@@ -4410,8 +4946,10 @@ pub struct Printer {
     pub TrailingLinefeeds: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PrinterGroupID))]
+#[diesel(table_name = crate::database::schema::printer_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PrinterGroup {
     pub PrinterGroupID: i64,
     pub HierStrucID: i64,
@@ -4420,8 +4958,10 @@ pub struct PrinterGroup {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PrinterGroupDetailID))]
+#[diesel(table_name = crate::database::schema::printer_group_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct PrinterGroupDetail {
     pub PrinterGroupDetailID: i64,
     pub HierStrucID: i64,
@@ -4429,8 +4969,10 @@ pub struct PrinterGroupDetail {
     pub PrinterID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ProductionItemID))]
+#[diesel(table_name = crate::database::schema::production_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ProductionItem {
     pub ProductionItemID: i64,
     pub HierStrucID: i64,
@@ -4442,8 +4984,10 @@ pub struct ProductionItem {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(PropertyID))]
+#[diesel(table_name = crate::database::schema::property)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Property {
     pub PropertyID: i32,
     pub TestProperty: bool,
@@ -4471,8 +5015,10 @@ pub struct Property {
     pub PhoneCountryCode: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(QrPayConfigId))]
+#[diesel(table_name = crate::database::schema::qr_pay_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct QrPayConfig {
     pub QrPayConfigId: i64,
     pub HierStrucId: i64,
@@ -4489,8 +5035,10 @@ pub struct QrPayConfig {
     pub OrganizationId: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(QuotingRuleLinkID))]
+#[diesel(table_name = crate::database::schema::quoting_rule_link)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct QuotingRuleLink {
     pub QuotingRuleLinkID: i64,
     pub HierStrucID: i64,
@@ -4498,8 +5046,10 @@ pub struct QuotingRuleLink {
     pub OrderMethodObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RecipeNameID))]
+#[diesel(table_name = crate::database::schema::recipe_name)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RecipeName {
     pub RecipeNameID: i32,
     pub HierStrucID: i64,
@@ -4510,8 +5060,10 @@ pub struct RecipeName {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RptGrpID))]
+#[diesel(table_name = crate::database::schema::report_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ReportGroup {
     pub RptGrpID: i32,
     pub HierStrucID: i64,
@@ -4522,8 +5074,10 @@ pub struct ReportGroup {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RptParamID))]
+#[diesel(table_name = crate::database::schema::report_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ReportParameter {
     pub RptParamID: i32,
     pub HierStrucID: i64,
@@ -4532,8 +5086,10 @@ pub struct ReportParameter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ReqdCndmntID))]
+#[diesel(table_name = crate::database::schema::required_condiment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RequiredCondiment {
     pub ReqdCndmntID: i32,
     pub HierStrucID: i64,
@@ -4550,8 +5106,10 @@ pub struct RequiredCondiment {
     pub MaximumValue: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RevCtrID))]
+#[diesel(table_name = crate::database::schema::revenue_center)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RevenueCenter {
     pub RevCtrID: i32,
     pub ObjectNumber: Option<i32>,
@@ -4582,8 +5140,10 @@ pub struct RevenueCenter {
     pub PhoneCountryCode: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RvcGroupID))]
+#[diesel(table_name = crate::database::schema::revenue_center_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RevenueCenterGroup {
     pub RvcGroupID: i32,
     pub HierStrucID: i64,
@@ -4592,8 +5152,10 @@ pub struct RevenueCenterGroup {
     pub RvcGroupComment: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RvcGroupRvcID))]
+#[diesel(table_name = crate::database::schema::revenue_center_group_rvc)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RevenueCenterGroupRvc {
     pub RvcGroupRvcID: i32,
     pub HierStrucID: i64,
@@ -4601,8 +5163,10 @@ pub struct RevenueCenterGroupRvc {
     pub RevCtrID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RoleID))]
+#[diesel(table_name = crate::database::schema::role)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Role {
     pub RoleID: i64,
     pub HierStrucID: i64,
@@ -4614,8 +5178,10 @@ pub struct Role {
     pub RoleLevel: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RoleEmployeeID))]
+#[diesel(table_name = crate::database::schema::role_employee)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RoleEmployee {
     pub RoleEmployeeID: i64,
     pub RoleID: i64,
@@ -4623,8 +5189,10 @@ pub struct RoleEmployee {
     pub HierStrucID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RolePrivilegeID))]
+#[diesel(table_name = crate::database::schema::role_privilege)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RolePrivilege {
     pub RolePrivilegeID: i64,
     pub RoleID: i64,
@@ -4633,8 +5201,10 @@ pub struct RolePrivilege {
     pub PrivilegeAccess: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RoleVisibilityID))]
+#[diesel(table_name = crate::database::schema::role_visibility)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RoleVisibility {
     pub RoleVisibilityID: i64,
     pub RoleID: i64,
@@ -4642,8 +5212,10 @@ pub struct RoleVisibility {
     pub VisibleForChildren: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(RoutingGroupID))]
+#[diesel(table_name = crate::database::schema::routing_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct RoutingGroup {
     pub RoutingGroupID: i32,
     pub HierStrucID: i64,
@@ -4651,8 +5223,10 @@ pub struct RoutingGroup {
     pub NameID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SlsItmzrID))]
+#[diesel(table_name = crate::database::schema::sales_itemizer)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SalesItemizer {
     pub SlsItmzrID: i32,
     pub HierStrucID: i64,
@@ -4662,8 +5236,10 @@ pub struct SalesItemizer {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SluID))]
+#[diesel(table_name = crate::database::schema::screen_lookups)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ScreenLookups {
     pub SluID: i32,
     pub HierStrucID: i64,
@@ -4677,8 +5253,10 @@ pub struct ScreenLookups {
     pub PosRef: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(IntegrityKeyID))]
+#[diesel(table_name = crate::database::schema::sec_integrity_pub_keys)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SecIntegrityPubKeys {
     pub IntegrityKeyID: i32,
     pub KeyData: Vec<u8>,
@@ -4686,8 +5264,10 @@ pub struct SecIntegrityPubKeys {
     pub LastUpdatedOn: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SecureDetailID))]
+#[diesel(table_name = crate::database::schema::secure_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SecureDetail {
     pub SecureDetailID: i64,
     pub CheckDetailID: i64,
@@ -4696,8 +5276,10 @@ pub struct SecureDetail {
     pub EncryptionKeyID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SerNumID))]
+#[diesel(table_name = crate::database::schema::serial_numbers)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SerialNumbers {
     pub SerNumID: i32,
     pub HierStrucID: i64,
@@ -4709,8 +5291,10 @@ pub struct SerialNumbers {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceID))]
+#[diesel(table_name = crate::database::schema::services)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Services {
     pub ServiceID: i32,
     pub HierStrucID: i64,
@@ -4728,8 +5312,10 @@ pub struct Services {
     pub SecurePort: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgID))]
+#[diesel(table_name = crate::database::schema::service_charges)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceCharges {
     pub SvcChgID: i32,
     pub HierStrucID: i64,
@@ -4762,8 +5348,10 @@ pub struct ServiceCharges {
     pub PrintClassObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgDtlID))]
+#[diesel(table_name = crate::database::schema::service_charge_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeDetail {
     pub SvcChgDtlID: i64,
     pub CheckDetailID: i64,
@@ -4779,8 +5367,10 @@ pub struct ServiceChargeDetail {
     pub TillSessionID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceChargeGroupID))]
+#[diesel(table_name = crate::database::schema::service_charge_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeGroup {
     pub ServiceChargeGroupID: i32,
     pub HierStrucID: i64,
@@ -4788,8 +5378,10 @@ pub struct ServiceChargeGroup {
     pub NameID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceChargeGroupDetailID))]
+#[diesel(table_name = crate::database::schema::service_charge_group_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeGroupDetail {
     pub ServiceChargeGroupDetailID: i32,
     pub HierStrucID: i64,
@@ -4797,8 +5389,10 @@ pub struct ServiceChargeGroupDetail {
     pub ServiceChargeObjNum: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgItmzrID))]
+#[diesel(table_name = crate::database::schema::service_charge_itemizer)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeItemizer {
     pub SvcChgItmzrID: i32,
     pub HierStrucID: i64,
@@ -4808,8 +5402,10 @@ pub struct ServiceChargeItemizer {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgMainMenuLvlID))]
+#[diesel(table_name = crate::database::schema::service_charge_main_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeMainMenuLevel {
     pub SvcChgMainMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -4819,8 +5415,10 @@ pub struct ServiceChargeMainMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgSubMenuLvlID))]
+#[diesel(table_name = crate::database::schema::service_charge_sub_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChargeSubMenuLevel {
     pub SvcChgSubMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -4830,8 +5428,10 @@ pub struct ServiceChargeSubMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SvcChgItmzrSvcChgID))]
+#[diesel(table_name = crate::database::schema::service_chg_itmzr_service_chg)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceChgItmzrServiceChg {
     pub SvcChgItmzrSvcChgID: i32,
     pub HierStrucID: i64,
@@ -4841,8 +5441,10 @@ pub struct ServiceChgItmzrServiceChg {
     pub SvcChgItmzrIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServiceHostID))]
+#[diesel(table_name = crate::database::schema::service_host)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServiceHost {
     pub ServiceHostID: i32,
     pub HierStrucID: i64,
@@ -4858,8 +5460,10 @@ pub struct ServiceHost {
     pub SecRecAuthKeyId: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ServingPeriodID))]
+#[diesel(table_name = crate::database::schema::serving_period)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServingPeriod {
     pub ServingPeriodID: i32,
     pub HierStrucID: i64,
@@ -4875,8 +5479,10 @@ pub struct ServingPeriod {
     pub SubLevelIndex: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SrvPerTouchscrnID))]
+#[diesel(table_name = crate::database::schema::serving_period_touchscreen)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ServingPeriodTouchscreen {
     pub SrvPerTouchscrnID: i32,
     pub HierStrucID: i64,
@@ -4888,8 +5494,10 @@ pub struct ServingPeriodTouchscreen {
     pub OrderingTsObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ShiftType, TypeID))]
+#[diesel(table_name = crate::database::schema::shift_status)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct ShiftStatus {
     pub ShiftType: u8,
     pub TypeID: i64,
@@ -4900,8 +5508,10 @@ pub struct ShiftStatus {
     pub PrevIncUTC: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(StatusEventId))]
+#[diesel(table_name = crate::database::schema::status_event)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct StatusEvent {
     pub StatusEventId: i64,
     pub EventType: i32,
@@ -4916,8 +5526,10 @@ pub struct StatusEvent {
     pub UtcTimeStamp: NaiveDateTime,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(StoredValueCardID))]
+#[diesel(table_name = crate::database::schema::stored_value_card)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct StoredValueCard {
     pub StoredValueCardID: i32,
     pub HierStrucID: i64,
@@ -4951,8 +5563,10 @@ pub struct StoredValueCard {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(StoredValueCardDescID))]
+#[diesel(table_name = crate::database::schema::stored_value_card_descriptor)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct StoredValueCardDescriptor {
     pub StoredValueCardDescID: i64,
     pub StoredValueCardID: i32,
@@ -4963,8 +5577,10 @@ pub struct StoredValueCardDescriptor {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(StoredValueConfigID))]
+#[diesel(table_name = crate::database::schema::stored_value_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct StoredValueConfig {
     pub StoredValueConfigID: i64,
     pub HierStrucID: Option<i64>,
@@ -4975,8 +5591,10 @@ pub struct StoredValueConfig {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(StringID))]
+#[diesel(table_name = crate::database::schema::string_table)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct StringTable {
     pub StringID: i64,
     pub StringNumberID: i64,
@@ -4988,8 +5606,10 @@ pub struct StringTable {
     pub StringText: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SubMenuLvlID))]
+#[diesel(table_name = crate::database::schema::sub_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SubMenuLevel {
     pub SubMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -5004,16 +5624,20 @@ pub struct SubMenuLevel {
     pub OptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(Anchor))]
+#[diesel(table_name = crate::database::schema::sync_anchors)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SyncAnchors {
     pub FileName: Option<String>,
     pub HierStrucID: Option<i64>,
     pub Anchor: Vec<u8>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(SystemTemplateID))]
+#[diesel(table_name = crate::database::schema::system_template)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct SystemTemplate {
     pub SystemTemplateID: i32,
     pub Priority: i32,
@@ -5025,8 +5649,10 @@ pub struct SystemTemplate {
     pub ContentDataID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TagGroupId))]
+#[diesel(table_name = crate::database::schema::tag_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TagGroup {
     pub TagGroupId: i64,
     pub HierStrucID: i64,
@@ -5035,8 +5661,10 @@ pub struct TagGroup {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TagItemID))]
+#[diesel(table_name = crate::database::schema::tag_item)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TagItem {
     pub TagItemID: i64,
     pub HierStrucID: i64,
@@ -5046,8 +5674,10 @@ pub struct TagItem {
     pub TagGroupId: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaiwanGuiID))]
+#[diesel(table_name = crate::database::schema::taiwan_gui)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TaiwanGui {
     pub TaiwanGuiID: i32,
     pub HierStrucID: i64,
@@ -5057,8 +5687,10 @@ pub struct TaiwanGui {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaxID))]
+#[diesel(table_name = crate::database::schema::tax)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Tax {
     pub TaxID: i32,
     pub HierStrucID: i64,
@@ -5075,8 +5707,10 @@ pub struct Tax {
     pub TaxCodes: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaxBrkPtID))]
+#[diesel(table_name = crate::database::schema::tax_breakpoint)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TaxBreakpoint {
     pub TaxBrkPtID: i32,
     pub HierStrucID: i64,
@@ -5089,8 +5723,10 @@ pub struct TaxBreakpoint {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaxClassID))]
+#[diesel(table_name = crate::database::schema::tax_class)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TaxClass {
     pub TaxClassID: i32,
     pub HierStrucID: i64,
@@ -5101,8 +5737,10 @@ pub struct TaxClass {
     pub LastPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaxClassTaxID))]
+#[diesel(table_name = crate::database::schema::tax_class_tax)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TaxClassTax {
     pub TaxClassTaxID: i32,
     pub HierStrucID: i64,
@@ -5112,8 +5750,10 @@ pub struct TaxClassTax {
     pub TaxIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TaxParamID))]
+#[diesel(table_name = crate::database::schema::tax_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TaxParameter {
     pub TaxParamID: i32,
     pub HierStrucID: i64,
@@ -5124,8 +5764,10 @@ pub struct TaxParameter {
     pub VatPrintOptionBits: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TeamID))]
+#[diesel(table_name = crate::database::schema::team_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TeamDef {
     pub TeamID: i32,
     pub HierStrucID: i64,
@@ -5134,8 +5776,10 @@ pub struct TeamDef {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TeamDtlID))]
+#[diesel(table_name = crate::database::schema::team_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TeamDetail {
     pub TeamDtlID: i64,
     pub CheckDetailID: i64,
@@ -5144,8 +5788,10 @@ pub struct TeamDetail {
     pub RoleCode: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TeamMemberDefID))]
+#[diesel(table_name = crate::database::schema::team_member_def)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TeamMemberDef {
     pub TeamID: i32,
     pub EmployeeID: i64,
@@ -5154,8 +5800,10 @@ pub struct TeamMemberDef {
     pub ObjectNumber: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TendMedID))]
+#[diesel(table_name = crate::database::schema::tender_media)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMedia {
     pub TendMedID: i32,
     pub HierStrucID: i64,
@@ -5203,8 +5851,10 @@ pub struct TenderMedia {
     pub LIKEITEMPRINTCLASSOBJNUM: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TendMedDtlID))]
+#[diesel(table_name = crate::database::schema::tender_media_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMediaDetail {
     pub TendMedDtlID: i64,
     pub CheckDetailID: i64,
@@ -5227,8 +5877,10 @@ pub struct TenderMediaDetail {
     pub ChargeTipSvcChgNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TendMedMainMenuLvlID))]
+#[diesel(table_name = crate::database::schema::tender_media_main_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMediaMainMenuLevel {
     pub TendMedMainMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -5238,8 +5890,10 @@ pub struct TenderMediaMainMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TenderMediaPreambleID))]
+#[diesel(table_name = crate::database::schema::tender_media_preamble)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMediaPreamble {
     pub TenderMediaPreambleID: i32,
     pub HierStrucID: i64,
@@ -5250,8 +5904,10 @@ pub struct TenderMediaPreamble {
     pub AutoOnly: Option<bool>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TendMedSubMenuLvlID))]
+#[diesel(table_name = crate::database::schema::tender_media_sub_menu_level)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMediaSubMenuLevel {
     pub TendMedSubMenuLvlID: i32,
     pub HierStrucID: i64,
@@ -5261,8 +5917,10 @@ pub struct TenderMediaSubMenuLevel {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TendMedTaxExmptID))]
+#[diesel(table_name = crate::database::schema::tender_media_tax_exempt)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TenderMediaTaxExempt {
     pub TendMedTaxExmptID: i32,
     pub HierStrucID: i64,
@@ -5272,8 +5930,10 @@ pub struct TenderMediaTaxExempt {
     pub TaxIndex: Option<i16>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TextDtlID))]
+#[diesel(table_name = crate::database::schema::text_detail)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TextDetail {
     pub TextDtlID: i64,
     pub CheckDetailID: i64,
@@ -5281,8 +5941,10 @@ pub struct TextDetail {
     pub LangID: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TimePeriodID))]
+#[diesel(table_name = crate::database::schema::time_period)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TimePeriod {
     pub TimePeriodID: i32,
     pub HierStrucID: i64,
@@ -5294,8 +5956,10 @@ pub struct TimePeriod {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TzIndex))]
+#[diesel(table_name = crate::database::schema::time_zone)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TimeZone {
     pub TzIndex: i64,
     pub TimeZone: String,
@@ -5303,8 +5967,10 @@ pub struct TimeZone {
     pub MinuteDiff: i16,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TimecardID))]
+#[diesel(table_name = crate::database::schema::timecard)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Timecard {
     pub TimecardID: i64,
     pub HierStrucID: i64,
@@ -5320,8 +5986,10 @@ pub struct Timecard {
     pub JobCodeID: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TmClkParmID))]
+#[diesel(table_name = crate::database::schema::timeclock_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TimeclockParameter {
     pub TmClkParmID: i32,
     pub HierStrucID: i64,
@@ -5347,8 +6015,10 @@ pub struct TimeclockParameter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TmsParamID))]
+#[diesel(table_name = crate::database::schema::tms_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TmsParameter {
     pub TmsParamID: i32,
     pub HierStrucID: i64,
@@ -5360,8 +6030,10 @@ pub struct TmsParameter {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TransID, RevCtrID))]
+#[diesel(table_name = crate::database::schema::totals)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Totals {
     pub TransID: i64,
     pub PostingTime: NaiveDateTime,
@@ -5401,8 +6073,10 @@ pub struct Totals {
     pub OrdChannelID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TransID, RevCtrID))]
+#[diesel(table_name = crate::database::schema::totals_compact)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TotalsCompact {
     pub TransID: i64,
     pub PostingTime: NaiveDateTime,
@@ -5443,14 +6117,18 @@ pub struct TotalsCompact {
     pub OrdChannelID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(LastProcessedID))]
+#[diesel(table_name = crate::database::schema::totals_compact_processed)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct TotalsCompactProcessed {
     pub LastProcessedID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(UserExpAssignmentID))]
+#[diesel(table_name = crate::database::schema::user_experience_assignment)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct UserExperienceAssignment {
     pub UserExpAssignmentID: i64,
     pub HierStrucID: i64,
@@ -5458,8 +6136,10 @@ pub struct UserExperienceAssignment {
     pub DefaultKdsUserExpObjectNumber: i32,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, AliasHierStrucID))]
+#[diesel(table_name = crate::database::schema::v_hier_alias)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VHierAlias {
     pub HierStrucID: i64,
     pub HierUnitID: Option<i32>,
@@ -5467,8 +6147,10 @@ pub struct VHierAlias {
     pub AliasHierStrucID: i64,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, AncestorID))]
+#[diesel(table_name = crate::database::schema::v_hier_ancestors)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VHierAncestors {
     pub HierStrucID: i64,
     pub AncestorID: i64,
@@ -5476,16 +6158,20 @@ pub struct VHierAncestors {
     pub lvl: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID, DefLocHierStrucID))]
+#[diesel(table_name = crate::database::schema::v_hier_definition_locations)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VHierDefinitionLocations {
     pub HierStrucID: i64,
     pub DefLocHierStrucID: i64,
     pub lvl: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(TestatorHierStrucID, SystemHierStrucID))]
+#[diesel(table_name = crate::database::schema::v_hier_testators)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VHierTestators {
     pub HierUnitID: Option<i32>,
     pub PropertyID: Option<i32>,
@@ -5495,8 +6181,10 @@ pub struct VHierTestators {
     pub AncestorLevel: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(HierStrucID))]
+#[diesel(table_name = crate::database::schema::v_hierarchy)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VHierarchy {
     pub HierStrucID: i64,
     pub Parent1: Option<i64>,
@@ -5510,8 +6198,10 @@ pub struct VHierarchy {
     pub HierName: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(VoidReasonID))]
+#[diesel(table_name = crate::database::schema::void_reason)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct VoidReason {
     pub VoidReasonID: i32,
     pub HierStrucID: i64,
@@ -5522,8 +6212,10 @@ pub struct VoidReason {
     pub VoidReasonPostingTime: Option<NaiveDateTime>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WorkstationID))]
+#[diesel(table_name = crate::database::schema::workstation)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct Workstation {
     pub WorkstationID: i32,
     pub HierStrucID: i64,
@@ -5607,8 +6299,10 @@ pub struct Workstation {
     pub OrdChannelObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WorkstationDeviceID))]
+#[diesel(table_name = crate::database::schema::workstation_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationDevice {
     pub WorkstationDeviceID: i32,
     pub HierStrucID: i64,
@@ -5622,8 +6316,10 @@ pub struct WorkstationDevice {
     pub Configuration: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(NotificationType, ReceiveWksID, RecID))]
+#[diesel(table_name = crate::database::schema::workstation_notification)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationNotification {
     pub NotificationType: i16,
     pub ReceiveWksID: i32,
@@ -5636,8 +6332,10 @@ pub struct WorkstationNotification {
     pub RecLogicalID: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WkstaOrdDvcID))]
+#[diesel(table_name = crate::database::schema::workstation_order_device)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationOrderDevice {
     pub WkstaOrdDvcID: i32,
     pub HierStrucID: i64,
@@ -5647,8 +6345,10 @@ pub struct WorkstationOrderDevice {
     pub IsDeleted: bool,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WkstaParamID))]
+#[diesel(table_name = crate::database::schema::workstation_parameter)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationParameter {
     pub WkstaParamID: i32,
     pub HierStrucID: i64,
@@ -5668,8 +6368,10 @@ pub struct WorkstationParameter {
     pub SAPassword: Option<String>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WkstaPrtID))]
+#[diesel(table_name = crate::database::schema::workstation_printer)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationPrinter {
     pub WkstaPrtID: i32,
     pub HierStrucID: i64,
@@ -5682,8 +6384,10 @@ pub struct WorkstationPrinter {
     pub PrinterGroupID: Option<i64>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WkstaRvcTouchscrnID))]
+#[diesel(table_name = crate::database::schema::workstation_rev_ctr_touchscrn)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationRevCtrTouchscrn {
     pub WkstaRvcTouchscrnID: i32,
     pub HierStrucID: i64,
@@ -5695,8 +6399,10 @@ pub struct WorkstationRevCtrTouchscrn {
     pub TouchscreenObjNum: Option<i32>,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(WkstnRoutingGroupID))]
+#[diesel(table_name = crate::database::schema::workstation_routing_group)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WorkstationRoutingGroup {
     pub WkstnRoutingGroupID: i32,
     pub WorkstationID: i32,
@@ -5705,8 +6411,10 @@ pub struct WorkstationRoutingGroup {
     pub OrderDeviceBitMask: String,
 }
 
-#[derive(Queryable, Debug, Identifiable)]
+#[derive(Queryable, Selectable, Debug, Identifiable)]
 #[diesel(primary_key(ConfigID))]
+#[diesel(table_name = crate::database::schema::ws_heu_alg_config)]
+#[diesel(check_for_backend(diesel::mysql::Mysql))]
 pub struct WsHeuAlgConfig {
     pub ConfigID: i32,
     pub HierStrucID: i32,
