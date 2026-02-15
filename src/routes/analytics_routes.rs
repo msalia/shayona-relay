@@ -1,12 +1,8 @@
-use crate::database::schema::{check_detail, checks};
 use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use chrono::DateTime;
-use diesel::dsl::{min, sum};
-use diesel::prelude::*;
+use mysql::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use std::collections::HashMap;
 use std::sync::Arc;
 
 #[derive(Deserialize)]
@@ -36,60 +32,72 @@ pub async fn post_stats(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<StatsRequest>,
 ) -> impl IntoResponse {
-    let conn = state.pool.get_conn().unwrap();
+    // grab a connection from the mysql pool
+    let mut conn = state.pool.get_conn().unwrap();
 
-    let date_start = DateTime::parse_from_rfc3339(payload.date_start.as_str())
-        .unwrap()
-        .naive_utc();
-    let date_end = DateTime::parse_from_rfc3339(payload.date_end.as_str())
-        .unwrap()
-        .naive_utc();
+    // use the same SQL that the original node handler ran
+    let query = format!(
+        "SELECT count(t.CheckID) AS Checks,
+            SUM(t.Covers) AS GuestCount,
+            SUM(t.Payment) AS Total
+        FROM (
+            SELECT DISTINCT
+                c.CheckID,
+                c.Covers,
+                c.Payment
+            FROM checks c
+            LEFT JOIN check_detail cd ON c.CheckID = cd.CheckID
+            WHERE c.CheckClose >= '{}'
+                AND c.CheckClose < '{}'
+                AND c.SubTotal IS NOT NULL
+                AND c.SubTotal >= 0.0
+                AND cd.DetailType = 4
+                AND cd.ObjectNumber != 99
+        ) AS t",
+        payload.date_start, payload.date_end
+    );
 
-    // Query checks with their details, filtering by date and detail type
-    let results: Result<Vec<(i64, Option<i32>, Option<f64>)>, diesel::result::Error> =
-        checks::table
-            .left_join(check_detail::table.on(checks::CheckID.eq(check_detail::CheckID)))
-            .filter(checks::CheckClose.is_not_null())
-            .filter(checks::CheckClose.ge(date_start))
-            .filter(checks::CheckClose.lt(date_end))
-            .filter(checks::SubTotal.is_not_null())
-            .filter(checks::SubTotal.ge(0.0))
-            .filter(check_detail::DetailType.eq(4))
-            .filter(check_detail::ObjectNumber.ne(99))
-            .select((checks::CheckID, checks::Covers, checks::Payment))
-            .distinct()
-            .load::<(i64, Option<i32>, Option<f64>)>(&conn);
+    match conn.query_first::<mysql::Row, std::string::String>(query) {
+        Ok(Some(row)) => {
+            // extract the values, defaulting to zero if anything is NULL
+            let checks: i64 = row
+                .get::<Option<i64>, _>("Checks")
+                .unwrap_or(Some(0))
+                .unwrap_or(0);
+            let guests: i64 = row
+                .get::<Option<i64>, _>("GuestCount")
+                .unwrap_or(Some(0))
+                .unwrap_or(0);
+            let total: f64 = row
+                .get::<Option<f64>, _>("Total")
+                .unwrap_or(Some(0.0))
+                .unwrap_or(0.0);
 
-    match results {
-        Ok(records) => {
-            let total_orders = records.len() as i64;
-            let total_guests = records
-                .iter()
-                .filter_map(|(_, covers, _)| covers.map(|c| c as i64))
-                .sum();
-            let total_income = records
-                .iter()
-                .filter_map(|(_, _, payment)| payment.ok())
-                .sum();
-
-            let stats: StatsResponse = StatsResponse {
-                total_orders,
-                total_income,
-                total_guests,
+            let stats = StatsResponse {
+                total_orders: checks,
+                total_income: total,
+                total_guests: guests,
             };
 
             (StatusCode::OK, Json(stats))
         }
+        Ok(None) => {
+            // no row returned; just send zeros
+            let stats = StatsResponse {
+                total_orders: 0,
+                total_income: 0.0,
+                total_guests: 0,
+            };
+            (StatusCode::OK, Json(stats))
+        }
         Err(e) => {
             eprintln!("Database error: {:?}", e);
-            (
-                StatusCode::INTERNAL_SERVER_ERROR,
-                Json(StatsResponse {
-                    total_orders: 0,
-                    total_income: 0.0,
-                    total_guests: 0,
-                }),
-            )
+            let stats = StatsResponse {
+                total_orders: 0,
+                total_income: 0.0,
+                total_guests: 0,
+            };
+            (StatusCode::INTERNAL_SERVER_ERROR, Json(stats))
         }
     }
 }
@@ -98,38 +106,39 @@ pub async fn post_sales(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<SalesRequest>,
 ) -> impl IntoResponse {
-    let conn = state.pool.get_conn().unwrap();
+    let mut conn = state.pool.get_conn().unwrap();
+    let query = format!(
+        "select
+            detail.ObjectNumber as MenuItemId,
+            sum(detail.SalesCount) as Total
+        from check_detail as detail
+        where detail.ObjectNumber is not null
+            and detail.ObjectNumber not in (1, 100, 20)
+            and datediff(detail.DetailPostingTime, '{}') = 0
+        group by detail.ObjectNumber",
+        payload.date
+    );
 
-    // Query check_detail grouped by ObjectNumber
-    let results: Result<Vec<(Option<i32>, Option<i32>)>, diesel::result::Error> =
-        check_detail::table
-            .filter(check_detail::ObjectNumber.is_not_null())
-            .filter(check_detail::ObjectNumber.ne_all(vec![1, 100, 20]))
-            .select((
-                min(check_detail::ObjectNumber),
-                sum(check_detail::SalesCount),
-            ))
-            .group_by(check_detail::ObjectNumber)
-            .load::<(Option<i32>, Option<i32>)>(&mut conn);
-
-    match results {
-        Ok(records) => {
-            let mut sales_counts: HashMap<i32, i32> = HashMap::new();
-
-            for (object_number, sales_count) in records {
-                if let (Some(obj_num), Some(count)) = (object_number, sales_count) {
-                    sales_counts.insert(obj_num, count);
+    // build a dynamic map similar to the JavaScript version
+    let mut sales_counts = serde_json::Map::new();
+    match conn.query_iter(query) {
+        Ok(mut result) => {
+            while let Some(Ok(row)) = result.next() {
+                let menu_item_id: Option<i64> = row.get("MenuItemId");
+                let total: Option<i64> = row.get("Total");
+                if let (Some(menu_item_id), Some(total)) = (menu_item_id, total) {
+                    sales_counts.insert(menu_item_id.to_string(), json!(total));
                 }
             }
-
-            (StatusCode::OK, Json(json!({ "salesCounts": sales_counts })))
         }
         Err(e) => {
             eprintln!("Database error: {:?}", e);
-            (
+            return (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "salesCounts": {} })),
-            )
+            );
         }
-    }
+    };
+
+    (StatusCode::OK, Json(json!({ "salesCounts": sales_counts })))
 }

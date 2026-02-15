@@ -1,9 +1,5 @@
-#![recursion_limit = "512"]
-
 use axum::{routing::get, routing::post, Router};
-use axum_prometheus::PrometheusMetricLayer;
 use dotenv::dotenv;
-use metrics_exporter_prometheus::PrometheusBuilder;
 use paris::{info, success};
 use std::env;
 use std::net::SocketAddr;
@@ -19,17 +15,6 @@ async fn main() {
 
     info!("Starting server...");
 
-    let metrics_port = match env::var("METRICS_PORT").unwrap().parse::<u16>() {
-        Ok(p) => p,
-        Err(e) => panic!("Unable to read environment variable METRICS_PORT: {e}"),
-    };
-    let recorder_handle = PrometheusBuilder::new()
-        .with_http_listener(([127, 0, 0, 1], metrics_port))
-        .install_recorder()
-        .unwrap();
-
-    let (prometheus_layer, metric_handle) = PrometheusMetricLayer::pair();
-
     let router = Router::new()
         .route("/relay", post(crate::routes::relay_routes::post_relay))
         .route("/db", get(crate::routes::db_routes::get_db))
@@ -42,8 +27,7 @@ async fn main() {
         )
         .route("/stats", post(crate::routes::analytics_routes::post_stats))
         .with_state(crate::server::get_state())
-        .layer(crate::server::get_cors())
-        .layer(prometheus_layer);
+        .layer(crate::server::get_cors());
 
     let port = match env::var("PORT").unwrap().parse::<u16>() {
         Ok(p) => p,

@@ -1,9 +1,6 @@
-use crate::database::schema::{
-    hierarchy_structure, hierarchy_unit, string_table, tax, tax_class, tax_class_tax,
-};
 use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use diesel::prelude::*;
+use mysql::prelude::*;
 use serde::Serialize;
 use serde_json::json;
 use std::sync::Arc;
@@ -23,75 +20,58 @@ pub struct TaxClassInfo {
 }
 
 pub async fn get_configs(State(state): State<Arc<AppState>>) -> impl IntoResponse {
-    let conn = state.pool.get_conn().unwrap();
+    // grab a connection from the mysql pool
+    let mut conn = state.clone().pool.get_conn().unwrap();
 
-    let results: Result<
-        Vec<(
-            Option<i32>,
-            Option<String>,
-            Option<i16>,
-            Option<f64>,
-            Option<i32>,
-        )>,
-        diesel::result::Error,
-    > = tax_class::table
-        .left_join(string_table::table.on(tax_class::NameID.eq(string_table::StringNumberID)))
-        .left_join(tax_class_tax::table.on(tax_class_tax::TaxClassID.eq(tax_class::TaxClassID)))
-        .left_join(tax::table.on(tax_class_tax::TaxIndex.assume_not_null().eq(tax::TaxIndex)))
-        .left_join(
-            hierarchy_structure::table.on(tax::HierStrucID.eq(hierarchy_structure::HierStrucID)),
-        )
-        .left_join(
-            hierarchy_unit::table
-                .on(hierarchy_structure::HierUnitID.eq(hierarchy_unit::HierUnitID)),
-        )
-        .select((
-            tax_class::ObjectNumber,
-            string_table::StringText,
-            tax_class_tax::TaxIndex,
-            tax::Percentage,
-            hierarchy_unit::PropertyID,
-        ))
-        .load::<(
-            Option<i32>,
-            Option<String>,
-            Option<i16>,
-            Option<f64>,
-            Option<i32>,
-        )>(&mut conn);
+    // SQL mirrors the JavaScript handler's query
+    let query = "SELECT
+       TaxClasses.ObjectNumber AS TaxClassRef,
+       Names.StringText AS TaxClassName,
+       TaxRate.TaxIndex AS TaxRateRef,
+       Tax.Percentage AS TaxRatePercentage,
+       HierarchyUnit.PropertyID AS PropertyID
+    FROM tax_class AS TaxClasses
+    LEFT JOIN string_table AS Names
+        ON TaxClasses.NameID = Names.StringNumberID
+    LEFT JOIN tax_class_tax AS TaxRate
+        ON TaxRate.TaxClassID = TaxClasses.TaxClassID
+    LEFT JOIN tax AS Tax
+        ON TaxRate.TaxIndex = Tax.TaxIndex
+    LEFT JOIN hierarchy_structure AS Hierarchy
+        ON Tax.HierStrucID = Hierarchy.HierStrucID
+    LEFT JOIN hierarchy_unit AS HierarchyUnit
+        ON Hierarchy.HierUnitID = HierarchyUnit.HierUnitID";
 
-    match results {
-        Ok(records) => {
-            let tax_classes = records
-                .into_iter()
-                .filter_map(
-                    |(
+    let mut tax_classes: Vec<TaxClassInfo> = Vec::new();
+
+    match conn.query_iter(query) {
+        Ok(mut result) => {
+            while let Some(Ok(row)) = result.next() {
+                let tax_class_ref: Option<i32> = row.get("TaxClassRef");
+                if let Some(tax_class_ref) = tax_class_ref {
+                    let property_id: Option<i32> = row.get("PropertyID");
+                    let tax_class_name: Option<String> = row.get("TaxClassName");
+                    let tax_rate_ref: Option<i16> = row.get("TaxRateRef");
+                    let tax_rate_percentage: Option<f64> = row.get("TaxRatePercentage");
+
+                    tax_classes.push(TaxClassInfo {
+                        property_id,
                         tax_class_ref,
                         tax_class_name,
                         tax_rate_ref,
                         tax_rate_percentage,
-                        property_id,
-                    )| {
-                        // Filter out records where tax_class_ref is null
-                        tax_class_ref.map(|ref_val| TaxClassInfo {
-                            property_id,
-                            tax_class_ref: ref_val,
-                            tax_class_name,
-                            tax_rate_ref,
-                            tax_rate_percentage,
-                        })
-                    },
-                )
-                .collect::<Vec<TaxClassInfo>>();
-
-            (StatusCode::OK, Json(json!({ "taxClasses": tax_classes })))
+                    });
+                }
+            }
         }
         Err(e) => {
             eprintln!("Database error: {:?}", e);
-            (
+            return (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "taxClasses": [] })),
-            )
+            );
         }
     }
+
+    (StatusCode::OK, Json(json!({ "taxClasses": tax_classes })))
 }

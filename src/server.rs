@@ -1,7 +1,6 @@
-use std::sync::Arc;
-
 use axum::http::Method;
 use paris::success;
+use std::sync::Arc;
 use tower_http::cors::{Any, CorsLayer};
 
 pub struct AppState {

@@ -1,8 +1,6 @@
-use crate::database::schema::{check_detail, checks};
 use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use chrono::DateTime;
-use diesel::prelude::*;
+use mysql::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::sync::Arc;
@@ -39,100 +37,82 @@ pub async fn post_checks_to_export(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<ChecksToExportRequest>,
 ) -> impl IntoResponse {
-    let conn = state.pool.get_conn().unwrap();
+    // grab a connection from the mysql pool
+    let mut conn = state.clone().pool.get_conn().unwrap();
 
-    let date_start = DateTime::parse_from_rfc3339(payload.date_start.as_str())
-        .unwrap()
-        .naive_utc();
-    let date_end = DateTime::parse_from_rfc3339(payload.date_end.as_str())
-        .unwrap()
-        .naive_utc();
-    let ignore_obj_num: i32 = payload.ignore_object_number;
+    // mirror the JavaScript query logic from handleChecksToExportRoute
+    let query = format!(
+        "SELECT distinct
+            checks.CheckNumber AS CheckNumber,
+            detail.RevCtrID AS RevenueCenterID,
+            checks.Guid AS Guid,
+            checks.Covers AS Covers,
+            checks.Payment AS Payment,
+            checks.SubTotal AS SubTotal,
+            checks.Tax AS Tax
+        FROM checks AS checks
+        LEFT JOIN check_detail AS detail ON checks.CheckID = detail.CheckID
+        WHERE checks.CheckClose >= '{}'
+            AND checks.CheckClose < '{}'
+            AND checks.SubTotal IS NOT NULL
+            AND checks.SubTotal >= 0.0
+            AND detail.DetailType = 4
+            AND detail.ObjectNumber != {}
+        ORDER BY checks.CheckNumber ASC",
+        payload.date_start, payload.date_end, payload.ignore_object_number
+    );
 
-    // Query checks with their details
-    let results: Result<
-        Vec<(
-            i32,
-            String,
-            Option<i32>,
-            Option<f64>,
-            Option<f64>,
-            Option<f64>,
-            Option<i32>,
-        )>,
-        diesel::result::Error,
-    > = checks::table
-        .left_join(check_detail::table.on(checks::CheckID.eq(check_detail::CheckID)))
-        .filter(checks::CheckClose.is_not_null())
-        .filter(checks::CheckClose.assume_not_null().ge(date_start))
-        .filter(checks::CheckClose.assume_not_null().lt(date_end))
-        .filter(checks::SubTotal.is_not_null())
-        .filter(checks::SubTotal.assume_not_null().ge(0.0))
-        .filter(check_detail::DetailType.eq(4))
-        .filter(check_detail::ObjectNumber.ne(ignore_obj_num))
-        .select((
-            checks::CheckNumber,
-            checks::Guid,
-            checks::Covers,
-            checks::Payment,
-            checks::SubTotal,
-            checks::Tax,
-            check_detail::RevCtrID,
-        ))
-        .distinct()
-        .order_by(checks::CheckNumber.asc())
-        .load::<(
-            i32,
-            String,
-            Option<i32>,
-            Option<f64>,
-            Option<f64>,
-            Option<f64>,
-            Option<i32>,
-        )>(&mut conn);
+    let mut closed_checks: Vec<ExportedCheck> = Vec::new();
+    match conn.query_iter(query) {
+        Ok(mut result) => {
+            while let Some(Ok(row)) = result.next() {
+                let check_number: Option<i32> = row.get("CheckNumber");
+                let guid: Option<String> = row.get("Guid");
+                let check_total: Option<f64> = row.get("Payment");
+                let sub_total: Option<f64> = row.get("SubTotal");
+                let tax_total: Option<f64> = row.get("Tax");
+                let guest_count: Option<i32> = row.get("Covers");
+                let revenue_center_id: Option<i32> = row.get("RevenueCenterID");
 
-    match results {
-        Ok(records) => {
-            let closed_checks = records
-                .into_iter()
-                .map(
-                    |(check_number, guid, covers, payment, sub_total, tax, rev_ctr_id)| {
-                        // Extract sequence number from Guid: remove non-digits, take first 9 chars
-                        let digits_only = guid
-                            .chars()
-                            .filter(|c| c.is_ascii_digit())
-                            .collect::<String>();
-                        let sequence_number: i64 = digits_only
-                            .chars()
-                            .take(9)
-                            .collect::<String>()
-                            .parse()
-                            .unwrap_or(0);
+                if let (
+                    Some(check_number),
+                    Some(guid_str),
+                    Some(check_total),
+                    Some(sub_total),
+                    Some(guest_count),
+                ) = (check_number, guid, check_total, sub_total, guest_count)
+                {
+                    // convert the GUID into sequence number by stripping non-digits and taking first 9
+                    let seq_num_str: String = guid_str
+                        .chars()
+                        .filter(|c| c.is_ascii_digit())
+                        .take(9)
+                        .collect();
+                    let sequence_number = seq_num_str.parse::<i64>().unwrap_or(0);
 
-                        ExportedCheck {
-                            check_number,
-                            sequence_number,
-                            check_total: payment.unwrap_or(0.0),
-                            sub_total: sub_total.unwrap_or(0.0),
-                            tax_total: tax,
-                            guest_count: covers.unwrap_or(0),
-                            revenue_center_id: rev_ctr_id,
-                        }
-                    },
-                )
-                .collect::<Vec<ExportedCheck>>();
-
-            (
-                StatusCode::OK,
-                Json(json!({ "closedChecks": closed_checks })),
-            )
+                    closed_checks.push(ExportedCheck {
+                        check_number,
+                        sequence_number,
+                        check_total,
+                        sub_total,
+                        tax_total,
+                        guest_count,
+                        revenue_center_id,
+                    });
+                }
+            }
         }
         Err(e) => {
             eprintln!("Database error: {:?}", e);
-            (
+            return (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "closedChecks": [] })),
-            )
+            );
         }
     }
+
+    (
+        StatusCode::OK,
+        Json(json!({ "closedChecks": closed_checks })),
+    )
 }

@@ -8,7 +8,7 @@ use serde_json::{json, Value};
 use crate::server::AppState;
 
 pub async fn post_relay(
-    State(state): State<Arc<AppState>>,
+    State(_state): State<Arc<AppState>>,
     Json(data): Json<Value>,
 ) -> impl IntoResponse {
     let ob_url: String = match env::var("OB_URL") {

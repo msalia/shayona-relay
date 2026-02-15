@@ -11,10 +11,7 @@ paris = { version = "*", features = ["timestamps", "macros"] }
 serde_json = "*"
 tokio = { version = "1", features = ["full"] }
 tower-http = { version = "*", features = ["cors"] }
-diesel = { version = "2.2.0", features = ["mysql", "128-column-tables", "chrono"] }
-mysqlclient-sys = { version = "0.4" }
+mysqlclient-sys = { version = "*", features = ["buildtime_bindgen"] }
 reqwest = { version = "0.12", features = ["json"] }
-axum-prometheus = "0.10.0"
-metrics-exporter-prometheus = "0.18.1"
 chrono = "0.4.43"
 serde = "1.0.228"

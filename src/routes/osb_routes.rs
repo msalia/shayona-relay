@@ -1,7 +1,6 @@
-use crate::database::schema::{checks, kds_detail};
 use crate::server::AppState;
 use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
-use diesel::prelude::*;
+use mysql::prelude::*;
 use serde::Deserialize;
 use serde_json::json;
 use std::sync::Arc;
@@ -18,31 +17,49 @@ pub async fn post_osb(
     State(state): State<Arc<AppState>>,
     Json(payload): Json<OSBRequest>,
 ) -> impl IntoResponse {
-    let conn = state.pool.get_conn().unwrap();
+    // grab a connection from the mysql pool
+    let mut conn = state.clone().pool.get_conn().unwrap();
 
-    let order_device_ids = payload.order_device_ids.clone();
-    let last_n = payload.last_n;
+    // build comma-separated device id list for SQL
+    let id_list = payload
+        .order_device_ids
+        .iter()
+        .map(|id| id.to_string())
+        .collect::<Vec<_>>()
+        .join(", ");
 
-    // Query: kds_detail inner join checks filtering by OrderDeviceIndex
-    let results: Result<Vec<i32>, diesel::result::Error> = kds_detail::table
-        .inner_join(checks::table.on(checks::CheckID.eq(kds_detail::CheckID)))
-        .filter(kds_detail::OrderDeviceIndex.eq_any(order_device_ids))
-        .select(checks::CheckNumber)
-        .order_by(kds_detail::SentTime.desc())
-        .limit(last_n)
-        .load::<i32>(&mut conn);
+    let query = format!(
+        "SELECT
+            checks.CheckNumber
+        FROM kds_detail AS detail
+        RIGHT JOIN checks AS checks
+            ON checks.CheckID = detail.CheckID
+        WHERE detail.OrderDeviceIndex IN ({})
+        ORDER BY detail.SentTime DESC LIMIT {}",
+        id_list, payload.last_n
+    );
 
-    match results {
-        Ok(check_numbers) => (
-            StatusCode::OK,
-            Json(json!({ "completedCheckNumbers": check_numbers })),
-        ),
+    let mut completed_numbers: Vec<i64> = Vec::new();
+    match conn.query_iter(query) {
+        Ok(mut result) => {
+            while let Some(Ok(row)) = result.next() {
+                let check_number: Option<i64> = row.get("CheckNumber");
+                if let Some(num) = check_number {
+                    completed_numbers.push(num);
+                }
+            }
+        }
         Err(e) => {
             eprintln!("Database error: {:?}", e);
-            (
+            return (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 Json(json!({ "completedCheckNumbers": [] })),
-            )
+            );
         }
     }
+
+    (
+        StatusCode::OK,
+        Json(json!({ "completedCheckNumbers": completed_numbers })),
+    )
 }
