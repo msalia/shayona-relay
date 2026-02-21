@@ -66,13 +66,14 @@ pub async fn post_checks_to_export(
     match conn.query_iter(query) {
         Ok(mut result) => {
             while let Some(Ok(row)) = result.next() {
-                let check_number: Option<i32> = row.get("CheckNumber");
-                let guid: Option<String> = row.get("Guid");
-                let check_total: Option<f64> = row.get("Payment");
-                let sub_total: Option<f64> = row.get("SubTotal");
-                let tax_total: Option<f64> = row.get("Tax");
-                let guest_count: Option<i32> = row.get("Covers");
-                let revenue_center_id: Option<i32> = row.get("RevenueCenterID");
+                let check_number: Option<i32> = row.get_opt("CheckNumber").and_then(|res| res.ok());
+                let guid: Option<String> = row.get_opt("Guid").and_then(|res| res.ok());
+                let check_total: Option<f64> = row.get_opt("Payment").and_then(|res| res.ok());
+                let sub_total: Option<f64> = row.get_opt("SubTotal").and_then(|res| res.ok());
+                let tax_total: Option<f64> = row.get_opt("Tax").and_then(|res| res.ok());
+                let guest_count: Option<i32> = row.get_opt("Covers").and_then(|res| res.ok());
+                let revenue_center_id: Option<i32> =
+                    row.get_opt("RevenueCenterID").and_then(|res| res.ok());
 
                 if let (
                     Some(check_number),

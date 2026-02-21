@@ -43,7 +43,7 @@ pub async fn post_osb(
     match conn.query_iter(query) {
         Ok(mut result) => {
             while let Some(Ok(row)) = result.next() {
-                let check_number: Option<i64> = row.get("CheckNumber");
+                let check_number: Option<i64> = row.get_opt("CheckNumber").and_then(|res| res.ok());
                 if let Some(num) = check_number {
                     completed_numbers.push(num);
                 }

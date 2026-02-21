@@ -12,11 +12,11 @@ pub struct TaxClassInfo {
     #[serde(rename = "taxClassRef")]
     pub tax_class_ref: i32,
     #[serde(rename = "taxClassName")]
-    pub tax_class_name: Option<String>,
+    pub tax_class_name: String,
     #[serde(rename = "taxRateRef")]
-    pub tax_rate_ref: Option<i16>,
+    pub tax_rate_ref: i16,
     #[serde(rename = "taxRatePercentage")]
-    pub tax_rate_percentage: Option<f64>,
+    pub tax_rate_percentage: String,
 }
 
 pub async fn get_configs(State(state): State<Arc<AppState>>) -> impl IntoResponse {
@@ -47,19 +47,32 @@ pub async fn get_configs(State(state): State<Arc<AppState>>) -> impl IntoRespons
     match conn.query_iter(query) {
         Ok(mut result) => {
             while let Some(Ok(row)) = result.next() {
-                let tax_class_ref: Option<i32> = row.get("TaxClassRef");
-                if let Some(tax_class_ref) = tax_class_ref {
-                    let property_id: Option<i32> = row.get("PropertyID");
-                    let tax_class_name: Option<String> = row.get("TaxClassName");
-                    let tax_rate_ref: Option<i16> = row.get("TaxRateRef");
-                    let tax_rate_percentage: Option<f64> = row.get("TaxRatePercentage");
+                let tax_class_ref: Option<i32> =
+                    row.get_opt("TaxClassRef").and_then(|res| res.ok());
+                let tax_class_name: Option<String> =
+                    row.get_opt("TaxClassName").and_then(|res| res.ok());
+                let tax_rate_ref: Option<i16> = row.get_opt("TaxRateRef").and_then(|res| res.ok());
+                let tax_rate_percentage: Option<f64> =
+                    row.get_opt("TaxRatePercentage").and_then(|res| res.ok());
 
+                if let (
+                    Some(tax_class_ref),
+                    Some(tax_class_name),
+                    Some(tax_rate_ref),
+                    Some(tax_rate_percentage),
+                ) = (
+                    tax_class_ref,
+                    tax_class_name,
+                    tax_rate_ref,
+                    tax_rate_percentage,
+                ) {
+                    let property_id: Option<Result<i32, _>> = row.get_opt("PropertyID");
                     tax_classes.push(TaxClassInfo {
-                        property_id,
+                        property_id: property_id.and_then(|res| res.ok()).or(None),
                         tax_class_ref,
                         tax_class_name,
                         tax_rate_ref,
-                        tax_rate_percentage,
+                        tax_rate_percentage: format!("{:.6}", tax_rate_percentage),
                     });
                 }
             }

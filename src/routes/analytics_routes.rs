@@ -60,18 +60,12 @@ pub async fn post_stats(
     match conn.query_first::<mysql::Row, std::string::String>(query) {
         Ok(Some(row)) => {
             // extract the values, defaulting to zero if anything is NULL
-            let checks: i64 = row
-                .get::<Option<i64>, _>("Checks")
-                .unwrap_or(Some(0))
-                .unwrap_or(0);
+            let checks: i64 = row.get_opt("Checks").and_then(|res| res.ok()).unwrap_or(0);
             let guests: i64 = row
-                .get::<Option<i64>, _>("GuestCount")
-                .unwrap_or(Some(0))
+                .get_opt("GuestCount")
+                .and_then(|res| res.ok())
                 .unwrap_or(0);
-            let total: f64 = row
-                .get::<Option<f64>, _>("Total")
-                .unwrap_or(Some(0.0))
-                .unwrap_or(0.0);
+            let total: f64 = row.get_opt("Total").and_then(|res| res.ok()).unwrap_or(0.0);
 
             let stats = StatsResponse {
                 total_orders: checks,

@@ -26,9 +26,11 @@ pub async fn get_db(State(state): State<Arc<AppState>>) -> impl IntoResponse {
     match conn.query_iter(query) {
         Ok(mut result) => {
             while let Some(Ok(row)) = result.next() {
-                let object_number: Option<i64> = row.get("ObjectNumber");
-                if let Some(obj) = object_number {
-                    let output: Option<String> = row.get("OrderDeviceOutput");
+                let object_number: Option<i64> =
+                    row.get_opt("ObjectNumber").and_then(|res| res.ok());
+                if let Some(object_number) = object_number {
+                    let output: Option<String> =
+                        row.get_opt("OrderDeviceOutput").and_then(|res| res.ok());
                     let devices = output
                         .unwrap_or_default()
                         .chars()
@@ -43,7 +45,7 @@ pub async fn get_db(State(state): State<Arc<AppState>>) -> impl IntoResponse {
                         })
                         .collect::<Vec<i32>>();
 
-                    menu_item_info.insert(obj.to_string(), devices);
+                    menu_item_info.insert(object_number.to_string(), devices);
                 }
             }
         }
