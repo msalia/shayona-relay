@@ -3,3 +3,5 @@
 *.exe
 *.d
 .DS_Store
+
+!/publish/.env

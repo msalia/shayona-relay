@@ -9,5 +9,5 @@ docker image rm shayona-relay
 docker compose -f docker-compose.yaml build
 
 # push docker images to hub
-docker image tag shayona-relay msalia/shayona-relay:latest
+docker image tag shayona-kiosk-relay-relay msalia/shayona-relay:latest
 docker push msalia/shayona-relay:latest

@@ -3,7 +3,7 @@
 FROM jscharnitzke/rust-build-windows:latest AS windows-builder
 
 # Set the working directory inside the container
-WORKDIR /usr/src/shayona-relay
+WORKDIR /usr/src/relay
 
 # Copy your project code into the container
 COPY . .

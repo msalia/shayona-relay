@@ -54,7 +54,7 @@ CMD [ "cargo", "run", "--offline" ]
 FROM base AS builder
 
 RUN apt-get update && \
-    apt-get install -y cmake libtirpc-dev default-libmysqlclient-dev && \
+    apt-get install -y cmake libclang-dev clang libtirpc-dev default-libmysqlclient-dev && \
     cargo build --release && \
     apt-get clean
 

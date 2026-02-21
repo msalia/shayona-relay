@@ -1,0 +1,19 @@
+services:
+  shayona-relay:
+    container_name: shayona-relay
+    image: msalia/shayona-relay:latest
+    env_file: ".env"
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      HOST: ${HOST}
+      PORT: ${PORT}
+      METRICS_PORT: ${METRICS_PORT}
+      DATABASE_URL: ${DATABASE_URL}
+      OB_URL: ${OB_URL}
+      RUST_LOG: ${RUST_LOG}
+    networks:
+      - relay-network
+
+networks:
+  relay-network:
