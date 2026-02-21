@@ -33,7 +33,7 @@ async fn main() {
         Ok(p) => p,
         Err(e) => panic!("Unable to read environment variable PORT: {e}"),
     };
-    let addr = SocketAddr::from(([127, 0, 0, 1], port));
+    let addr = SocketAddr::from(([0, 0, 0, 0], port));
     let tcp_bind = TcpListener::bind(&addr).await;
     let tcp = match tcp_bind {
         Ok(t) => t,
