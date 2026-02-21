@@ -1,6 +1,3 @@
-# pull latest changes, if any
-git pull
-
 # remove old container and dependencies
 docker compose down
 docker image rm shayona-relay
