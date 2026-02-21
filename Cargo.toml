@@ -11,7 +11,7 @@ paris = { version = "*", features = ["timestamps", "macros"] }
 serde_json = "*"
 tokio = { version = "1", features = ["full"] }
 tower-http = { version = "*", features = ["cors"] }
-mysqlclient-sys = { version = "*", features = ["buildtime_bindgen"] }
+mysqlclient-sys = { version = "*" }
 reqwest = { version = "0.12", features = ["json"] }
 chrono = "0.4.43"
 serde = "1.0.228"
