@@ -6,4 +6,4 @@ set HOST=0.0.0.0
 set PORT=3002
 
 REM Run your executable
-start ./shayona-kiosk-relay.exe
+shayona-kiosk-relay.exe
